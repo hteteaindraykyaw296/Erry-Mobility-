@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" role="img" aria-labelledby="title"><title id="title">Communication board, access switch and speech-output device</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#294d49"/></marker></defs><rect width="760" height="350" fill="#e1eef5"/><g font-family="Arial,sans-serif" stroke-linejoin="round"><rect x="40" y="65" width="300" height="230" rx="12" fill="#294d49"/><rect x="55" y="80" width="270" height="195" rx="12" fill="#fffdf6"/><rect x="70" y="98" width="72" height="65" rx="7" fill="#75997e"/><rect x="153" y="98" width="72" height="65" rx="7" fill="#c58b73"/><rect x="236" y="98" width="72" height="65" rx="7" fill="#6c99b3"/><rect x="70" y="180" width="72" height="65" rx="7" fill="#9b8eb5"/><rect x="153" y="180" width="72" height="65" rx="7" fill="#ddba70"/><rect x="236" y="180" width="72" height="65" rx="7" fill="#b8c5b1"/><circle cx="470" cy="180" r="55" fill="#6c99b3"/><circle cx="470" cy="170" r="43" fill="#bcd2d9"/><rect x="590" y="87" width="125" height="188" rx="12" fill="#c7d4bd"/><text x="652" y="150" font-size="40" fill="#294d49" text-anchor="middle">Aa</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="#e1eef5"/>
+  <g stroke="#183c32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="140" y="34" width="278" height="172" rx="19" fill="#6c9a82"/>
+    <rect x="151" y="45" width="256" height="150" rx="12" fill="#fffaf0"/>
+    <rect x="166" y="59" width="68" height="53" rx="8" fill="#c8dff0"/>
+    <rect x="244" y="59" width="68" height="53" rx="8" fill="#e3eee5"/>
+    <rect x="322" y="59" width="68" height="53" rx="8" fill="#f3d5cc"/>
+    <rect x="166" y="124" width="68" height="53" rx="8" fill="#e3eee5"/>
+    <rect x="244" y="124" width="68" height="53" rx="8" fill="#f3d5cc"/>
+    <rect x="322" y="124" width="68" height="53" rx="8" fill="#c8dff0"/>
+    <path d="M200 69c-5 9-14 16-14 23a14 14 0 0 0 28 0c0-7-9-14-14-23z" fill="#517d93"/>
+    <path d="M257 92h42m-37 0a16 16 0 0 1 32 0m-16-18v-4m-15 28h30" fill="none"/>
+    <path d="M347 81a6 6 0 1 1 12 0v8a6 6 0 1 1-12 0zm-7 7a13 13 0 0 0 26 0m-13 13v5m-8 0h16" fill="none"/>
+    <path d="M186 152h28m-14-14v28m-10-24 20 20m0-20-20 20" fill="none"/>
+    <path d="M265 155l9 9 18-22m53 10h22" fill="none"/>
+    <path d="M124 59l23 4 13 13 15 4 17 9c7 4 13-6 5-11l-15-12 3-8c2-7-2-12-8-15l-22-10-23-10z" fill="#bb795c"/>
+    <path d="M96 12l41 13-9 37-42-12z" fill="#df9b8b"/>
+    <path d="M166 61l16 5m-20 2 13 8" fill="none"/>
+  </g>
+</svg>

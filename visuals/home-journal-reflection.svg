@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" role="img" aria-labelledby="title"><title id="title">Journal and illustrated mood prompts</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#294d49"/></marker></defs><rect width="760" height="350" fill="#f8e7e1"/><g font-family="Arial,sans-serif" stroke-linejoin="round"><rect x="85" y="45" width="245" height="260" rx="12" fill="#e7d8ca"/><rect x="110" y="62" width="198" height="226" rx="12" fill="#fffdf6"/><rect x="128" y="78" width="162" height="35" rx="5" fill="#c58b73"/><circle cx="145" cy="145" r="9" fill="#75997e"/><circle cx="145" cy="187" r="9" fill="#75997e"/><circle cx="145" cy="229" r="9" fill="#75997e"/><rect x="410" y="85" width="270" height="170" rx="12" fill="#fffdf6"/><circle cx="460" cy="180" r="27" fill="#dcd9ea"/><circle cx="452" cy="175" r="2" fill="#294d49"/><circle cx="468" cy="175" r="2" fill="#294d49"/><path d="M450 191 Q460 181 470 191" stroke="#294d49" fill="none" stroke-width="2"/><circle cx="545" cy="180" r="27" fill="#e8dfbf"/><circle cx="537" cy="175" r="2" fill="#294d49"/><circle cx="553" cy="175" r="2" fill="#294d49"/><path d="M535 191 H555" stroke="#294d49" fill="none" stroke-width="2"/><circle cx="630" cy="180" r="27" fill="#d3e3cc"/><circle cx="622" cy="175" r="2" fill="#294d49"/><circle cx="638" cy="175" r="2" fill="#294d49"/><path d="M620 191 Q630 201 640 191" stroke="#294d49" fill="none" stroke-width="2"/><path d="M171 145h92m-92 42h73m-73 42h88" fill="none" stroke="#52665a" stroke-width="4" stroke-linecap="round"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="#f8e7e1"/>
+  <rect x="126" y="24" width="388" height="192" rx="16" fill="#fffaf0" stroke="#183c32" stroke-width="3"/>
+  <path d="M142 25h356q15 0 15 15v35H127V40q0-15 15-15z" fill="#e3eee5"/>
+  <path d="M127 75h386" stroke="#183c32" stroke-width="3"/>
+  <g fill="#183c32" font-family="system-ui, sans-serif">
+    <text x="151" y="56" font-size="23" font-weight="700">My Journal</text>
+    <rect x="393" y="33" width="99" height="32" rx="9" fill="#c8dff0"/>
+    <text x="407" y="56" font-size="19" font-weight="700">Example</text>
+    <text x="151" y="104" font-size="16" font-weight="700">Task or movement</text>
+    <text x="151" y="126" font-size="20">Writing a note</text>
+    <text x="151" y="154" font-size="16" font-weight="700">My win, challenge or change today</text>
+    <text x="151" y="178" font-size="20">Resting my arm felt steadier.</text>
+  </g>
+</svg>

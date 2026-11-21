@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" role="img" aria-labelledby="title"><title id="title">Supported forearm, thicker pen grip and stable paper</title><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#294d49"/></marker></defs><rect width="760" height="350" fill="#f4e9db"/><g font-family="Arial,sans-serif" stroke-linejoin="round"><rect x="70" y="210" width="600" height="60" rx="12" fill="#b6c6ad"/><rect x="330" y="175" width="240" height="65" rx="12" fill="#fffdf5"/><path d="M130 185 L315 190 L420 162" stroke="#c58b73" stroke-width="42" fill="none" stroke-linecap="round"/><g transform="translate(445 50) rotate(-25) scale(0.85)"><rect x="0" y="0" width="20" height="165" rx="6" fill="#6c99b3"/><rect x="-8" y="70" width="36" height="65" rx="12" fill="#ddba70"/><path d="M0 165 L10 190 L20 165" fill="#766047"/></g><path d="M235 193 L80 100" fill="none" stroke="#6d8274" stroke-width="2"/><circle cx="235" cy="193" r="4" fill="#294d49"/><path d="M460 146 L540 95" fill="none" stroke="#6d8274" stroke-width="2"/><circle cx="460" cy="146" r="4" fill="#294d49"/><path d="M555 218 L560 300" fill="none" stroke="#6d8274" stroke-width="2"/><circle cx="555" cy="218" r="4" fill="#294d49"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="#f2eadb"/>
+  <g stroke="#183c32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="116" y="45" width="408" height="151" rx="17" fill="#e3eee5"/>
+    <path d="M319 59h137v122H319z" fill="#fffaf0"/>
+    <path d="M350 97h72m-72 19h72m-72 19h72m-72 19h72" stroke="#a7bbae"/>
+    <path d="M351 152q14-16 26-2t26-2" fill="none" stroke="#517d93"/>
+    <rect x="147" y="118" width="129" height="51" rx="16" fill="#c8dff0"/>
+    <path d="M134 112l78 8-2 40-76-4z" fill="#6c9a82"/>
+    <path d="M212 120l81 6 21-19c5-5 13-5 17 0l9 10 2 17-8 14-14 5-23-6-87 13z" fill="#bb795c"/>
+    <path d="M317 87l8-5 36 62 2 12-11-7z" fill="#517d93"/>
+    <path d="M338 116l11-7 13 22-11 7z" fill="#df9b8b"/>
+    <path d="M308 128l10-9 13 3c5 1 6 8 1 10l-9 2-8 8m16-34 7 4 5 11" fill="#bb795c"/>
+  </g>
+</svg>

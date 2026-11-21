@@ -114,17 +114,11 @@
 }
 
 .purpose-hero h1 {
-  font-size: clamp(2.15rem, 1.45rem + 3vw, 4.25rem);
-  letter-spacing: -.045em;
-}
-
-.purpose-hero h1 span {
-  display: block;
+  max-inline-size: 20ch;
+  font-size: clamp(2.125rem, 1.6rem + 2.1vw, 3.75rem);
+  letter-spacing: -.02em;
+  line-height: 1.12;
   text-wrap: balance;
-}
-
-.purpose-hero abbr {
-  text-decoration: none;
 }
 
 .audience-line {
@@ -135,10 +129,10 @@
 }
 
 .purpose-lede {
-  max-width: 40ch;
+  max-width: 49ch;
   margin: 1rem 0 1.35rem;
   color: var(--muted);
-  font-size: clamp(1.125rem, 1rem + .4vw, 1.35rem);
+  font-size: 1.125rem;
 }
 
 .participation-visual {
@@ -220,15 +214,15 @@
   background: var(--white);
   border: var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
 .destination-card img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 760 / 350;
+  aspect-ratio: 640 / 240;
   object-fit: contain;
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
   background: var(--sage);
   color: var(--ink);
 }
@@ -313,10 +307,6 @@
   .story-inner,
   .engineering-stages {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .purpose-hero h1 span {
-    text-wrap: initial;
   }
 }
 
