@@ -1,0 +1,88 @@
+name: Unpack Erry website source
+
+on:
+  push:
+    branches:
+      - redesign/erry-mobility-editorial
+    paths:
+      - .github/workflows/unpack-erry.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    if: github.ref == 'refs/heads/redesign/erry-mobility-editorial'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out redesign branch
+        uses: actions/checkout@v4
+
+      - name: Extract the website files
+        shell: python
+        run: |
+          from pathlib import Path, PurePosixPath
+          import zipfile
+
+          root = Path.cwd().resolve()
+          archive = root / "Erry_Mobility_GitHub_Pages.zip"
+          with zipfile.ZipFile(archive) as package:
+              files = [item for item in package.infolist() if not item.is_dir()]
+              if len(files) > 3000 or sum(item.file_size for item in files) > 150 * 1024 * 1024:
+                  raise RuntimeError("Archive exceeds the extraction limit.")
+              paths = [PurePosixPath(item.filename.replace("\\", "/")) for item in files]
+              for path in paths:
+                  if path.is_absolute() or ".." in path.parts or any(":" in part for part in path.parts):
+                      raise RuntimeError("Unsafe archive path.")
+              candidates = [path for path in paths if path.name == "index.html" and not any(
+                  part.startswith(".") or part in ("node_modules", "__MACOSX", "vendor")
+                  for part in path.parts
+              )]
+              if not candidates:
+                  raise RuntimeError("No index.html found. Inspect the ZIP before extracting.")
+              depth = min(len(path.parts) for path in candidates)
+              top = [path for path in candidates if len(path.parts) == depth]
+              if len(top) != 1:
+                  raise RuntimeError("Multiple possible website roots. Inspect the ZIP before extracting.")
+              prefix = top[0].parent
+              pending = {}
+              for item, path in zip(files, paths):
+                  try:
+                      relative = path.relative_to(prefix)
+                  except ValueError:
+                      continue
+                  if not relative.parts or any(part.startswith(".") or part in ("__MACOSX", "node_modules") for part in relative.parts):
+                      continue
+                  if relative.name.lower() in ("cname", "readme.md") or relative.suffix.lower() == ".zip":
+                      continue
+                  if (item.external_attr >> 16) & 0o170000 == 0o120000:
+                      raise RuntimeError("Archive contains a symbolic link.")
+                  destination = root.joinpath(*relative.parts)
+                  if not destination.resolve().is_relative_to(root):
+                      raise RuntimeError("Path escaped the checkout.")
+                  if relative.as_posix() in pending:
+                      raise RuntimeError("Duplicate archive destination.")
+                  data = package.read(item)
+                  if destination.exists() and destination.read_bytes() != data:
+                      raise RuntimeError("Existing file differs: " + relative.as_posix())
+                  pending[relative.as_posix()] = (destination, data)
+              for destination, data in pending.values():
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(data)
+              if not (root / "index.html").is_file():
+                  raise RuntimeError("The extracted website has no root index.html.")
+              print("Website files available at repository root:", len(pending))
+
+      - name: Commit extracted source on redesign branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "Website files are already extracted."
+          else
+            git commit -m "Extract Erry website source for editing"
+            git push origin HEAD:redesign/erry-mobility-editorial
+          fi
