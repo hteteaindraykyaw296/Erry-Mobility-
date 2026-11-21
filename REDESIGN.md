@@ -1,37 +1,23 @@
-# Erry Mobility — purpose-first homepage
+# Erry Mobility editorial redesign
 
-## Homepage change
+The home page introduces Erry’s purpose and links to cerebral palsy education, activities, assistive technology, and the local journal. The activity library leads to a single maintained typing comparison and separate drawing and object practice. Older `skills.html#typing`, `#drawing`, and `#objects` links route to the corresponding activities.
 
-The homepage has been reordered around three purpose questions:
+The typing comparison keeps practice text in memory and saves only setup details and observations. The journal still uses `eri-mobility-journal-v1` for entries and `erry-mobility-profile-v2` for preferences. It exports version 2 backups and accepts the original array format.
 
-1. Why Erry exists — opening lived-experience introduction and a person-centered participation illustration.
-2. Why I built Erry — a compact first-person statement linking to the full About page.
-3. How to use Erry — Understand, Explore, and Reflect pathways, followed by four direct destinations.
-4. What visitors can do — CP education, everyday tasks, assistive technology, and My Journal.
-5. Where the project is going — a grounded project/engineering link.
+## Run the typing and journal regression check
 
-The homepage no longer includes typing-specific trial controls, keyguard switching, comparison tables, journal previews, or example records. Typing remains on `typing.html` through the existing Everyday Tasks route. The separate keyguard and journal experiences remain outside the opening page.
+With Playwright and Chromium installed, serve the checkout over HTTP. From the repository root, run:
 
-## Navigation
+```sh
+python3 -m http.server 8000
+```
 
-The header now uses the requested short labels: Home, Understand CP, Everyday tasks, assistive technology, My Journal, and About Erry. The current homepage route is marked with `aria-current="page"`. Mobile navigation remains wrapped and keyboard usable.
+From a second terminal:
 
-## Routes preserved
+```sh
+node tests/typing-journal.cjs
+```
 
-The homepage links use existing source files:
+Set `ERRY_TEST_URL` if the site is served from a different URL or project path. Set `CHROMIUM_PATH` to use an installed Chromium executable instead of the Playwright browser. The check uses isolated synthetic records to exercise pause/restart, stale results, skipped attempts, single-save protection, unavailable storage, legacy edits, backup recovery, and duplicate imports.
 
-- `understand.html`
-- `skills.html`
-- `technology.html`
-- `journal.html`
-- `about.html`
-- `project.html`
-- `typing.html`
-
-No storage key or journal implementation changed. `dashboard.js` is no longer loaded by the homepage and may remain unused on its own repository file. Existing typing, journal, and educational code was not modified.
-
-## Verification status
-
-Static source review confirms the purpose-first copy, route targets, in-page Explore Erry anchor, navigation labels, semantic headings, and SVG alternative descriptions. Existing route files were verified in the repository tree.
-
-Executed browser verification, responsive screenshots, keyboard/touch testing, text resizing, contrast testing, reduced-motion testing, synthetic journal tests, and signed-out HTTPS preview verification remain to be completed by a browser-capable environment. Production/promotion remains a separate review step.
+Functional browser checks are interface evidence. Qualified clinical review, participant evaluation, and fitted hardware testing remain proposed work.

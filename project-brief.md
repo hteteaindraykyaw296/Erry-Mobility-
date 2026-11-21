@@ -23,7 +23,7 @@ Personal worth is unconditional. Learning, rest and the use of support are equal
 - Evidence-linked CP awareness, prevention and rehabilitation information.
 - Twelve captioned schematic 3D guides, with written alternatives and adjustable playback speed.
 - Interactive, simplified 3D character, knee, ankle and hand models with structure labels and recorded-video fallbacks.
-- Untimed large-key typing practice and a drawing pad with pointer and keyboard/button access.
+- One untimed typing comparison with optional larger on-screen keys or a repeat filter, and a separate drawing pad with pointer and keyboard/button access.
 - An optional, browser-local personal journal and backup import/export.
 - A public project story describing engineering questions and limitations.
 

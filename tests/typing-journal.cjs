@@ -1,0 +1,150 @@
+'use strict';
+
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const {chromium} = require('playwright');
+
+async function run() {
+  const base = process.env.ERRY_TEST_URL || 'http://127.0.0.1:8000/';
+  const browser = await chromium.launch({executablePath:process.env.CHROMIUM_PATH});
+  const context = await browser.newContext({viewport:{width:390,height:844}, reducedMotion:'reduce'});
+  const page = await context.newPage();
+  const errors = [];
+  const requests = [];
+  const messages = [];
+  const marker = 'synthetic-private-practice';
+  const key = 'eri-mobility-journal-v1';
+  const legacy = {id:'old',date:'2024-01-01',activity:'Older record',note:'Older observation',pain:2.5,assistance:'Independent with a mat',feeling:'Legacy feeling'};
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('request', request => requests.push(request.url()+(request.postData() || '')));
+  page.on('console', message => messages.push(message.text()));
+  try {
+    await page.goto(base);
+    await page.evaluate(({key,legacy}) => localStorage.setItem(key,JSON.stringify([legacy])),{key,legacy});
+    await page.getByRole('link',{name:'Browse everyday activities'}).click();
+    await page.getByRole('link',{name:'Compare typing setups'}).click();
+    await page.waitForURL(new URL('typing.html',base).href);
+    const attempt = page.locator('#message');
+    const rating = page.locator('#effort');
+    const choose = page.locator('#adaptation');
+    const keep = page.locator('#keep');
+    const skip = page.locator('#skip');
+    const restart = page.locator('#restart');
+    const save = page.getByRole('button',{name:'Save comparison'});
+    const setupA = page.locator('[data-mode="standard"]');
+    const setupB = page.locator('[data-mode="adapted"]');
+    const results = page.locator('#results article');
+
+    await page.locator('#pause').click();
+    assert(await attempt.isDisabled());
+    await restart.click();
+    assert(await attempt.isEnabled());
+    assert.equal(await page.locator('#pause').getAttribute('aria-pressed'),'false');
+    await attempt.fill('Quick check');
+    await skip.click();
+    await skip.click();
+    assert.equal(await results.getByText('Skipped').count(),2);
+    assert(await save.isHidden());
+    await restart.click();
+
+    await attempt.fill(marker+'x');
+    await attempt.press('Backspace');
+    await rating.selectOption('4');
+    await keep.click();
+    await attempt.fill(marker);
+    await rating.selectOption('3');
+    await keep.click();
+    await setupA.click();
+    await rating.selectOption('5');
+    assert(await save.isHidden());
+    await keep.click();
+    assert.match(await results.nth(0).innerText(),/Correction actions: 1.*Effort: 5/s);
+    await choose.selectOption('large');
+    assert(await save.isHidden());
+    await setupB.click();
+    assert.equal(await attempt.inputValue(),'');
+    assert(await page.locator('#keyboard').evaluate(node=>node.classList.contains('larger-keys')));
+    await attempt.fill(marker);
+    await rating.selectOption('2');
+    await keep.click();
+
+    await page.locator('input[name="preference"][value="adapted"]').check();
+    await page.evaluate(key=>localStorage.setItem(key,'{unreadable'),key);
+    await save.click();
+    assert.match(await page.locator('#save-status').innerText(),/Could not save/);
+    assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'{unreadable');
+    await page.evaluate(({key,legacy})=>localStorage.setItem(key,JSON.stringify([legacy])),{key,legacy});
+    await save.click();
+    assert(await save.isDisabled());
+    await page.locator('#save-form').evaluate(form=>form.requestSubmit());
+    let records = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);
+    assert.equal(records.length,2);
+    assert.match(records[1].taskDetail,/Larger on-screen keys/);
+    assert.match(records[1].note,/Setup A: 1; Setup B: 0.*Setup A: 5; Setup B: 2/s);
+    assert(!JSON.stringify(records).includes(marker));
+
+    await restart.click();
+    assert(await attempt.isEnabled());
+    assert(await save.isHidden());
+    assert.equal(await page.locator('#save-status').textContent(),'');
+    await skip.click();
+    await attempt.fill(marker);
+    await keep.click();
+    await save.click();
+    records = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),key);
+    assert.equal(records.length,3);
+    assert.match(records[2].note,/Setup A: skipped; Setup B: 0/);
+    assert(!records[2].note.includes('undefined'));
+    await page.locator('#save-form').getByRole('link',{name:'Open My Journal'}).click();
+    await page.waitForURL(new URL('journal.html',base).href);
+    await page.reload();
+    const entries = page.locator('#entries');
+    await entries.getByText('Older observation',{exact:true}).waitFor();
+    const older = entries.locator('article').filter({hasText:'Older observation'});
+    await older.getByRole('button',{name:'Edit day'}).click();
+    assert(await page.locator('.entry-options').evaluate(el=>!el.open));
+    await page.locator('#note').fill('Revised older observation');
+    await page.locator('#save-entry').click();
+    await entries.getByText('Revised older observation',{exact:true}).waitFor();
+    const updated = await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).find(record=>record.id==='old'),key);
+    assert.equal(updated.pain,legacy.pain);
+    assert.equal(updated.assistance,legacy.assistance);
+    assert.equal(updated.feeling,legacy.feeling);
+    const pending = page.waitForEvent('download');
+    await page.locator('#export').click();
+    const exported = await fs.readFile(await (await pending).path(),'utf8');
+    assert(!exported.includes(marker));
+
+    const fresh = await browser.newContext();
+    const restored = await fresh.newPage();
+    await restored.goto(new URL('journal.html',base).href);
+    const backup = {name:'backup.json',mimeType:'application/json',buffer:Buffer.from(exported)};
+    const file = restored.locator('#import-file');
+    await file.setInputFiles(backup);
+    await restored.getByText(/3 entries imported; 0 duplicates skipped/).waitFor();
+    await file.setInputFiles(backup);
+    await restored.getByText(/0 entries imported; 3 duplicates skipped/).waitFor();
+    await restored.reload();
+    await restored.getByText('Revised older observation',{exact:true}).waitFor();
+    assert.equal(await restored.locator('#entries article').count(),3);
+    await fresh.close();
+
+    await page.goto(new URL('typing.html',base).href);
+    await choose.selectOption('repeat');
+    await setupB.click();
+    await attempt.pressSequentially('aa');
+    assert.equal(await attempt.inputValue(),'a');
+    await page.locator('#repeat-window').fill('0');
+    assert.equal(await attempt.inputValue(),'');
+    await attempt.pressSequentially('aa');
+    assert.equal(await attempt.inputValue(),'aa');
+    assert(!requests.some(request=>request.includes(marker)));
+    assert(!messages.some(message=>message.includes(marker)));
+    assert.deepEqual(errors,[]);
+    console.log('Passed typing recovery, results invalidation, skipped attempts, save retry, single save, journal editing, export and duplicate import.');
+  } finally {
+    await browser.close();
+  }
+}
+
+run().catch(error=>{console.error(error);process.exitCode=1;});

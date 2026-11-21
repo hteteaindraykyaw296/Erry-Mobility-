@@ -12,3 +12,13 @@
 .dash-thumbnail.anatomy-card-image{object-fit:contain!important;height:140px;background:#152b37}
 
 .anatomy-studio [hidden] { display: none !important; }
+
+.anatomy-disclosure img {
+  display: block;
+  width: min(100%, 28rem);
+  height: auto;
+}
+
+.anatomy-disclosure video {
+  width: min(100%, 36rem);
+}

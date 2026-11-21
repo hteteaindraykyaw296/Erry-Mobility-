@@ -63,3 +63,12 @@
 .practice-keys[data-placement="right"] {
   justify-content: flex-end;
 }
+
+.practice-keys.larger-keys button {
+  min-width: 56px;
+  min-height: 56px;
+}
+
+.typing-explainer {
+  margin-block: 1rem;
+}
