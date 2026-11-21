@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="#f8e7e1"/>
+  <rect x="126" y="24" width="388" height="192" rx="16" fill="#fffaf0" stroke="#183c32" stroke-width="3"/>
+  <path d="M142 25h356q15 0 15 15v35H127V40q0-15 15-15z" fill="#e3eee5"/>
+  <path d="M127 75h386" stroke="#183c32" stroke-width="3"/>
+  <g fill="#183c32" font-family="system-ui, sans-serif">
+    <text x="151" y="56" font-size="23" font-weight="700">My Journal</text>
+    <rect x="393" y="33" width="99" height="32" rx="9" fill="#c8dff0"/>
+    <text x="407" y="56" font-size="19" font-weight="700">Example</text>
+    <text x="151" y="104" font-size="16" font-weight="700">Task or movement</text>
+    <text x="151" y="126" font-size="20">Writing a note</text>
+    <text x="151" y="154" font-size="16" font-weight="700">My win, challenge or change today</text>
+    <text x="151" y="178" font-size="20">Resting my arm felt steadier.</text>
+  </g>
+</svg>

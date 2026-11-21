@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 208">
+  <defs>
+    <g id="keyboard" stroke="#183c32" stroke-width="2" stroke-linejoin="round">
+      <rect width="136" height="59" rx="9" fill="#c8dff0"/>
+      <path d="M15 16h106M15 29h106M15 42h25m56 0h25M48 45h40" fill="none" stroke-linecap="round"/>
+      <path d="M27 12v9m17-9v9m17-9v9m17-9v9m17-9v9m17-9v9M27 25v9m17-9v9m17-9v9m17-9v9m17-9v9m17-9v9" fill="none"/>
+    </g>
+  </defs>
+  <rect width="640" height="208" fill="#e4eee4"/>
+  <g fill="#183c32" font-family="system-ui, sans-serif" font-size="23" font-weight="700">
+    <text x="33" y="37">A · Usual position</text>
+    <text x="347" y="37">B · One change</text>
+  </g>
+  <g stroke="#183c32" stroke-width="3" stroke-linejoin="round">
+    <rect x="32" y="55" width="262" height="124" rx="12" fill="#fffaf0"/>
+    <rect x="346" y="55" width="262" height="124" rx="12" fill="#fffaf0"/>
+    <path d="M34 170h258m56 0h258" stroke="#6c9a82" stroke-width="5"/>
+  </g>
+  <use href="#keyboard" x="95" y="67"/>
+  <use href="#keyboard" x="409" y="102"/>
+</svg>

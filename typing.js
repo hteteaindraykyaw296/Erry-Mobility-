@@ -1,0 +1,55 @@
+'use strict';
+const find = selector => document.querySelector(selector);
+const message = find('#message'), keyboard = find('#keyboard'), adaptation = find('#adaptation'), placement = find('#placement'), effort = find('#effort');
+const stepIds = ['try','compare','save'], modes = ['standard','adapted'];
+const modeButtons = document.querySelectorAll('[data-mode]');
+const emptyAttempt = () => ({text:'',corrections:0,effort:''});
+let attempts={standard:emptyAttempt(),adapted:emptyAttempt()},results={},mode='standard',paused=false,composing=false,selectionBeforeInput=null;
+const describeMode=name=>name==='standard'?'Setup A · Usual':'Setup B · One change';
+function showStep(step){stepIds.forEach(name=>{const el=find('#'+name+'-step');if(name===step)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current')})}
+function changeDescription(){const descriptions={position:'Move the keyboard to a comfortable position you choose. No equipment is required.',support:'Use only forearm support that is already comfortable and available to you. Do not add or adjust fitted equipment.',keyguard:'Use an existing keyguard that has already been fitted for your device. Do not try to fit or modify one for this activity.',setting:'Change one keyboard accessibility setting on your device yourself before the trial. Restore it afterward if you wish.'};return descriptions[adaptation.value]}
+function updateSetup(){const active=attempts[mode];message.value=active.text;effort.value=active.effort;keyboard.dataset.placement=placement.value;modeButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));find('#setup-description').textContent=mode==='standard'?'Use the keyboard arrangement you usually use.':changeDescription();find('#key-feedback').textContent='';selectionBeforeInput=null}
+function selectMode(name){mode=name;updateSetup()}
+function countCorrection(){attempts[mode].corrections+=1}
+message.addEventListener('compositionstart',()=>{composing=true});message.addEventListener('compositionend',()=>{composing=false;attempts[mode].text=message.value;selectionBeforeInput=null});
+message.addEventListener('beforeinput',event=>{selectionBeforeInput={start:message.selectionStart,end:message.selectionEnd,type:event.inputType,composing:event.isComposing||composing}});
+message.addEventListener('input',event=>{const old=selectionBeforeInput;const type=event.inputType||old?.type||'';const inComposition=event.isComposing||composing||old?.composing;const hasSelection=old&&old.end>old.start;const deletion=type.startsWith('delete');const replacement=type.startsWith('insert')&&hasSelection;
+ // Count a deletion or replacement of selected text outside input-method composition.
+ if(!inComposition&&(deletion||replacement))countCorrection();attempts[mode].text=message.value;selectionBeforeInput=null;
+});
+effort.addEventListener('change',()=>{attempts[mode].effort=effort.value});
+function dispatchInput(inputType){try{message.dispatchEvent(new InputEvent('input',{bubbles:true,inputType,data:null}))}catch{message.dispatchEvent(new Event('input',{bubbles:true}))}}
+function pressKey(key) {
+  if (paused) return;
+  message.focus();
+  const start = message.selectionStart;
+  const end = message.selectionEnd;
+  if (key === 'Delete') {
+    if (start === 0 && end === 0) return;
+    const from = start === end ? start - 1 : start;
+    message.setRangeText('', from, end, 'end');
+    dispatchInput('deleteContentBackward');
+    return;
+  }
+
+  if (message.value.length - (end - start) >= message.maxLength) return;
+  // setRangeText does not fire beforeinput, so preserve the selection for the input listener.
+  selectionBeforeInput = {start, end};
+  message.setRangeText(key === 'Space' ? ' ' : key, start, end, 'end');
+  dispatchInput(start === end ? 'insertText' : 'insertReplacementText');
+}
+
+for(const key of [...'qwertyuiopasdfghjklzxcvbnm','Space','Delete']){const button=document.createElement('button');button.type='button';button.textContent=key;button.setAttribute('aria-label',key==='Space'?'Space':key==='Delete'?'Delete previous character':key);button.addEventListener('click',()=>pressKey(key));keyboard.append(button)}
+function renderResults(){const grid=find('#results');grid.replaceChildren();modes.forEach(name=>{const card=document.createElement('article'),title=document.createElement('h3'),result=results[name];title.textContent=describeMode(name);card.append(title);if(!result){card.append(Object.assign(document.createElement('p'),{textContent:'Waiting for this attempt'}))}else if(result.skipped){card.append(Object.assign(document.createElement('p'),{textContent:'Skipped'}))}else{card.append(Object.assign(document.createElement('p'),{textContent:'Correction actions: '+result.corrections}));card.append(Object.assign(document.createElement('p'),{textContent:'Effort: '+(result.effort||'not rated')}))}grid.append(card)});const complete=modes.every(n=>results[n]);find('#preference-field').hidden=!complete;find('#save-form').hidden=!complete||modes.every(n=>results[n]?.skipped);showStep(complete?'compare':'try')}
+function keepAttempt(skip){const active=attempts[mode];if(!skip&&!active.text.trim()){find('#try-status').textContent='Type a message to keep this attempt, or choose Skip.';message.focus();return}results[mode]=skip?{skipped:true}:{skipped:false,corrections:active.corrections,effort:active.effort};renderResults();const other=modes.find(n=>n!==mode);if(!results[other]){selectMode(other);find('#try-status').textContent='Now try '+describeMode(other)+'.';message.focus()}else{find('#try-status').textContent='Both attempts are ready to compare.';find('#compare-title').focus()}}
+function restart(){attempts={standard:emptyAttempt(),adapted:emptyAttempt()};results={};find('#save-form').reset();find('#save-status').textContent='';find('#try-status').textContent='';selectMode('standard');renderResults()}
+modeButtons.forEach(button=>button.addEventListener('click',()=>selectMode(button.dataset.mode)));
+adaptation.addEventListener('change',()=>{attempts.adapted=emptyAttempt();results={};find('#preference-field').hidden=true;find('#save-form').hidden=true;selectMode('adapted');renderResults();find('#try-status').textContent='Setup B changed. Start a fresh comparison so both attempts use the same sample.'});
+placement.addEventListener('change',()=>{keyboard.dataset.placement=placement.value});find('#try-setup').addEventListener('click',()=>{selectMode('adapted');message.focus()});find('#keep').addEventListener('click',()=>keepAttempt(false));find('#skip').addEventListener('click',()=>keepAttempt(true));find('#restart').addEventListener('click',restart);
+find('#pause').addEventListener('click',event=>{paused=!paused;event.currentTarget.textContent=paused?'Resume':'Pause';event.currentTarget.setAttribute('aria-pressed',String(paused));find('#try-status').textContent=paused?'Paused. Your attempts stay on this page.':'Comparison resumed.';message.disabled=paused;keyboard.querySelectorAll('button').forEach(b=>b.disabled=paused)});
+find('#save-form').addEventListener('submit',event=>{event.preventDefault();const preference=find('input[name="preference"]:checked');if(!preference){find('#save-status').textContent='Choose a preference, including No clear preference, before saving.';find('#preference-field').focus();return}
+ const date=new Date().toISOString().slice(0,10), preferenceLabel={standard:'Setup A',adapted:'Setup B',none:'No clear preference'}[preference.value];const record={id:globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2),date,activity:'Typing setup comparison',taskDetail:'Setup A: usual keyboard arrangement; Setup B: '+adaptation.options[adaptation.selectedIndex].textContent,note:'Correction actions — Setup A: '+results.standard.corrections+'; Setup B: '+results.adapted.corrections+'. Effort (1–5) — Setup A: '+(results.standard.effort||'not rated')+'; Setup B: '+(results.adapted.effort||'not rated')+'. Preference: '+preferenceLabel,nextStep:''};
+ try{const key='eri-mobility-journal-v1';const saved=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(saved))throw new Error('Invalid journal data');saved.push(record);localStorage.setItem(key,JSON.stringify(saved));find('#save-status').textContent='Comparison saved to My Journal. Practice-message text was not saved.';showStep('save')}catch{find('#save-status').textContent='Could not save. Your comparison remains on this page; check browser storage settings.'}
+});
+find('#restart').setAttribute('aria-label','Restart both typing trials');
+updateSetup();renderResults();
