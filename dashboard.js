@@ -68,17 +68,22 @@
     if (preference) { const p = document.createElement('p'); p.textContent = 'Preference: ' + String(preference); card.append(p); }
     return card;
   };
-  try {
-    const raw = localStorage.getItem('eri-mobility-journal-v1');
-    if (raw === null) { empty(); return; }
-    const data = JSON.parse(raw);
-    if (!Array.isArray(data)) throw new Error('Journal format is not a list.');
-    const comparisons = data.filter(entry => entry && typeof entry === 'object' && typeof entry.activity === 'string' && /typing/i.test(entry.activity));
-    comparisons.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
-    if (!comparisons.length) { empty(); return; }
-    const newest = render(comparisons[0]); root.replaceChildren(newest, actions());
-  } catch {
-    const notice = document.createElement('p'); notice.className = 'storage-notice'; notice.setAttribute('role','status'); notice.textContent = 'This browser’s journal could not be read right now. Your typing comparison is still available; you can also open My Journal to review or export your records.';
-    const links = actions(); root.replaceChildren(notice, links);
+  function refreshPreview() {
+    try {
+      const raw = localStorage.getItem('eri-mobility-journal-v1');
+      if (raw === null) { empty(); return; }
+      const data = JSON.parse(raw);
+      if (!Array.isArray(data)) throw new Error('Journal format is not a list.');
+      const comparisons = data.filter(entry => entry && typeof entry === 'object' && typeof entry.activity === 'string' && /typing/i.test(entry.activity));
+      comparisons.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+      if (!comparisons.length) { empty(); return; }
+      const newest = render(comparisons[0]); root.replaceChildren(newest, actions());
+    } catch {
+      const notice = document.createElement('p'); notice.className = 'storage-notice'; notice.setAttribute('role','status'); notice.textContent = 'This browser’s journal could not be read right now. Your typing comparison is still available; you can also open My Journal to review or export your records.';
+      const links = actions(); root.replaceChildren(notice, links);
+    }
   }
+
+  document.addEventListener('journalchange', refreshPreview);
+  refreshPreview();
 })();
