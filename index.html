@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183c32">
-  <meta name="description" content="Erry Mobility helps people with cerebral palsy explore everyday adaptations. Try a typing setup and notice what feels useful.">
+  <meta name="description" content="Erry Mobility, created from lived experience of cerebral palsy. Explore a typing setup, learn about adaptations, and keep what helps.">
   <title>Erry Mobility — Forward, your way</title>
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
 </head>
-<body class="home-page">
+<body class="home-page dashboard-page">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="wordmark" href="index.html" aria-label="Erry Mobility home"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a>
@@ -19,40 +21,56 @@
     </nav>
   </header>
   <main id="main">
-    <section class="home-hero" aria-labelledby="hero-title">
+    <section class="home-hero dashboard-hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">A small experiment in everyday access</p>
+        <p class="eyebrow audience-label">For people with cerebral palsy</p>
         <h1 id="hero-title">Find an easier way to type a message</h1>
-        <p class="hero-lede">For people with cerebral palsy. Try two keyboard setups, compare corrections and effort, and save what helps.</p>
+        <p class="hero-lede">Try two keyboard setups, compare corrections and effort, and keep what helps.</p>
         <a class="button primary-button" href="typing.html">Try a typing setup <span aria-hidden="true">→</span></a>
-        <p class="hero-note">No speed test. Take a break or leave whenever you like.</p>
+        <p class="hero-note">Untimed and optional. Rest, ask for support, or try a different setup whenever you choose.</p>
       </div>
-      <figure class="hero-visual">
-        <svg viewBox="0 0 640 440" role="img" aria-labelledby="keyboard-title keyboard-desc">
-          <title id="keyboard-title">A typing setup to explore</title><desc id="keyboard-desc">A tablet with a large on-screen keyboard, a hand support and a message field. The activity compares the usual arrangement with one chosen change.</desc>
-          <rect x="20" y="18" width="600" height="404" rx="8" fill="#e4ebe1"/>
-          <path d="M65 342h510" stroke="#183c32" stroke-width="2"/><rect x="153" y="93" width="350" height="220" rx="13" fill="#183c32"/><rect x="168" y="108" width="320" height="188" rx="4" fill="#fffdf7"/>
-          <rect x="188" y="128" width="280" height="35" rx="3" fill="#edf2eb"/><text x="204" y="151" font-family="Arial,sans-serif" font-size="16" fill="#183c32">A short message, your way</text>
-          <g fill="#d5e0d6" stroke="#183c32" stroke-width="1"><rect x="189" y="180" width="46" height="28" rx="3"/><rect x="241" y="180" width="46" height="28" rx="3"/><rect x="293" y="180" width="46" height="28" rx="3"/><rect x="345" y="180" width="46" height="28" rx="3"/><rect x="397" y="180" width="46" height="28" rx="3"/><rect x="189" y="216" width="46" height="28" rx="3"/><rect x="241" y="216" width="46" height="28" rx="3"/><rect x="293" y="216" width="46" height="28" rx="3"/><rect x="345" y="216" width="46" height="28" rx="3"/><rect x="397" y="216" width="46" height="28" rx="3"/><rect x="189" y="252" width="98" height="28" rx="3"/><rect x="293" y="252" width="150" height="28" rx="3"/></g>
-          <path d="M302 313v32m-62 0h182" stroke="#183c32" stroke-width="8" stroke-linecap="round"/><path d="M71 365h497" stroke="#c46447" stroke-width="10" stroke-linecap="round"/>
-          <circle cx="523" cy="114" r="22" fill="#c46447"/><path d="m516 114 5 5 10-12" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="64" y="57" font-family="Arial,sans-serif" font-size="14" letter-spacing="2" fill="#36564a">ONE SMALL CHANGE · YOUR OBSERVATION</text>
+      <figure class="hero-visual keyguard-demo" aria-labelledby="keyguard-caption">
+        <div class="demo-toolbar">
+          <span class="demo-kicker">EQUIPMENT EXPLORER · ILLUSTRATIVE</span>
+          <div class="demo-switch" role="group" aria-label="Choose a keyboard illustration">
+            <button type="button" class="demo-choice" data-view="usual" aria-pressed="true">Usual keyboard</button>
+            <button type="button" class="demo-choice" data-view="guard" aria-pressed="false">With a keyguard</button>
+          </div>
+        </div>
+        <svg class="keyguard-svg" viewBox="0 0 760 440" role="img" aria-labelledby="demo-title demo-description">
+          <title id="demo-title">Keyboard and illustrative keyguard</title>
+          <desc id="demo-description">A close, overhead view of a keyboard. Use the controls to show a matching keyguard plate with openings aligned over the keys. Actual keyguards need to fit the particular keyboard.</desc>
+          <defs><pattern id="diagram-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#d7dfd4" stroke-width="1"/></pattern></defs>
+          <rect x="8" y="8" width="744" height="424" fill="#edf1e8"/><rect x="8" y="8" width="744" height="424" fill="url(#diagram-grid)"/>
+          <text x="38" y="44" class="svg-small">TOP VIEW · SAME KEYBOARD, SAME POSITION</text>
+          <rect x="70" y="94" width="620" height="275" rx="24" fill="#24493d" stroke="#183c32" stroke-width="4"/>
+          <rect x="88" y="112" width="584" height="239" rx="14" fill="#d5ded2"/>
+          <g class="keyboard-keys" fill="#fffdf7" stroke="#899d8d" stroke-width="2">
+            <rect x="111" y="138" width="66" height="50" rx="8"/><rect x="190" y="138" width="66" height="50" rx="8"/><rect x="269" y="138" width="66" height="50" rx="8"/><rect x="348" y="138" width="66" height="50" rx="8"/><rect x="427" y="138" width="66" height="50" rx="8"/><rect x="506" y="138" width="66" height="50" rx="8"/><rect x="585" y="138" width="66" height="50" rx="8"/>
+            <rect x="128" y="202" width="66" height="50" rx="8"/><rect x="207" y="202" width="66" height="50" rx="8"/><rect x="286" y="202" width="66" height="50" rx="8"/><rect x="365" y="202" width="66" height="50" rx="8"/><rect x="444" y="202" width="66" height="50" rx="8"/><rect x="523" y="202" width="66" height="50" rx="8"/><rect x="602" y="202" width="48" height="50" rx="8"/>
+            <rect x="151" y="266" width="66" height="50" rx="8"/><rect x="230" y="266" width="66" height="50" rx="8"/><rect x="309" y="266" width="66" height="50" rx="8"/><rect x="388" y="266" width="66" height="50" rx="8"/><rect x="467" y="266" width="66" height="50" rx="8"/><rect x="546" y="266" width="66" height="50" rx="8"/>
+          </g>
+          <g class="key-labels" fill="#183c32" font-family="Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle"><text x="144" y="169">Q</text><text x="223" y="169">W</text><text x="302" y="169">E</text><text x="381" y="169">R</text><text x="460" y="169">T</text><text x="539" y="169">Y</text><text x="618" y="169">U</text><text x="161" y="233">A</text><text x="240" y="233">S</text><text x="319" y="233">D</text><text x="398" y="233">F</text><text x="477" y="233">G</text><text x="556" y="233">H</text><text x="626" y="233">J</text><text x="184" y="297">Z</text><text x="263" y="297">X</text><text x="342" y="297">C</text><text x="421" y="297">V</text><text x="500" y="297">B</text><text x="579" y="297">N</text></g>
+          <g class="keyguard-plate" aria-hidden="true"><rect x="101" y="126" width="558" height="200" rx="19" fill="#d27a5c" fill-opacity=".36" stroke="#a9432c" stroke-width="5"/><g fill="#fbf8ef" stroke="#a9432c" stroke-width="2"><rect x="111" y="138" width="66" height="50" rx="8"/><rect x="190" y="138" width="66" height="50" rx="8"/><rect x="269" y="138" width="66" height="50" rx="8"/><rect x="348" y="138" width="66" height="50" rx="8"/><rect x="427" y="138" width="66" height="50" rx="8"/><rect x="506" y="138" width="66" height="50" rx="8"/><rect x="585" y="138" width="66" height="50" rx="8"/><rect x="128" y="202" width="66" height="50" rx="8"/><rect x="207" y="202" width="66" height="50" rx="8"/><rect x="286" y="202" width="66" height="50" rx="8"/><rect x="365" y="202" width="66" height="50" rx="8"/><rect x="444" y="202" width="66" height="50" rx="8"/><rect x="523" y="202" width="66" height="50" rx="8"/><rect x="602" y="202" width="48" height="50" rx="8"/><rect x="151" y="266" width="66" height="50" rx="8"/><rect x="230" y="266" width="66" height="50" rx="8"/><rect x="309" y="266" width="66" height="50" rx="8"/><rect x="388" y="266" width="66" height="50" rx="8"/><rect x="467" y="266" width="66" height="50" rx="8"/><rect x="546" y="266" width="66" height="50" rx="8"/></g></g>
+          <path d="M112 386h536" stroke="#183c32" stroke-width="2"/><text x="112" y="412" class="svg-label">Keyboard</text><path d="M205 379l43-40" stroke="#183c32" stroke-width="2"/><text x="250" y="405" class="svg-label">Matching openings align over keys</text><text x="548" y="412" class="svg-label">Keyguard plate</text>
         </svg>
-        <figcaption>Explore a keyboard position, comfortable support, or on-screen setting. Change one thing at a time.</figcaption>
+        <figcaption id="keyguard-caption">An equipment illustration, not a fitting guide. A real keyguard must match the particular keyboard and be fitted appropriately.</figcaption>
+        <a class="detail-link" href="skills.html#typing">Read the keyguard lesson <span aria-hidden="true">→</span></a>
+        <p class="demo-status" id="demo-status" role="status" aria-live="polite">Showing usual keyboard without a keyguard.</p>
       </figure>
     </section>
 
-    <section class="mission-strip" aria-label="Erry's mission"><p>Erry Mobility helps people with cerebral palsy explore everyday adaptations, notice small improvements, and feel confident in their own ways of moving.</p><a href="about.html">Why Erry exists <span aria-hidden="true">→</span></a></section>
+    <section class="journey-section" aria-labelledby="journey-title"><div class="journey-heading"><p class="eyebrow">A small experiment, at your pace</p><h2 id="journey-title">Four steps, one useful discovery</h2></div><ol class="journey-steps"><li><a href="typing.html"><span class="journey-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="26" rx="3"/><path d="M11 17h4m4 0h4m4 0h4m4 0h4M11 24h4m4 0h4m4 0h4m4 0h4M16 31h16"/></svg></span><span class="step-index">01</span><strong>Try your usual setup</strong></a></li><li><a href="typing.html"><span class="journey-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M9 34 31 12l6 6-22 22H9zM26 17l6 6M9 42h30"/></svg></span><span class="step-index">02</span><strong>Change one thing</strong></a></li><li><a href="typing.html"><span class="journey-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 36V12m16 24V12m16 24V12M4 36h40"/><circle cx="8" cy="21" r="3"/><circle cx="24" cy="28" r="3"/><circle cx="40" cy="17" r="3"/></svg></span><span class="step-index">03</span><strong>Compare how it felt</strong></a></li><li><a href="typing.html"><span class="journey-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 7h20l6 6v28H12zM32 7v8h6M18 23h14M18 29h14M18 35h9"/></svg></span><span class="step-index">04</span><strong>Optionally save what helped</strong></a></li></ol><a class="text-link" href="typing.html">Go to the typing comparison →</a></section>
 
-    <section class="process-section" aria-labelledby="process-title"><div class="section-heading"><p class="eyebrow">A simple, personal process</p><h2 id="process-title">Notice what works for you</h2></div><ol class="process-list"><li><span>01</span><h3>Try your usual setup.</h3><p>Begin with what you already use.</p></li><li><span>02</span><h3>Change one thing and compare.</h3><p>Take your time; there is no score to reach.</p></li><li><span>03</span><h3>Keep a record of what helped.</h3><p>Save privately in this browser, if you want.</p></li></ol></section>
+    <section class="personal-section" aria-labelledby="personal-title"><div class="personal-heading"><div><p class="eyebrow">Your journal, if you choose</p><h2 id="personal-title">What helped you?</h2></div><span class="local-label">Stored in this browser</span></div><div id="typing-discoveries" class="discoveries" aria-live="polite"><p>Checking this browser’s journal…</p></div></section>
 
-    <section class="tasks-section" aria-labelledby="tasks-title"><div class="section-heading"><p class="eyebrow">Choose an everyday task</p><h2 id="tasks-title">Start where you are curious</h2></div><div class="task-cards">
-      <a class="task-card task-featured" href="typing.html"><span class="task-number">01 / TRY IT</span><h3>Type a message</h3><p>Compare two keyboard setups and reflect on corrections and effort.</p><span class="task-link">Try a typing setup →</span></a>
-      <a class="task-card" href="hands.html"><span class="task-number">02 / EXPLORE</span><h3>Use a spoon</h3><p>Explore grip, reach and ways an everyday utensil might be adapted.</p><span class="task-link">See the hand lesson →</span></a>
-      <a class="task-card" href="balance.html"><span class="task-number">03 / EXPLORE</span><h3>Explore balance</h3><p>See how support points and a base of support relate in a simple diagram.</p><span class="task-link">See the balance lesson →</span></a>
-    </div></section>
-    <section class="closing-links" aria-label="More from Erry"><p>Learn at your own pace. Erry is an educational project and prototype, not a medical assessment.</p><div><a href="technology.html">Assistive technology</a><a href="understand.html">Understand cerebral palsy</a><a href="journal.html">Open My Journal</a><a href="about.html">About Erry</a></div></section>
+    <section class="story-section" aria-labelledby="story-title"><div class="story-copy"><p class="eyebrow">A project shaped by lived experience</p><h2 id="story-title">Why I built Erry</h2><blockquote>“Living with cerebral palsy has taught me that everyday tasks can take experimentation. I built Erry to make room for those discoveries—and to help us feel understood along the way.”</blockquote><a class="text-link" href="about.html">Read my story →</a></div><figure class="story-visual"><div class="story-comparison"><div class="story-attempt"><span class="example-tag">Example</span><strong>Setup A</strong><span class="placeholder-line"></span><span class="placeholder-line short"></span></div><span class="story-arrow" aria-hidden="true">→</span><div class="story-attempt"><span class="example-tag">Example</span><strong>Setup B</strong><span class="placeholder-line"></span><span class="placeholder-line short"></span></div></div><div class="example-record"><span class="example-tag">Example journal structure · neutral placeholders</span><div><span>Date</span><b>[date]</b></div><div><span>Setups</span><b>[Setup A] · [Setup B]</b></div><div><span>Observation</span><b>[your note]</b></div></div><figcaption>A sketch of the comparison and optional record—no personal journal information is shown.</figcaption></figure></section>
+
+    <section class="tasks-section other-tasks" aria-labelledby="tasks-title"><div class="section-heading"><p class="eyebrow">Your next point of curiosity</p><h2 id="tasks-title">Explore another everyday task</h2></div><div class="task-cards"><a class="task-card" href="hands.html"><img class="task-image" src="media/plate.jpg" alt="Illustration of a plate and spoon showing a utensil task"><span class="task-number">EVERYDAY TASK</span><h3>Use a spoon</h3><p>Explore utensil grip, reach and ways an everyday setup might be changed.</p><span class="task-link">Explore the spoon activity →</span></a><a class="task-card" href="balance.html"><svg class="task-image balance-image" viewBox="0 0 360 160" role="img" aria-labelledby="balance-title balance-desc"><title id="balance-title">A simplified support and balance diagram</title><desc id="balance-desc">Two support points define a base of support. A marked centre of mass is shown between them above the base line.</desc><rect width="360" height="160" fill="#e5ece3"/><path d="M62 124h236" stroke="#183c32" stroke-width="4"/><circle cx="95" cy="124" r="11" fill="#a9432c"/><circle cx="265" cy="124" r="11" fill="#a9432c"/><path d="M95 124 180 56l85 68" fill="none" stroke="#526c5d" stroke-width="3" stroke-dasharray="6 5"/><circle cx="180" cy="56" r="9" fill="#183c32"/><text x="180" y="34" text-anchor="middle" fill="#183c32" font-size="14">Centre of mass</text><text x="95" y="151" text-anchor="middle" fill="#183c32" font-size="13">Support point</text><text x="265" y="151" text-anchor="middle" fill="#183c32" font-size="13">Support point</text><text x="180" y="115" text-anchor="middle" fill="#52645a" font-size="13">Base of support</text></svg><span class="task-number">EVERYDAY TASK</span><h3>Explore balance</h3><p>See how support points, a base of support and a represented centre of mass relate.</p><span class="task-link">Explore the balance activity →</span></a></div></section>
+
+    <section class="resource-section" aria-labelledby="resources-title"><div><p class="eyebrow">Learn and explore</p><h2 id="resources-title">More from Erry</h2></div><div class="resource-links"><a href="understand.html">Understand CP <span aria-hidden="true">→</span></a><a href="technology.html">Assistive technology <span aria-hidden="true">→</span></a><a href="care.html">Guidance for families and caregivers <span aria-hidden="true">→</span></a><a href="anatomy.html">3D lessons <span aria-hidden="true">→</span></a></div></section>
   </main>
-  <footer class="site-footer"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><p>Made to explore small changes with curiosity, care and choice.</p></footer>
+  <footer class="site-footer"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><p>An educational project and prototype. Your pace, support and choices are your own.</p></footer>
+  <script src="dashboard.js" defer></script>
 </body>
 </html>
