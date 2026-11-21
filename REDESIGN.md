@@ -1,15 +1,37 @@
-# Erry Mobility — dashboard update
+# Erry Mobility — purpose-first homepage
 
-The homepage now foregrounds its primary audience, lived-experience purpose, and the typing comparison. A keyboard equipment diagram toggles accessibly between a usual keyboard and an illustrative keyguard overlay; it is deliberately not presented as a fitting guide. The four-step sequence links into the working typing activity. A compact, browser-local journal preview renders the latest saved typing record when available and offers a quiet empty state otherwise. The personal section never uses example health information. A separate story visual is explicitly labeled as an example and uses neutral placeholders.
+## Homepage change
 
-Other task cards use the existing spoon media and a labeled balance support diagram. The resource destinations use existing project pages: CP education, assistive technology, family/caregiver care, and anatomy lessons. The keyguard lesson link targets the existing typing topic within Skills.
+The homepage has been reordered around three purpose questions:
 
-The journal storage key remains `eri-mobility-journal-v1`; no migration or journal schema changes are made. Dashboard rendering reads existing typing activity records defensively and displays missing values as not recorded. No practice message is read by this dashboard code. Existing import/export code and typing comparison code are untouched in this update.
+1. Why Erry exists — opening lived-experience introduction and a person-centered participation illustration.
+2. Why I built Erry — a compact first-person statement linking to the full About page.
+3. How to use Erry — Understand, Explore, and Reflect pathways, followed by four direct destinations.
+4. What visitors can do — CP education, everyday tasks, assistive technology, and My Journal.
+5. Where the project is going — a grounded project/engineering link.
 
-Fonts use the existing locally bundled Lora face for homepage editorial headings. Dashboard-specific styles are isolated in `dashboard.css`; shared page styles were not changed.
+The homepage no longer includes typing-specific trial controls, keyguard switching, comparison tables, journal previews, or example records. Typing remains on `typing.html` through the existing Everyday Tasks route. The separate keyguard and journal experiences remain outside the opening page.
+
+## Navigation
+
+The header now uses the requested short labels: Home, Understand CP, Everyday tasks, assistive technology, My Journal, and About Erry. The current homepage route is marked with `aria-current="page"`. Mobile navigation remains wrapped and keyboard usable.
+
+## Routes preserved
+
+The homepage links use existing source files:
+
+- `understand.html`
+- `skills.html`
+- `technology.html`
+- `journal.html`
+- `about.html`
+- `project.html`
+- `typing.html`
+
+No storage key or journal implementation changed. `dashboard.js` is no longer loaded by the homepage and may remain unused on its own repository file. Existing typing, journal, and educational code was not modified.
 
 ## Verification status
 
-Static source review confirmed the links point to existing route files in the repository tree and the journal reader uses the existing storage key. The comparison visual uses semantic buttons with pressed states and a live announcement, and also includes a labeled static illustration and written fitting caution. The task SVG names its support points, base of support, and represented centre of mass.
+Static source review confirms the purpose-first copy, route targets, in-page Explore Erry anchor, navigation labels, semantic headings, and SVG alternative descriptions. Existing route files were verified in the repository tree.
 
-No local browser, shell, or screenshot runner was available through the repository editing interface. Therefore the following remain unverified: executed browser flows with synthetic legacy/new records, imports/exports, interactive rendering across 360/390/768/1440 CSS pixels, zoom/reflow and actual color-contrast calculations, keyboard/touch device testing, and screenshots or signed-out HTTPS preview. Please test these before merge or publication. Production promotion remains separate.
+Executed browser verification, responsive screenshots, keyboard/touch testing, text resizing, contrast testing, reduced-motion testing, synthetic journal tests, and signed-out HTTPS preview verification remain to be completed by a browser-capable environment. Production/promotion remains a separate review step.
