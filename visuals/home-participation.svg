@@ -2,11 +2,7 @@
   <rect width="640" height="240" fill="#e4eee4"/>
   <ellipse cx="320" cy="213" rx="203" ry="11" fill="#d2e3d5"/>
   <g stroke="#183c32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M197 117v52h53l32 31m-79-31h-17" fill="none"/>
-    <circle cx="202" cy="180" r="32" fill="#fffaf0"/>
-    <circle cx="202" cy="180" r="23" fill="#c8dff0"/>
-    <circle cx="202" cy="180" r="4" fill="#183c32"/>
-    <circle cx="270" cy="206" r="7" fill="#fffaf0"/>
+    <path d="M186 112h13v42h46v13h-58zm2 55v41m48-41v41" fill="#c8dff0"/>
     <path d="M223 143h35c9 0 13 5 16 13l19 38h-17l-22-31h-29a18 18 0 0 1-16-13z" fill="#88aebd"/>
     <path d="M277 194h15l12 8v4h-23z" fill="#183c32"/>
     <path d="M199 146l4-42c1-12 9-20 20-20 13 0 23 10 25 22l3 39z" fill="#6c9a82"/>

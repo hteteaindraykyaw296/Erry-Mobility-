@@ -14,12 +14,31 @@ function countCorrection(){attempts[mode].corrections+=1}
 message.addEventListener('compositionstart',()=>{composing=true});message.addEventListener('compositionend',()=>{composing=false;attempts[mode].text=message.value;selectionBeforeInput=null});
 message.addEventListener('beforeinput',event=>{selectionBeforeInput={start:message.selectionStart,end:message.selectionEnd,type:event.inputType,composing:event.isComposing||composing}});
 message.addEventListener('input',event=>{const old=selectionBeforeInput;const type=event.inputType||old?.type||'';const inComposition=event.isComposing||composing||old?.composing;const hasSelection=old&&old.end>old.start;const deletion=type.startsWith('delete');const replacement=type.startsWith('insert')&&hasSelection;
- // A correction is one explicit deletion or replacement of selected text. Paste and IME text are not edits by themselves.
+ // Count a deletion or replacement of selected text outside input-method composition.
  if(!inComposition&&(deletion||replacement))countCorrection();attempts[mode].text=message.value;selectionBeforeInput=null;
 });
 effort.addEventListener('change',()=>{attempts[mode].effort=effort.value});
 function dispatchInput(inputType){try{message.dispatchEvent(new InputEvent('input',{bubbles:true,inputType,data:null}))}catch{message.dispatchEvent(new Event('input',{bubbles:true}))}}
-function pressKey(key){if(paused)return;message.focus();const start=message.selectionStart,end=message.selectionEnd;let from=start,to=end,value='';if(key==='Delete'){if(start===0&&end===0)return;if(start===end){from=Math.max(0,start-1)}message.setRangeText('',from,to,'end');dispatchInput('deleteContentBackward')}else{value=key==='Space'?' ':key;if(message.value.length-(end-start)>=message.maxLength)return;message.setRangeText(value,start,end,'end');dispatchInput(end>start?'insertReplacementText':'insertText')}}
+function pressKey(key) {
+  if (paused) return;
+  message.focus();
+  const start = message.selectionStart;
+  const end = message.selectionEnd;
+  if (key === 'Delete') {
+    if (start === 0 && end === 0) return;
+    const from = start === end ? start - 1 : start;
+    message.setRangeText('', from, end, 'end');
+    dispatchInput('deleteContentBackward');
+    return;
+  }
+
+  if (message.value.length - (end - start) >= message.maxLength) return;
+  // setRangeText does not fire beforeinput, so preserve the selection for the input listener.
+  selectionBeforeInput = {start, end};
+  message.setRangeText(key === 'Space' ? ' ' : key, start, end, 'end');
+  dispatchInput(start === end ? 'insertText' : 'insertReplacementText');
+}
+
 for(const key of [...'qwertyuiopasdfghjklzxcvbnm','Space','Delete']){const button=document.createElement('button');button.type='button';button.textContent=key;button.setAttribute('aria-label',key==='Space'?'Space':key==='Delete'?'Delete previous character':key);button.addEventListener('click',()=>pressKey(key));keyboard.append(button)}
 function renderResults(){const grid=find('#results');grid.replaceChildren();modes.forEach(name=>{const card=document.createElement('article'),title=document.createElement('h3'),result=results[name];title.textContent=describeMode(name);card.append(title);if(!result){card.append(Object.assign(document.createElement('p'),{textContent:'Waiting for this attempt'}))}else if(result.skipped){card.append(Object.assign(document.createElement('p'),{textContent:'Skipped'}))}else{card.append(Object.assign(document.createElement('p'),{textContent:'Correction actions: '+result.corrections}));card.append(Object.assign(document.createElement('p'),{textContent:'Effort: '+(result.effort||'not rated')}))}grid.append(card)});const complete=modes.every(n=>results[n]);find('#preference-field').hidden=!complete;find('#save-form').hidden=!complete||modes.every(n=>results[n]?.skipped);showStep(complete?'compare':'try')}
 function keepAttempt(skip){const active=attempts[mode];if(!skip&&!active.text.trim()){find('#try-status').textContent='Type a message to keep this attempt, or choose Skip.';message.focus();return}results[mode]=skip?{skipped:true}:{skipped:false,corrections:active.corrections,effort:active.effort};renderResults();const other=modes.find(n=>n!==mode);if(!results[other]){selectMode(other);find('#try-status').textContent='Now try '+describeMode(other)+'.';message.focus()}else{find('#try-status').textContent='Both attempts are ready to compare.';find('#compare-title').focus()}}

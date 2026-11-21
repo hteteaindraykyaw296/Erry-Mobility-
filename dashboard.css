@@ -336,3 +336,22 @@
   flex-wrap: wrap;
   gap: .5rem 1rem;
 }
+
+.engineering-preview {
+  max-width: 40rem;
+  margin: 1rem 0 .5rem;
+}
+
+.engineering-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.engineering-preview figcaption {
+  margin-top: .45rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
