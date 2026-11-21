@@ -6,15 +6,16 @@
   <meta name="theme-color" content="#183c32">
   <meta name="description" content="Created from lived experience of cerebral palsy, Erry helps people understand CP, explore adaptations, and reflect on what supports participation.">
   <title>Erry Mobility — Forward, your way</title>
-  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard.css">
+  <script src="home-navigation.js" defer></script>
 </head>
 <body class="home-page purpose-dashboard">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a>
-    <nav aria-label="Main navigation">
+    <button class="home-menu" type="button" aria-controls="home-navigation" aria-expanded="false" hidden>Menu</button>
+    <nav id="home-navigation" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="understand.html">Understand CP</a>
       <a href="skills.html">Everyday tasks</a>
@@ -28,8 +29,8 @@
     <section class="purpose-hero" aria-labelledby="opening-title">
       <div>
         <p class="audience-line">For people with cerebral palsy, families, and caregivers</p>
-        <h1 id="opening-title">Understand CP.<br>Explore everyday possibilities.</h1>
-        <p class="purpose-lede">Created from lived experience of cerebral palsy, Erry brings together clear explanations, everyday adaptations, assistive technology, and a personal journal. Explore what interests you, at your own pace.</p>
+        <h1 id="opening-title"><span>Understand <abbr title="cerebral palsy">CP</abbr>.</span> <span>Explore everyday possibilities.</span></h1>
+        <p class="purpose-lede">Explore clear information, everyday adaptations, assistive technology, and a journal for your own discoveries.</p>
         <a class="button" href="#explore">Explore what you can do <span aria-hidden="true">→</span></a>
       </div>
       <figure class="participation-visual">
@@ -58,23 +59,23 @@
       <h2 id="explore-title">What you can do here</h2>
       <div class="destination-grid">
         <article class="destination-card">
-          <img src="visuals/brain-body.svg" alt="Diagram linking the brain and body during movement." loading="lazy">
+          <img src="visuals/home-brain-body.svg" alt="Diagram linking the brain and body during movement." width="760" height="350" loading="lazy">
           <div>
-            <h3>Understand cerebral palsy</h3>
+            <h3>Understand CP</h3>
             <p>Explore clear explanations of CP and the different ways people experience everyday life.</p>
             <a class="text-link" href="understand.html">Learn about CP <span aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="destination-card">
-          <img src="visuals/writing-setup.svg" alt="A writing setup with supported paper, pencil, and forearm." loading="lazy">
+          <img src="visuals/home-writing-setup.svg" alt="A writing setup with supported paper, pencil, and forearm." width="760" height="350" loading="lazy">
           <div>
-            <h3>Explore everyday adaptations</h3>
+            <h3>Explore everyday tasks</h3>
             <p>Discover ways to approach tasks such as typing, using a spoon, and writing.</p>
-            <a class="text-link" href="skills.html">Explore everyday tasks <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="skills.html">Browse everyday activities <span aria-hidden="true">→</span></a>
           </div>
         </article>
         <article class="destination-card">
-          <img src="visuals/communication-tools.svg" alt="Illustrations of communication supports, including a picture board and a device." loading="lazy">
+          <img src="visuals/home-communication-tools.svg" alt="A communication board, an access switch, and a speech-output device." width="760" height="350" loading="lazy">
           <div>
             <h3>Discover assistive technology</h3>
             <p>Learn how equipment and accessibility features can support different needs.</p>
@@ -82,9 +83,9 @@
           </div>
         </article>
         <article class="destination-card">
-          <img src="visuals/journal-reflection.svg" alt="Illustration of prompts for reflecting on everyday activities." loading="lazy">
+          <img src="visuals/home-journal-reflection.svg" alt="Illustration of prompts for reflecting on everyday activities." width="760" height="350" loading="lazy">
           <div>
-            <h3>Keep a personal journal</h3>
+            <h3>My Journal</h3>
             <p>Optionally record what you tried, how it felt, and what you want to explore next.</p>
             <a class="text-link" href="journal.html">Open my journal <span aria-hidden="true">→</span></a>
           </div>
@@ -92,20 +93,24 @@
       </div>
     </section>
 
-    <section class="begin-section" aria-labelledby="begin-title">
-      <h2 id="begin-title">Choose what matters to you today</h2>
-      <p>Start with a question, an everyday task, or a reflection. You can explore independently or with someone you choose.</p>
-      <ul class="begin-links">
-        <li><a class="text-link" href="understand.html">Learn about CP</a></li>
-        <li><a class="text-link" href="skills.html">Choose an everyday task</a></li>
-        <li><a class="text-link" href="journal.html">Open my journal</a></li>
-      </ul>
-    </section>
-
-    <section class="future-section" aria-labelledby="future-title">
-      <h2 id="future-title">About the project</h2>
-      <p>Erry is an educational project exploring how accessible information and biomedical technology can support everyday participation.</p>
-      <a class="text-link" href="project.html">See current capabilities, limitations, and proposed engineering work <span aria-hidden="true">→</span></a>
+    <section class="engineering-section" aria-labelledby="engineering-title">
+      <h2 id="engineering-title">From everyday needs to design questions</h2>
+      <p>Erry connects lived experience with biomedical engineering. A typing activity explores how a change in setup might support an everyday task.</p>
+      <dl class="engineering-stages">
+        <div>
+          <dt>Everyday need</dt>
+          <dd>A person may want to select one key at a time when typing a message.</dd>
+        </div>
+        <div>
+          <dt>Adaptation explored</dt>
+          <dd>An interactive illustration shows a keyguard, a plate with openings that line up over individual keys.</dd>
+        </div>
+        <div>
+          <dt>What we can observe</dt>
+          <dd>The typing activity lets visitors compare correction counts and self-rated effort across two setups. Evaluating a fitted keyguard with users is proposed work.</dd>
+        </div>
+      </dl>
+      <a class="text-link" href="project.html#design">Explore the engineering decisions, evidence, limitations, and future work <span aria-hidden="true">→</span></a>
     </section>
   </main>
   <footer class="site-footer">
