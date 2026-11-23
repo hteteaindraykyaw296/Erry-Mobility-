@@ -23,14 +23,15 @@ Personal worth is unconditional. Learning, rest and the use of support are equal
 - Evidence-linked CP awareness, prevention and rehabilitation information.
 - Twelve captioned schematic 3D guides, with written alternatives and adjustable playback speed.
 - Interactive, simplified 3D character, knee, ankle and hand models with structure labels and recorded-video fallbacks.
-- Untimed large-key typing practice and a drawing pad with pointer and keyboard/button access.
+- Typing Setup Lab with repeated fixed-sample trials, elapsed time, final text errors, correction actions, optional comfort feedback, and local CSV export.
+- Untimed large-key typing practice and a drawing pad with pointer and keyboard access.
 - An optional, browser-local personal journal and backup import/export.
 - A public project story describing engineering questions and limitations.
 
 ## Scope of the study and current limitations
 The current project comprises educational content, interface development and functional checks, informed by lived experience and selected published sources. No participant study or clinical trial has been conducted. The proposed research scope is a bounded feasibility and usability study of an adaptation chosen with intended users.
 
-A proposed, untested question is how perceived effort, comfort and unintended activations differ between a user’s usual typing setup and a chosen larger-key or repeat-filter setting. The intended users, access methods, outcomes and comparison would be defined with people with CP and an occupational therapist. Appropriate oversight, accessible consent, rest options and a data-handling plan would be needed before participant research.
+One proposed study question is how elapsed time, final text errors, and comfort vary between a visitor’s usual keyboard setup and a single chosen change. The intended users, access methods, outcomes and comparison would be defined with people with CP and an occupational therapist. Appropriate oversight, accessible consent, rest options and a data-handling plan would be needed before participant research.
 
 ## Connection to biomedical engineering
 The engineering framework is to define a person’s priorities, understand movement and task demands, design an adaptation, select and verify meaningful measurements, then evaluate and revise. Biomedical engineering education would provide foundations in biomechanics, motor control, instrumentation, signal processing, materials, human factors and statistics. Supervised practical work and collaboration with users and clinicians would support responsible development and interpretation of results.
@@ -62,4 +63,4 @@ Vision and lived-experience brief: Erry. Website implementation and draft educat
 - NICE, Cerebral palsy in adults: https://www.nice.org.uk/guidance/ng119/chapter/Recommendations
 - RNOH, daily living with one hand: https://www.rnoh.nhs.uk/patients-and-visitors/patient-information-guides/patients-guide-completing-activities-daily-living-one-hand
 
-Updated 12 November 2026. This brief describes a working educational prototype and proposed learning goals, not completed clinical research.
+Updated 23 November 2026. This brief describes a working educational prototype and proposed learning goals, not completed clinical research.

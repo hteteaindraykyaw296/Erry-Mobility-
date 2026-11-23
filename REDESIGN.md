@@ -1,4 +1,6 @@
-# Erry Mobility — purpose-first homepage
+# Erry Mobility — previous purpose-first redesign
+
+This document records the earlier homepage redesign. The current typing-first homepage, lab methods, and verification are described in the [README](README.md).
 
 ## Homepage change
 

@@ -57,6 +57,12 @@
     const detail = [entry.taskDetail, entry.setupA, entry.setupB].filter(v => typeof v === 'string' && v.trim()).join(' · ');
     if (detail) { const p = document.createElement('p'); p.textContent = detail; card.append(p); }
     const note = typeof entry.note === 'string' ? entry.note : '';
+    if (entry.taskDetail === 'Fixed sample typing trials in the Typing Setup Lab' && note) {
+      const summary = document.createElement('p');
+      summary.textContent = note;
+      card.append(summary);
+      return card;
+    }
     const corrections = [parsedCount(note, 'Setup A'), parsedCount(note, 'Setup B')];
     const effort = [parsedEffort(note, 'Setup A'), parsedEffort(note, 'Setup B')];
     const structured = entry.comparison && typeof entry.comparison === 'object' ? entry.comparison : entry;
@@ -75,7 +81,7 @@
       const data = JSON.parse(raw);
       if (!Array.isArray(data)) throw new Error('Journal format is not a list.');
       const comparisons = data.filter(entry => entry && typeof entry === 'object' && typeof entry.activity === 'string' && /typing/i.test(entry.activity));
-      comparisons.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+      comparisons.reverse().sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
       if (!comparisons.length) { empty(); return; }
       const newest = render(comparisons[0]); root.replaceChildren(newest, actions());
     } catch {

@@ -1,0 +1,44 @@
+.engineering-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem 1.25rem;
+}
+.reading-section { padding-block: clamp(1.5rem, 4vw, 3rem); }
+.reading-section > p { max-width: 74ch; }
+.engineering-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.engineering-grid article {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+.engineering-grid h3 { margin-top: 0; }
+.engineering-grid figure { margin: 1rem 0 0; }
+.engineering-grid img { width: 100%; height: auto; display: block; }
+.engineering-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: .5rem;
+  padding-left: 1.4rem;
+}
+.engineering-flow li {
+  background: var(--sage);
+  border: 1px solid var(--line);
+  padding: .65rem;
+  margin-right: 1rem;
+}
+@media (max-width: 620px) {
+  .engineering-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+.engineering-heading { padding-inline: 0; }
+.engineering-heading h1 { max-width: none; }
+.engineering-heading > p { max-width: 65ch; }
+.reading-section > * + * { margin-top: .85rem; }
