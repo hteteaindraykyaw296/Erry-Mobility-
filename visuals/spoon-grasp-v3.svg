@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280"><title>Two handle sizes illustrated with a hand</title><desc>Side views show fingers curling around a narrow spoon handle and around a built-up sleeve. The examples show possible differences in finger closure.</desc><rect width="600" height="280" rx="16" fill="#e5ece3"/>
+<g fill="#fffdf7" stroke="#244638" stroke-width="2"><path d="M100 139h99q17-17 44-13 22 5 20 18-4 16-29 16-21 0-34-10H100z"/><path d="M405 139h95q17-17 44-13 22 5 20 18-4 16-29 16-21 0-34-10h-96z"/></g>
+<rect x="395" y="124" width="108" height="39" rx="16" fill="#77998d" stroke="#244638" stroke-width="2"/>
+<g fill="#d5a189" stroke="#734736" stroke-width="2"><path d="M24 172q38-46 61-64l43-13q27-6 47 15l12 23q5 13-7 16-9 2-15-8l-9-12-20-5q6 22 1 37-7 20-28 19l-31-2q-17 4-38 21z"/><path d="M321 172q38-46 60-64l46-17q29-4 47 12l13 19q6 12-4 16-10 4-16-5l-12-13-20-5q-1 23-9 44-7 21-24 23l-30-4q-19 8-37 24z"/></g>
+<g fill="#183c32" font-family="system-ui" font-size="21" font-weight="700" text-anchor="middle"><text x="150" y="63">Standard handle</text><text x="448" y="63">Built-up handle</text></g>
+<g fill="#183c32" font-family="system-ui" font-size="17" text-anchor="middle"><text x="150" y="235">Fingers curl around a narrow handle</text><text x="448" y="235">A sleeve changes contact and closure</text></g></svg>

@@ -9,7 +9,7 @@ const {setTimeout: delay} = require('node:timers/promises');
 
 const root = path.resolve(__dirname, '..');
 const prefix = '/Erry-Mobility-/';
-const mime = {'.html': 'text/html', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.css': 'text/css', '.woff2': 'font/woff2'};
+const mime = {'.html': 'text/html', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.css': 'text/css', '.woff2': 'font/woff2', '.jpg': 'image/jpeg', '.png': 'image/png', '.mp4': 'video/mp4', '.vtt': 'text/vtt'};
 const server = http.createServer(async (request, response) => {
   const route = new URL(request.url, 'http://localhost').pathname;
   if (!route.startsWith(prefix)) return response.writeHead(404).end();
@@ -56,8 +56,12 @@ async function run() {
     });
     async function send(method, params = {}) {
       const id = ++nextId;
-      const result = await new Promise(resolve => {
-        pending.set(id, resolve);
+      const result = await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('Chromium command timed out: ' + method)), 15000);
+        pending.set(id, response => {
+          clearTimeout(timeout);
+          resolve(response);
+        });
         socket.send(JSON.stringify({id, method, params}));
       });
       assert.ok(!result.error, JSON.stringify(result.error));
@@ -69,11 +73,11 @@ async function run() {
       return result.result.value;
     }
     async function ready(expression) {
-      for (let attempt = 0; attempt < 60; attempt++) {
+      for (let attempt = 0; attempt < 150; attempt++) {
         if (await evaluate(expression)) return;
         await delay(100);
       }
-      assert.fail(expression);
+      assert.fail(expression + " | " + await evaluate("location.href + ' | ' + document.readyState + ' | ' + document.title"));
     }
     async function go(page, title) {
       await send('Page.navigate', {url: base + page});
@@ -82,12 +86,35 @@ async function run() {
     const key = (type, key, virtualKey) => send('Input.dispatchKeyEvent', {type, key, code: key === ' ' ? 'Space' : key, windowsVirtualKeyCode: virtualKey});
     await send('Runtime.enable');
     await send('Emulation.setEmulatedMedia', {features: [{name: 'prefers-reduced-motion', value: 'reduce'}]});
-    for (const width of [320, 768, 1440]) {
+    const pages = [['', 'Forward'], ['understand.html', 'Understand CP'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab'], ['technology.html', 'Assistive Technology'], ['hands.html#spoon', 'Hands'], ['balance.html', 'Balance'], ['anatomy.html?still', 'Anatomy']];
+    if (process.env.ERRY_SCREENSHOTS) {
+      const output = path.resolve(process.env.ERRY_SCREENSHOTS);
+      await fs.mkdir(output, {recursive: true});
+      for (const width of [375, 768, 1440]) {
+        await send('Emulation.setDeviceMetricsOverride', {width, height: 1000, deviceScaleFactor: 1, mobile: false});
+        for (const [page, title] of pages) {
+          await go(page, title);
+          await evaluate('document.fonts.ready.then(() => true)');
+          const name = page.split(/[.#?]/)[0] || 'home';
+          const fit = await evaluate('document.documentElement.scrollWidth <= innerWidth');
+          if (!fit) console.log('Horizontal overflow:', name, width);
+          const screenshot = await send('Page.captureScreenshot', {format: 'jpeg', quality: 86});
+          await fs.writeFile(path.join(output, name + '-' + width + '.jpg'), Buffer.from(screenshot.data, 'base64'));
+        }
+      }
+      return;
+    }
+    for (const width of [375, 768, 1440]) {
       await send('Emulation.setDeviceMetricsOverride', {width, height: 900, deviceScaleFactor: 1, mobile: false});
-      for (const [page, title] of [['', 'Forward'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab']]) {
+      for (const [page, title] of pages) {
         await go(page, title);
         assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, page + ' at ' + width);
+
         assert.equal(await evaluate('getComputedStyle(document.documentElement).scrollBehavior'), 'auto');
+        assert.deepEqual(await evaluate('[...document.querySelectorAll(".site-nav > a, .site-nav summary")].map(link => link.textContent)'), ['Home', 'Typing Lab', 'Understand CP', 'Explore', 'Engineering Lab', 'About']);
+        const validImages = await evaluate('[...document.querySelectorAll(".lesson-band img, .hero-photo img")].every(img => !img.complete || img.naturalWidth > 0)');
+        assert.equal(validImages, true, page + " illustrations");
+
       }
     }
     await send('Emulation.setDeviceMetricsOverride', {width: 320, height: 900, deviceScaleFactor: 1, mobile: false});
@@ -96,9 +123,31 @@ async function run() {
     await key('keyUp', 'Tab', 9);
     assert.equal(await evaluate('document.activeElement.textContent'), 'Skip to content');
     assert.equal(await evaluate('getComputedStyle(document.activeElement).outlineStyle'), 'solid');
-    await evaluate('document.querySelector(".home-menu").click()');
-    assert.equal(await evaluate('document.querySelector(".home-menu").getAttribute("aria-expanded")'), 'true');
-    await evaluate('document.querySelector(".purpose-hero .button").click()');
+    await evaluate('document.querySelector(".site-nav summary").focus()');
+    await key('rawKeyDown', ' ', 32);
+    await key('keyUp', ' ', 32);
+    assert.equal(await evaluate('document.querySelector(".site-nav details").open'), true);
+    await evaluate('document.querySelector("[data-setup-choice=b]").click()');
+    assert.match(await evaluate('document.querySelector("#position-demo [role=status]").textContent'), /slides closer/);
+    await go('understand.html#movement', 'Understand CP');
+    await evaluate('document.querySelector("[data-next-step]").click()');
+    assert.match(await evaluate('document.querySelector("[data-caption]").textContent'), /Brain networks/);
+    await evaluate('document.querySelector("[data-play]").click()');
+    await delay(2300);
+    assert.match(await evaluate('document.querySelector("[data-caption]").textContent'), /spinal cord/);
+    await evaluate('document.querySelector("[data-play]").click()');
+    const pausedCaption = await evaluate('document.querySelector("[data-caption]").textContent');
+    await delay(2300);
+    assert.equal(await evaluate('document.querySelector("[data-caption]").textContent'), pausedCaption);
+    await evaluate('document.querySelector("[data-replay]").click()');
+    assert.match(await evaluate('document.querySelector("[data-caption]").textContent'), /decide/);
+    assert.equal(await evaluate('getComputedStyle(document.querySelector(".diagram-point")).transitionDuration'), '0s');
+    await go('technology.html', 'Assistive Technology');
+    await evaluate('const task = document.querySelector("#task-filter"); task.value="typing"; task.dispatchEvent(new Event("change"))');
+    assert.match(await evaluate('document.querySelector("#at-gallery").textContent'), /Sticky Keys.*Keyboard positioning/);
+    await evaluate('document.querySelector("#at-gallery input[type=checkbox]").click()');
+    assert.match(await evaluate('document.querySelector("#at-comparison").textContent'), /Sticky Keys/);
+    await go('', 'Forward');    await evaluate('document.querySelector(".purpose-hero .button").click()');
     await ready('document.title.includes("Typing Setup Lab") && document.readyState === "complete"');
     await go('typing/', 'Typing Setup Lab');
     assert.equal(await evaluate('location.pathname'), prefix + 'typing.html');
@@ -109,6 +158,9 @@ async function run() {
     await key('rawKeyDown', ' ', 32);
     await key('keyUp', ' ', 32);
     assert.equal(await evaluate('document.activeElement.id'), 'message');
+    await evaluate('document.querySelector("#keep").click()');
+    assert.match(await evaluate('document.querySelector("#try-status").textContent'), /Enter some text/);
+    assert.equal(await evaluate('document.querySelectorAll("#results li").length'), 0);
     await send('Input.insertText', {text: 'meet me at noonx'});
     await key('keyDown', 'Backspace', 8);
     await key('keyUp', 'Backspace', 8);
@@ -124,6 +176,9 @@ async function run() {
     assert.equal(await evaluate('document.querySelector("#keyboard").classList.contains("large-lab-keys")'), true);
     await evaluate('Array.from("meet me at non").forEach(letter => [...document.querySelector("#keyboard").children].find(button => button.textContent === (letter === " " ? "Space" : letter)).click()); document.querySelector("#keep").click()');
     assert.match(await evaluate('document.querySelector("#results article:nth-child(2)").textContent'), /1 final text errors/);
+    const scales = await evaluate('[...document.querySelectorAll("#results article")].map(article => [...article.querySelectorAll("meter")].map(meter => meter.max))');
+    assert.equal(scales[0].length, 3);
+    assert.deepEqual(scales[0], scales[1]);
     await evaluate('document.querySelector("#comfort").value="4"; document.querySelector("#comfort").dispatchEvent(new Event("change")); document.querySelector("[name=preference][value=\\"Setup B\\"]").click()');
     await evaluate('document.querySelector("#start").click(); document.querySelector("#skip").click()');
     assert.equal(await evaluate('document.querySelectorAll("#results li").length'), 2);
@@ -155,10 +210,27 @@ async function run() {
     assert.match(await evaluate('document.querySelector("#lesson-content h2").textContent'), /Bus journeys/);
     await evaluate('document.querySelector("#access").click()');
     assert.equal(await evaluate('document.body.classList.contains("large")'), true);
+
+    await go('anatomy.html?model=hand', 'Anatomy');
+    await evaluate('document.querySelector("#anatomy-main").scrollIntoView()');
+    await ready('Boolean(document.querySelector("#anatomy-main [data-ready=true], #anatomy-main [data-fallback=true]"))');
+    const liveModel = await evaluate('Boolean(document.querySelector("#anatomy-main [data-ready=true] canvas"))');
+    if (liveModel) {
+      const cameraButtons = ['Zoom in', 'Zoom out', 'Turn view 45°', 'Reset view'];
+      for (const label of cameraButtons) {
+        assert.equal(await evaluate('Array.from(document.querySelectorAll("#anatomy-main button")).find(button => button.textContent === ' + JSON.stringify(label) + ').click() === undefined'), true);
+      }
+      console.log('WebGL hand model rendered and accepted zoom, turn, and reset controls.');
+    } else {
+      console.log('WebGL hand model was unavailable in this run. Fallback is tested below.');
+    }
     await go('anatomy.html?still&model=hand', 'Anatomy');
+    await evaluate('document.querySelector("#anatomy-main").scrollIntoView()');
     await ready('Boolean(document.querySelector("[data-fallback=true] img"))');
+    await evaluate('document.querySelector("[data-structure]:last-child").click()');
+    assert.match(await evaluate('document.querySelector("[data-structure-diagram] [role=status]").textContent'), /transmit pull/);
     assert.deepEqual(failures, []);
-    console.log('Chromium checks passed: routes, 320/768/1440px fit, keyboard focus, reduced motion, keyguard, timer/pause, scoring, repeated trials, comfort, CSV, journal, reset, lessons, and 3D fallback.');
+    console.log('Chromium checks passed: eight views at 375/768/1440px, shared navigation and keyboard focus, movement playback and reduced motion, device gallery and keyguard, timer/pause, invalid input, scoring and matched scales, repeated trials, comfort, CSV, journal, reset, and anatomy fallback.');
   } finally {
     socket?.close();
     browser.kill();

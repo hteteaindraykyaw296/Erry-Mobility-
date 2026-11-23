@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 330" role="img">
+<title>Motor pathway and feedback schematic</title>
+<desc>In a side view, a brain and spinal cord connect to the arm. A solid arrow runs toward the hand and a dashed arrow runs back toward the brain.</desc>
+<rect width="520" height="330" rx="18" fill="#e5ece3"/>
+<path d="M125 322q-20-95 4-148l22-24 3-28q-32-27-24-66 7-45 61-44 59 3 71 54l21 34-17 8-1 22q-9 18-45 14l5 29 23 29 66 20 56-18 26-13q25-8 32 4 3 7-9 13l-43 26 26-3q15-3 16 6 0 8-15 11l-39 8-67 25q-24 11-40 4l-79-29 1 66" fill="#d3a38b" stroke="#53574d" stroke-width="2"/>
+<path d="M142 67q5-34 37-38 32-9 60 16 13 16 10 38-14 13-27 8-12 11-26 5-17 8-25-4-21 0-29-25z" fill="#bd6d58" stroke="#793e37" stroke-width="2"/>
+<path d="M165 64q17-9 7-23m16 48q10-17-3-32m23 29q-4-16 12-27m-15-15q10 4 11 13m16 14 10 8" fill="none" stroke="#793e37" stroke-width="2"/>
+<path d="M203 82q-9 22-11 52l-6 67-8 40" fill="none" stroke="#f8f3e7" stroke-width="14" stroke-linecap="round"/>
+<path d="M201 75q-8 33-12 84l-1 34q36 29 119 53l58-20m-13-4 13 4-9 11" fill="none" stroke="#165b57" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M382 240q-62 41-79 31-90-22-127-53l3-68 8-63m-9 10 9-10 6 12" fill="none" stroke="#8c392c" stroke-width="3" stroke-dasharray="7 6"/>
+<g stroke="#183c32" stroke-width="1.5" fill="none"><path d="M150 54H58M179 164H64m210 67 34-50h120m-24 60 35 26h51"/></g>
+<g fill="#183c32" font-family="system-ui,sans-serif" font-size="18" font-weight="700"><text x="35" y="47">Brain</text><text x="27" y="155">Spinal cord</text><text x="310" y="173">Arm muscles</text><text x="432" y="292">Hand</text></g>
+</svg>
