@@ -63,3 +63,18 @@
 .practice-keys[data-placement="right"] {
   justify-content: flex-end;
 }
+
+.typing-panel button:disabled {
+  cursor: default;
+  opacity: .55;
+}
+.practice-keys.large-lab-keys button {
+  min-width: 55px;
+  min-height: 55px;
+}
+.comparison-grid ul { padding-left: 1.2rem; }
+.comparison-grid li + li { margin-top: .5rem; }
+@media (max-width: 360px) {
+  .keyboard-illustration { padding: 8px; }
+  .key-row span { min-width: 25px; }
+}

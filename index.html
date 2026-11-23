@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183c32">
-  <meta name="description" content="Created from lived experience of cerebral palsy, Erry helps people understand CP, explore adaptations, and reflect on what supports participation.">
+  <meta name="description" content="Explore accessible typing setups and assistive technology through a biomedical engineering project shaped by lived experience of cerebral palsy.">
   <title>Erry Mobility — Forward, your way</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dashboard.css">
   <script src="home-navigation.js" defer></script>
-</head>
+  <link rel="stylesheet" href="engineering.css"></head>
 <body class="home-page purpose-dashboard">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
@@ -17,6 +17,8 @@
     <button class="home-menu" type="button" aria-controls="home-navigation" aria-expanded="false" hidden>Menu</button>
     <nav id="home-navigation" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
+      <a href="typing.html">Typing Setup Lab</a>
+      <a href="engineering.html">Engineering Lab</a>
       <a href="understand.html">Understand CP</a>
       <a href="skills.html">Everyday tasks</a>
       <a href="technology.html">Assistive technology</a>
@@ -26,37 +28,51 @@
   </header>
 
   <main id="main">
+
     <section class="purpose-hero" aria-labelledby="opening-title">
       <div>
-        <p class="audience-line">For people with cerebral palsy, families, and caregivers</p>
-        <h1 id="opening-title">Understand cerebral palsy. Explore your everyday possibilities.</h1>
-        <p class="purpose-lede">Find clear explanations, explore everyday adaptations and assistive technology, and record what helps you—all at your own pace.</p>
-        <a class="button" href="#explore">Explore what you can do <span aria-hidden="true">→</span></a>
+        <p class="audience-line">Assistive technology for everyday tasks</p>
+        <h1 id="opening-title">Find an easier way to type a message.</h1>
+        <p class="purpose-lede">Explore accessible typing setups and assistive technologies designed to help people with one-sided motor difficulties complete everyday tasks.</p>
+        <p>Erry Mobility grew out of my experience living with cerebral palsy and looking for practical, affordable ways to make daily tasks more manageable.</p>
+        <div class="engineering-actions"><a class="button" href="typing.html">Try a typing setup</a><a class="text-link" href="#story-title">Why Erry Mobility exists</a></div>
       </div>
       <figure class="participation-visual">
-        <img src="media/accessible-kitchen.jpg" width="1400" height="950" alt="A wheelchair user prepares strawberries with friends at an accessible kitchen counter.">
-        <figcaption>
-          <span>Friends prepare food together at an accessible counter.</span>
-          <small>Photo by Chona Kasinger for <a href="https://affecttheverb.com/gallery/disabledandhere/bakingcounter/">Disabled And Here</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Resized.</small>
-        </figcaption>
+        <img src="visuals/home-keyboard-position.svg" width="640" height="208" alt="Two overhead views show the keyboard farther from and then closer to the near edge of the table.">
+        <figcaption>Moving the keyboard changes how far your hand needs to reach.</figcaption>
       </figure>
     </section>
-
-    <section class="why-story" aria-labelledby="story-title">
-      <div class="story-inner">
-        <div>
-          <p class="eyebrow">Why I built Erry</p>
-          <h2 id="story-title">A place to feel understood</h2>
-        </div>
-        <div>
-          <p>Living with cerebral palsy has meant finding my own ways to approach everyday tasks—and often explaining those experiences to others. I built Erry to share clear information, explore practical adaptations, and create space for the small discoveries that matter to us.</p>
-          <a class="text-link" href="about.html">Read my story <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
+    <section class="engineering-section reading-section">
+      <h2>The everyday accessibility challenge</h2>
+      <p>Sending a short message can involve reaching across the keyboard, aiming for individual keys, and correcting unintended presses. How demanding each step feels depends on the person, their input method, and their setup.</p>
     </section>
-
+    <section class="engineering-section reading-section">
+      <h2>Try two typing setups</h2>
+      <div class="engineering-grid">
+        <article><h3>Setup A · Your usual arrangement</h3><p>Type the sample using the keyboard, input method, and position you normally use.</p></article>
+        <article><h3>Setup B · One change</h3><p>Type the same sample after one change, such as moving the keyboard closer. Compare time, errors, and how it felt.</p></article>
+      </div>
+      <p><a class="text-link" href="typing.html">Open the Typing Setup Lab</a></p>
+    </section>
+    <section class="engineering-section reading-section">
+      <h2>How assistive technology works</h2>
+      <p>Rehabilitation engineering can make a task more accessible by changing what it demands. A keyguard separates nearby keys. Sticky Keys lets you enter shortcuts one key at a time. Keyboard position and one-handed typing strategies can change reach. Different adaptations suit different people and tasks.</p>
+      <p><a href="typing.html#keyguard-demo">See how a keyguard works</a> · <a href="technology.html">Browse assistive technology</a></p>
+    </section>
+    <section class="engineering-section reading-section">
+      <h2>The Engineering Behind Erry Mobility</h2>
+      <div class="engineering-grid">
+        <article><h3>Human movement and biomechanics</h3><p>The nervous system uses sensory information and activates muscles to coordinate movement. Shoulder, elbow, wrist, and finger movement can all affect which keys someone can reach comfortably. Cerebral palsy affects movement differently for different people.</p>
+        <figure><img src="visuals/typing-reach.svg" width="560" height="220" alt="An overhead schematic labels the elbow, wrist, and fingertips. An arrow shows the direction of reach toward a key."><figcaption>Several joints contribute to one reach. This diagram shows one example of hand and arm position.</figcaption></figure></article>
+        <article><h3>Rehabilitation engineering</h3><p>A closer keyboard may shorten a reach, while a keyguard may help some users target a key. Fit, comfort, and user choice guide the adaptation.</p>
+        <h3>Engineering measurements</h3><p>Compare elapsed time, final text errors, correction actions, comfort, and preference. Faster typing can come with more errors or less comfort. These measures describe the task in this session.</p></article>
+      </div>
+      <h3>Human-centred engineering design</h3>
+      <ol class="engineering-flow"><li>Identify the problem</li><li>Understand user needs</li><li>Design a solution</li><li>Test</li><li>Evaluate</li><li>Improve</li></ol>
+      <p>If reaching distant keys makes a message harder to type, compare your usual position with one adjustment. Use the results and your comfort feedback to decide what to explore next.</p>
+    </section>
     <section class="explore-section" id="explore" aria-labelledby="explore-title" tabindex="-1">
-      <h2 id="explore-title">What you can do here</h2>
+      <h2 id="explore-title">Explore other everyday tasks</h2><p><a href="hands.html#spoon">Spoon use</a> · <a href="balance.html">Balance and mobility</a> · <a href="anatomy.html">3D Anatomy Studio</a></p>
       <div class="destination-grid">
         <article class="destination-card">
           <img src="visuals/home-participation.svg" alt="Two people seated in chairs work together on a puzzle at a table." width="640" height="240" loading="lazy">
@@ -93,28 +109,29 @@
       </div>
     </section>
 
-    <section class="engineering-section" aria-labelledby="engineering-title">
-      <h2 id="engineering-title">From everyday needs to design questions</h2>
-      <p>Erry connects lived experience with biomedical engineering. The typing activity lets you try a small change and compare what you notice.</p>
-      <dl class="engineering-stages">
+
+    <section class="why-story" aria-labelledby="story-title">
+      <div class="story-inner">
         <div>
-          <dt>Everyday need</dt>
-          <dd>Some keys can be harder to reach when the keyboard is farther away.</dd>
+          <p class="eyebrow">Why I built Erry</p>
+          <h2 id="story-title">Why Erry Mobility exists</h2>
         </div>
         <div>
-          <dt>Adaptation explored</dt>
-          <dd>Type the same short message using your usual keyboard position, then move the keyboard to a comfortable position you choose and try again.</dd>
+          <p>Living with cerebral palsy has meant finding my own ways to approach everyday tasks—and often explaining those experiences to others. I built Erry Mobility to share clear information, explore practical adaptations, and create space for the small discoveries that matter to us.</p>
+          <a class="text-link" href="about.html">Read my story <span aria-hidden="true">→</span></a>
         </div>
-        <div>
-          <dt>What visitors can compare</dt>
-          <dd>See the number of deletion or selection-replacement actions and, if rated, how much effort each try took on a 1–5 scale. The activity does not measure speed, accuracy, or clinical outcomes.</dd>
-        </div>
-      </dl>
-      <figure class="engineering-preview">
-        <img src="visuals/home-keyboard-position.svg" width="640" height="208" alt="Two overhead views show the same keyboard on the same table, first farther from the near edge and then closer to it." loading="lazy">
-        <figcaption>Illustrative example of one position change. Choose a comfortable position for yourself.</figcaption>
-      </figure>
-      <a class="text-link" href="project.html#design">Explore the engineering behind Erry <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+
+    <section class="engineering-section reading-section">
+      <h2>Engineering process, testing, and limitations</h2>
+      <p>The Engineering Lab explains how a trial is measured and what further evaluation would require. Personal experience shaped the design brief. Evaluation with intended users is still needed.</p>
+      <p><a class="text-link" href="engineering.html">Read the Engineering Lab</a></p>
+    </section>
+    <section class="engineering-section reading-section">
+      <h2>References and project documentation</h2>
+      <ul><li><a href="understand.html#evidence">Cerebral palsy sources and evidence</a></li><li><a href="project.html#precedents">Research precedents</a></li><li><a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">Biomedical Engineering Design and Evaluation</a></li></ul>
     </section>
   </main>
   <footer class="site-footer">

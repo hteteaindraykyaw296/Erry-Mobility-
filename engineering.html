@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c32">
+  <meta name="description" content="How Erry Mobility designed and evaluates its accessible typing prototype.">
+  <title>Engineering Lab — Erry Mobility</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="engineering.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="typing.html">Typing Setup Lab</a><a href="engineering.html" aria-current="page">Engineering Lab</a><a href="about.html">About Erry Mobility</a></nav>
+  </header>
+  <main id="main" class="content-page">
+    <header class="page-hero engineering-heading">
+      <h1>Engineering Lab</h1>
+      <p>How a personally meaningful typing challenge became an educational prototype that visitors can explore and measure.</p>
+      <a class="button" href="typing.html">Open the Typing Setup Lab</a>
+    </header>
+    <section><h2>Problem definition</h2><p>Typing a short message can require reaching, targeting individual keys, and correcting unintended input. Those demands can make everyday communication more effortful for some people with one-sided motor difficulties.</p></section>
+    <section><h2>User needs</h2><p>The design brief considers choice of input, room to rest, minimal equipment cost, clear controls, and private reflection. These priorities come from lived experience and need review with intended users.</p></section>
+    <section><h2>Design requirements</h2><ul><li>Use one fixed message and one clearly described setup change per comparison.</li><li>Support keyboard and on-screen input, either setup order, repeated trials, and rest without a deadline.</li><li>Report time, final text errors, and editing actions separately. Let visitors add comfort and preference.</li><li>Keep results in the session unless the visitor exports them or saves to the browser-local journal.</li></ul></section>
+    <section><h2>Demonstrated prototypes</h2><p>The Typing Setup Lab implements the comparison in a browser. Its illustrated keyguard shows how openings line up with keys. The <a href="anatomy.html">3D Anatomy Studio</a> and the <a href="balance.html">balance model</a> demonstrate related concepts using simplified models with text or static alternatives.</p></section>
+    <section><h2>Testing methodology</h2><ol><li>Select a change and use the same device, input method, and sample for both setups.</li><li>Start a trial, type the sample, and finish. Elapsed time excludes explicit pauses and includes operating the controls.</li><li>Review the character edit distance and observed correction actions. Optionally rate comfort and choose a preference.</li><li>Repeat in the other order if comfortable. Look for trade-offs across trials and record relevant context.</li></ol></section>
+    <section><h2>Results</h2><p>The public lab begins with an empty results view. It reports measurements from trials you finish in your browser. The project has no participant dataset or aggregate performance findings. See the <a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">repository documentation</a> for software verification.</p></section>
+    <section id="limitations"><h2>Limitations</h2><p>Erry Mobility is an educational assistive technology project. It has no established clinical effectiveness and provides no diagnosis, personalised rehabilitation, or substitute for occupational therapy or professional assessment. It is an educational web prototype and has not been developed as a medical device. Personal experience informed the design and represents one perspective.</p><p>Device differences, fatigue, practice, familiarity, and trial order can affect results. Browser editing events cannot identify every corrected error or distinguish an intentional edit from an accidental key press. A single English sample covers a narrow task. Suitability and usability need further evaluation with intended users.</p></section>
+    <section><h2>Planned experiments and future ideas</h2><p>A proposed usability evaluation could ask whether users can select a setup, complete a trial, and interpret the results independently. With appropriate oversight and accessible consent, a later study could compare repeated trials in both orders, allowing rest and documenting the equipment and chosen changes. Future work could explore affordable keyguard designs and additional input methods.</p></section>
+    <section><h2>References and documentation</h2><ul>
+      <li><a href="https://www.who.int/news-room/fact-sheets/detail/assistive-technology">WHO overview of assistive technology</a></li>
+      <li><a href="https://www.nidcd.nih.gov/sites/default/files/Documents/health/balance/BalanceDisorders-508.pdf">NIDCD overview of balance and sensory information</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK11050/">Neuroscience overview of motor control</a></li>
+      <li><a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines 2.2</a></li>
+      <li><a href="project.html#precedents">Existing research precedents and project history</a></li>
+    </ul></section>
+  </main>
+  <footer class="site-footer"><a href="index.html">Erry Mobility</a><a href="about.html">Read the founder’s story</a></footer>
+</body>
+</html>

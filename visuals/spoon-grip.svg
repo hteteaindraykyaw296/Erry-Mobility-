@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180">
+<rect width="560" height="180" rx="12" fill="#edf2eb"/>
+<g fill="#fffdf7" stroke="#214b3b" stroke-width="3">
+<path d="M52 77h106c10-14 46-19 64-6 14 10 14 26 0 36-18 13-54 8-64-6H52a12 12 0 0 1 0-24z"/>
+<path d="M332 77h106c10-14 46-19 64-6 14 10 14 26 0 36-18 13-54 8-64-6H332a12 12 0 0 1 0-24z"/>
+</g>
+<rect x="316" y="66" width="114" height="46" rx="20" fill="#bb6b50" stroke="#783b27" stroke-width="3"/>
+<g fill="#183c32" font-family="sans-serif" font-size="19" font-weight="700"><text x="40" y="146">Standard handle</text><text x="316" y="146">Built-up handle</text></g>
+</svg>
