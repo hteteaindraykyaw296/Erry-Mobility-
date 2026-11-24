@@ -1,9 +1,85 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183c32"><meta name="description" content="Compare two typing setups using the same short message and review your results."><title>Typing Setup Lab — Erry Mobility</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="typing.css"><link rel="stylesheet" href="visual-first.css">
-</head>
+<script src="visual-first.js" defer></script><link rel="stylesheet" href="phase-3-studies.css"><script src="phase-3-studies.js" defer></script></head>
 <body class="erry-typing"><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="index.html" aria-label="Erry Mobility home"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="typing.html" aria-current="page">Typing Lab</a><a href="understand.html">Understand CP</a><details class="nav-group"><summary>Explore</summary><section aria-label="Explore destinations"><a href="skills.html">Everyday tasks</a><a href="technology.html">Assistive technology</a><a href="hands.html">Hands and spoon use</a><a href="balance.html">Balance and mobility</a><a href="anatomy.html">3D Anatomy Studio</a><a href="journal.html">My Journal</a></section></details><a href="engineering.html">Engineering Lab</a><a href="about.html">About</a></nav></header>
-<main id="main" class="typing-main"><div class="page-hero typing-page-heading"><p class="eyebrow">Accessible typing</p><h1>Typing Setup Lab</h1><p>Use your usual arrangement for Setup A. For Setup B, change just one thing that feels comfortable and safe. Use the same input method and message for both trials. Start and finish at your own pace.</p></div>
-<section class="lesson-band" id="typing-stage-1"><h2>1. Choose a setup</h2><p>Setup A is your usual arrangement. Setup B changes one thing. The drawings show one physical adjustment. Use your own comfortable position.</p><div class="setup-preview"><figure class="lesson-card"><img src="visuals/setup-a.svg" width="500" height="215" alt="In this example, the keyboard sits farther from the front edge."><figcaption><strong>Setup A · Usual</strong><br>In this example, the keyboard sits farther from the front edge.</figcaption></figure><figure class="lesson-card"><img src="visuals/setup-b.svg" width="500" height="215" alt="The same keyboard slides closer without changing its angle."><figcaption><strong>Setup B · Position change</strong><br>The same keyboard slides closer without changing its angle.</figcaption></figure></div><p><a href="#try-panel">Choose your setup and start the task</a></p></section><section class="instructions" aria-labelledby="before-title"><h2 id="before-title">Before you begin</h2><p>Setup B can use a different keyboard position, comfortable forearm support, an existing fitted keyguard, or an accessibility setting on your device. Make any physical or device-setting changes yourself before starting. Do not add or adjust equipment that has not been fitted for you.</p><p>Read the steps, then try the same sample message for both setups: <strong>meet me at noon</strong>. Rest, restart, or leave at any time.</p><ol class="flow" aria-label="Comparison progress"><li id="try-step" aria-current="step">Try both setups</li><li id="compare-step">Compare</li><li id="save-step">Save if you want</li></ol><p><a href="skills.html#typing">Prefer untimed, unscored practice?</a></p><p><a href="#try-panel">Go to the trial</a></p><details id="sticky-keys"><summary>Change Sticky Keys on your device</summary><p>On Windows, open Settings → Accessibility → Keyboard → Sticky keys. On Mac, open System Settings → Accessibility → Keyboard → Sticky Keys. You control this setting on your device. The lowercase sample uses no modifier shortcuts, so it cannot evaluate Sticky Keys for shortcut use.</p><p><a href="https://support.microsoft.com/en-gb/accessibility/windows/make-your-mouse-keyboard-and-other-input-devices-easier-to-use">Windows accessibility instructions</a> · <a href="https://support.apple.com/guide/mac-help/mchlae61a6de/mac">Mac accessibility instructions</a></p></details></section>
+<main id="main" class="typing-main">
+  <header class="page-hero typing-page-heading"><p class="eyebrow">Accessible typing</p><h1>Typing Setup Lab</h1><p class="page-purpose">Exploring accessible solutions through practical, person-centred design.</p><p>Compare your usual setup with one change, using the same short message.</p></header>
+  <ol class="flow" aria-label="Experiment steps"><li id="choose-step" aria-current="step"><a href="#typing-stage-1">Choose a setup</a></li><li id="try-step"><a href="#try-panel">Perform the task</a></li><li id="compare-step"><a href="#compare-title">Compare results</a></li></ol>
+  <section class="typing-panel" id="typing-stage-1" aria-labelledby="setup-title">
+    <h2 id="setup-title">1. Choose a setup</h2>
+    <div class="typing-controls" role="group" aria-label="Select a setup">
+      <button type="button" data-mode="standard" aria-pressed="true">Setup A · Usual</button>
+      <button type="button" data-mode="adapted" aria-pressed="false">Setup B · One change</button>
+    </div>
+    <p id="setup-description" class="setup-description"></p>
+    <div class="typing-options" id="adaptation-fields" hidden>
+      <label for="adaptation">Change for Setup B<select id="adaptation"><option value="position">Keyboard position</option><option value="support">Comfortable forearm support</option><option value="keyguard">An existing fitted keyguard</option><option value="setting">A device keyboard setting</option><option value="onscreen">Larger on-screen keys</option></select></label>
+      <label for="adaptation-detail">Specific change (optional)<input id="adaptation-detail" type="text" maxlength="80" placeholder="For example, keyboard moved closer"></label>
+    </div>
+    <div class="typing-options">
+      <label for="input-method">Input method<select id="input-method"><option value="keyboard">Device keyboard</option><option value="onscreen">Lab on-screen keys</option><option value="dictation">Device dictation</option></select></label>
+      <label for="placement" id="placement-field" hidden>On-screen key position<select id="placement"><option value="center">Centred</option><option value="left">Left</option><option value="right">Right</option></select></label>
+    </div>
+    <p>Keep the device, input method and key placement the same. Change one thing in Setup B.</p>
+    <details class="trial-context"><summary>Optional device label</summary><label for="device-note">Device label<input id="device-note" type="text" maxlength="60" placeholder="For example, my laptop"></label><p>Use the same label and the same description when repeating a setup. Labels are self-reported.</p></details>
+  </section>
+  <section class="typing-panel" id="try-panel" aria-labelledby="attempt-title" tabindex="-1">
+    <h2 id="attempt-title">2. Perform the task</h2>
+    <p class="sample-line">Sample for every trial <strong id="sample">meet me at noon</strong></p>
+    <p id="practice-help">Select Start trial, enter the message from the beginning to the end, then select Finish trial. You can pause to rest or discard at any time.</p>
+    <button class="button" id="start" type="button">Start trial</button>
+    <label for="message">Practice message</label>
+    <textarea id="message" rows="2" maxlength="160" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-describedby="practice-help" disabled></textarea>
+    <details id="screen-keys" hidden><summary>On-screen keyboard</summary><div id="keyboard" class="practice-keys" role="group" aria-label="On-screen keyboard"></div><p id="key-feedback" role="status"></p></details>
+    <div class="typing-controls">
+      <button class="button" id="keep" type="button" disabled>Finish trial</button>
+      <button id="pause" type="button" disabled>Pause trial</button>
+      <button id="skip" type="button" disabled>Discard trial</button>
+    </div>
+    <div id="completion-check" class="setup-description" hidden><p id="completion-help">Your entry is shorter than the sample. If you attempted the whole message, you can keep the omissions as errors. If you stopped early, discard the trial or continue typing.</p><button id="confirm-finish" type="button" aria-describedby="completion-help">Finish with omissions</button></div>
+    <p id="try-status" role="status"></p>
+  </section>
+  <section class="typing-panel compare-panel" aria-labelledby="compare-title">
+    <h2 id="compare-title" tabindex="-1">3. Compare results</h2>
+    <p>Practice, fatigue, familiarity and setup order can affect results. Rest as needed and try both orders if repeating a comparison feels appropriate.</p>
+    <p id="result-status" role="status" aria-atomic="true"></p>
+    <label for="comparison" id="comparison-field" hidden>Setup B comparison<select id="comparison"></select></label>
+    <p id="trial-guidance" class="trial-guidance" hidden></p>
+    <div class="comparison-grid" id="results"></div>
+    <details id="trial-history" hidden><summary>All finished trials</summary><ol id="trial-history-list"></ol></details>
+<label for="comfort">Comfort for the latest finished trial (optional)
+    <select id="comfort" disabled><option value="">Choose a rating</option><option value="1">1 · Very uncomfortable</option><option value="2">2 · Uncomfortable</option><option value="3">3 · Neither comfortable nor uncomfortable</option><option value="4">4 · Comfortable</option><option value="5">5 · Very comfortable</option></select>
+  </label>
+    <fieldset id="preference-field" hidden><legend>Which setup did you prefer in this comparison? (optional)</legend>
+      <label><input type="radio" name="preference" value="Setup A"> Setup A</label>
+      <label><input type="radio" name="preference" value="Setup B"> Setup B</label>
+      <label><input type="radio" name="preference" value="No clear preference"> No clear preference</label>
+    </fieldset>
+    <div class="typing-controls">
+      <button id="export" type="button" disabled>Download results (CSV)</button>
+      <button id="restart" type="button" disabled>Clear session results</button>
+    </div>
+    <form id="save-form" hidden><h3>Save to My Journal</h3><p>Save the latest displayed trial for each setup in this browser. Download the CSV to keep all trials. The practice text is excluded.</p>
+      <button class="button" type="submit">Save results</button> <a href="journal.html">Open My Journal</a>
+    </form>
+    <p id="save-status" role="status"></p>
+    <details id="measurement-method"><summary>Measurement method and limitations</summary><ul>
+      <li>Task completion time = Finish timestamp − Start timestamp − total explicit paused duration. The lab uses a monotonic browser timer and includes time spent operating the task controls. It measures the whole task.</li>
+      <li>Final text errors use Levenshtein edit distance: the minimum number of character insertions, deletions and substitutions needed to match the sample. Capitalisation and spaces count.</li>
+      <li>Correction actions count observed deletions and selected-text replacements. A deletion or replacement can be intentional, so this count is an editing measure.</li>
+      <li>Device keyboard and lab on-screen key entry are supported. If using device dictation, declare it before starting. The lab cannot reliably detect dictation, predictive entry or autocorrection. Dictation results belong in their own comparison.</li>
+      <li>Composition input is accepted in device text entry and recorded when detected. It can affect timing and edit counts. Paste and drag-and-drop are blocked so they cannot be mistaken for entering the task.</li>
+      <li>The results describe this task on your device. A few trials cannot establish ergonomic benefit or clinical effectiveness.</li>
+    </ul></details>
+    <p><a href="engineering.html">Read the Engineering Lab methods and limitations</a></p>
+  </section>
+  <section class="lesson-band" aria-labelledby="education-title"><h2 id="education-title">Explore keyboard adaptations</h2>
+    <p><a href="keyboard-position.html">See a keyboard position change</a> · <a href="skills.html#typing">Try untimed, unscored practice</a></p>
+<details class="phase-study" id="phase-study-a" data-phase-study="a"><summary>Explore the stages of a key press</summary><phase-study><p><a href="skills.html#typing">Read the everyday typing guide</a></p></phase-study></details>
+<details id="sticky-keys"><summary>Change Sticky Keys on your device</summary><p>On Windows, open Settings → Accessibility → Keyboard → Sticky keys. On Mac, open System Settings → Accessibility → Keyboard → Sticky Keys. You control this setting on your device. The lowercase sample uses no modifier shortcuts, so it cannot evaluate Sticky Keys for shortcut use.</p><p><a href="https://support.microsoft.com/en-gb/accessibility/windows/make-your-mouse-keyboard-and-other-input-devices-easier-to-use">Windows accessibility instructions</a> · <a href="https://support.apple.com/guide/mac-help/mchlae61a6de/mac">Mac accessibility instructions</a></p></details>
+    <p>The lowercase sample uses no modifier keys. Its results cannot evaluate Sticky Keys for modifier-key access.</p>
+  </section>
+<details class="phase-study" id="phase-study-c" data-phase-study="c"><summary>Explore the fitted and exploded keyguard</summary><phase-study><p><a href="typing.html#keyguard-demo">Read the keyguard guide</a></p></phase-study></details>
 <figure id="keyguard-demo" class="keyguard-demo" aria-labelledby="keyguard-caption">
         <div class="demo-toolbar">
           <h2>See how a keyguard fits over a keyboard</h2>
@@ -34,58 +110,32 @@
         <a class="detail-link" href="skills.html#typing">Read about keyboard adaptations <span aria-hidden="true">→</span></a>
         <p class="demo-status" id="demo-status" role="status" aria-live="polite">Showing usual keyboard without a keyguard.</p>
       </figure>
-<div class="try-grid"><section class="typing-panel" aria-labelledby="demo-title"><h2 id="demo-title">What the activity looks like</h2><div class="keyboard-illustration" role="img" aria-label="Illustration of a keyboard with spacious keys and an adjacent message area"><div class="screen-message">meet me at noon</div><div class="key-row"><span>Q</span><span>W</span><span>E</span><span>R</span><span>T</span><span>Y</span></div><div class="key-row"><span>A</span><span>S</span><span>D</span><span>F</span><span>G</span></div><div class="key-row"><span class="space-key">Space</span><span class="delete-key">Delete</span></div></div><p>This simplified, static diagram is available if video or interactive media is unavailable.</p><details><summary>Read the demonstration steps</summary><ol><li>Choose an arrangement you already use comfortably.</li><li>Type the sample message using the keyboard or the on-screen keys.</li><li>Finish or discard the trial. Make one change for Setup B and try the same message.</li></ol></details><a class="button" href="#try-panel" id="try-setup">Go to the trial</a></section>
-<section class="typing-panel" id="try-panel" aria-labelledby="attempt-title" tabindex="-1">
-  <h2 id="attempt-title">2. Perform the task</h2>
-  <div class="typing-controls" role="group" aria-label="Select a setup">
-    <button type="button" data-mode="standard" aria-pressed="true">Setup A · Usual</button>
-    <button type="button" data-mode="adapted" aria-pressed="false">Setup B · One change</button>
+<section class="lesson-band visual-lesson scientific-storyboard" id="sticky-keys-storyboard" data-steps>
+  <h2>Enter a modifier and a key in sequence</h2>
+  <div class="lesson-layout">
+    <figure class="lesson-figure">
+      <div class="diagram-frame"><img src="visuals/sticky-keys.svg" alt="The Shift and A keys are shown separately with an arrow from Shift to A."><span class="diagram-point" aria-hidden="true" style="--point-x:25%;--point-y:44%"></span></div>
+      <figcaption>The demo does not change your device settings. The typing comparison sample does not measure shortcut performance.</figcaption>
+    </figure>
+    <div><p>See how Sticky Keys can change a simultaneous key combination into sequential presses.</p>
+      <ol class="pathway-dots"><li data-step="With Sticky Keys enabled, press and release Shift." data-x="25%" data-y="44%">Modifier</li><li data-step="Press A to enter a capital A in a text field." data-x="75%" data-y="44%">Next key</li></ol>
+      <p class="step-highlight" role="status" data-caption>With Sticky Keys enabled, press and release Shift.</p><div class="lesson-buttons" hidden><button type="button" data-play>Play</button><button type="button" data-replay>Replay</button><button type="button" data-prev-step>Previous step</button><button type="button" data-next-step>Next step</button></div>
+      <details><summary>Read all steps</summary><ol><li><strong>Modifier.</strong> With Sticky Keys enabled, press and release Shift.</li><li><strong>Next key.</strong> Press A to enter a capital A in a text field.</li></ol></details>
+    </div>
   </div>
-  <div class="typing-options">
-    <label for="adaptation">Change for Setup B<select id="adaptation"><option value="position">Keyboard position</option><option value="support">Comfortable forearm support</option><option value="keyguard">An existing fitted keyguard</option><option value="setting">A device keyboard setting</option><option value="onscreen">Larger on-screen keys</option></select></label>
-    <label for="placement">On-screen key position<select id="placement"><option value="center">Centred</option><option value="left">Left</option><option value="right">Right</option></select></label>
+</section><section class="lesson-band visual-lesson scientific-storyboard" id="keyguard-storyboard" data-steps>
+  <h2>How a keyguard separates targets</h2>
+  <div class="lesson-layout">
+    <figure class="lesson-figure">
+      <div class="diagram-frame"><img src="visuals/keyguard-detail.svg" alt="A diagram labels a keyguard plate, an opening and the key beneath it."><span class="diagram-point" aria-hidden="true" style="--point-x:56%;--point-y:27%"></span></div>
+      <figcaption>The illustration does not specify dimensions, fit or clearance. Individual benefit has not been evaluated.</figcaption>
+    </figure>
+    <div><p>Identify how a fitted plate changes the physical boundaries around a key.</p>
+      <ol class="pathway-dots"><li data-step="A guard sits above the keyboard." data-x="56%" data-y="27%">Plate</li><li data-step="A separate opening provides access to a target key." data-x="54%" data-y="61%">Opening</li><li data-step="The key sits below the opening. The layout must match the actual keyboard." data-x="33%" data-y="50%">Target</li></ol>
+      <p class="step-highlight" role="status" data-caption>A guard sits above the keyboard.</p><div class="lesson-buttons" hidden><button type="button" data-play>Play</button><button type="button" data-replay>Replay</button><button type="button" data-prev-step>Previous step</button><button type="button" data-next-step>Next step</button></div>
+      <details><summary>Read all steps</summary><ol><li><strong>Plate.</strong> A guard sits above the keyboard.</li><li><strong>Opening.</strong> A separate opening provides access to a target key.</li><li><strong>Target.</strong> The key sits below the opening. The layout must match the actual keyboard.</li></ol></details>
+    </div>
   </div>
-  <p id="setup-description" class="setup-description"></p>
-  <p class="sample-line">Sample for every trial <strong id="sample">meet me at noon</strong></p>
-  <p id="practice-help">Select Start trial, type the sample exactly as shown, then select Finish trial. There is no time limit. You can pause to rest or discard the trial.</p>
-  <button class="button" id="start" type="button">Start trial</button>
-  <label for="message">Practice message</label>
-  <textarea id="message" rows="2" maxlength="160" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-describedby="practice-help" disabled></textarea>
-  <div class="typing-controls">
-    <button class="button" id="keep" type="button" disabled>Finish trial</button>
-    <button id="pause" type="button" disabled>Pause trial</button>
-    <button id="skip" type="button" disabled>Discard trial</button>
-  </div>
-  <details id="screen-keys"><summary>On-screen keyboard</summary><div id="keyboard" class="practice-keys" role="group" aria-label="On-screen keyboard"></div></details>
-  <p id="try-status" role="status"></p>
-</section></div>
-<section class="typing-panel compare-panel" aria-labelledby="compare-title">
-  <h2 id="compare-title" tabindex="-1">3. Compare your trials</h2>
-  <p>Compare trials with the same device, input method, and on-screen key position. Learning, fatigue, familiarity, device differences, and setup order can affect results. Try both orders if you repeat the comparison.</p>
-  <p id="trial-guidance" class="trial-guidance" hidden></p><div class="comparison-grid" id="results"></div>
-  <label for="comfort">Comfort for the latest finished trial (optional)
-    <select id="comfort" disabled><option value="">Choose a rating</option><option value="1">1 · Very uncomfortable</option><option value="2">2 · Uncomfortable</option><option value="3">3 · Neither comfortable nor uncomfortable</option><option value="4">4 · Comfortable</option><option value="5">5 · Very comfortable</option></select>
-  </label>
-  <fieldset id="preference-field" hidden><legend>Which setup did you prefer? (optional)</legend>
-    <label><input type="radio" name="preference" value="Setup A"> Setup A</label>
-    <label><input type="radio" name="preference" value="Setup B"> Setup B</label>
-    <label><input type="radio" name="preference" value="No clear preference"> No clear preference</label>
-  </fieldset>
-  <div class="typing-controls">
-    <button id="export" type="button" disabled>Download results (CSV)</button>
-    <button id="restart" type="button" disabled>Clear session results</button>
-  </div>
-  <form id="save-form" hidden><h3>Save to My Journal</h3><p>Save the latest finished trial for each setup in this browser. Download the CSV to keep all trials. The practice text is excluded.</p>
-    <button class="button" type="submit">Save results</button> <a href="journal.html">Open My Journal</a>
-  </form>
-  <p id="save-status" role="status"></p>
-  <details><summary>How scoring works</summary><ul>
-    <li>Elapsed time runs from Start trial to Finish trial, excluding explicit pauses. It includes time spent reaching the controls.</li>
-    <li>Final text errors are the minimum character insertions, deletions, and substitutions needed to match the sample. Capitalisation and spaces count.</li>
-    <li>Correction actions count observed deletions and selected-text replacements. The count is approximate and cannot tell whether an edit fixed an error.</li>
-    <li>These results describe one typing task. Clinical change and medical effectiveness require separate evaluation.</li>
-  </ul></details>
-  <p><a href="engineering.html">Read the Engineering Lab methods and limitations</a></p>
 </section>
 <noscript><p>Enable JavaScript to record trials. You can still read the instructions and view the diagrams.</p></noscript>
 </main><footer class="site-footer"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><p>Educational prototype · Not a clinical assessment</p></footer><script src="typing.js" defer></script><script src="dashboard.js" defer></script></body></html>

@@ -54,6 +54,8 @@ for (const lesson of document.querySelectorAll('[data-steps]')) {
     if (!reducedMotion.matches) play.click();
   });
   reducedMotion.addEventListener('change', pause);
+  controls.setAttribute('role', 'group');
+  controls.setAttribute('aria-label', lesson.querySelector('h2').textContent + ' controls');
   controls.hidden = false;
   show(0);
 }

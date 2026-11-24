@@ -1,12 +1,28 @@
 (()=>{'use strict';const q=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];
+const taskPanels = all('[data-everyday-task]');
+const taskChoices = all('[data-task-choice]');
+function showTask(focus = false) {
+  const selected = document.getElementById(location.hash.slice(1))?.closest('[data-everyday-task]');
+  taskPanels.forEach(panel => { panel.hidden = panel !== selected; });
+  taskChoices.forEach(link => {
+    if (link.hash === '#' + selected?.id) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  if (selected && focus) {
+    selected.focus({preventScroll: true});
+    selected.scrollIntoView({behavior: 'instant', block: 'start'});
+  }
+}
+window.addEventListener('hashchange', () => showTask(true));
+showTask(Boolean(location.hash));
 const area=q('#typing-area');let setup='usual',lastKey='',lastTime=-Infinity;const records={usual:{message:'',feel:'',note:''},adapted:{message:'',feel:'',note:''}};let kept={};
 function announce(){q('#typing-status').textContent='This message is temporary. Nothing is timed or scored.'}
-function filtered(key){if(setup!=='adapted')return false;const windowMs=Number(q('#repeat-window').value),now=performance.now();const block=windowMs>0&&lastKey===key&&now-lastTime<windowMs;if(!block){lastKey=key;lastTime=now}return block}
+function filtered(key){if(setup!=='adapted')return false;key=key==='Space'?' ':key;const windowMs=Number(q('#repeat-window').value),now=performance.now();const block=windowMs>0&&lastKey===key&&now-lastTime<windowMs;if(block){q('#typing-status').textContent='Repeated key filtered. Wait briefly or set the filter to 0 to enter intentional repeats.'}else{lastKey=key;lastTime=now}return block}
 function saveDraft(){records[setup]={message:area.value,feel:q('#typing-effort').value,note:q('#typing-observation').value}}
 function choose(id){saveDraft();setup=id;lastKey='';lastTime=-Infinity;area.value=records[id].message;q('#typing-effort').value=records[id].feel;q('#typing-observation').value=records[id].note;all('[data-setup]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.setup===id));q('#adaptation-settings').hidden=id!=='adapted';q('#setup-label').textContent=id==='usual'?'My usual setup':'My adapted setup';sizes()}
 function sizes(){const larger=setup==='adapted'&&q('#key-size').value==='large';q('#practice-keyboard').classList.toggle('large-keys',larger);q('#practice-keyboard').classList.toggle('standard',!larger);q('#repeat-value').textContent=q('#repeat-window').value}
 all('[data-setup]').forEach(b=>b.onclick=()=>choose(b.dataset.setup));q('#key-size').onchange=sizes;q('#repeat-window').oninput=()=>{lastKey='';sizes()};q('#typing-prompt').onchange=e=>q('#phrase-preview').textContent=e.target.value;area.oninput=()=>{saveDraft();announce()};area.onkeydown=e=>{if(e.ctrlKey||e.metaKey||e.altKey||e.isComposing)return;if(e.key.length===1&&filtered(e.key))e.preventDefault()};
-function insert(value){if(value!=='Backspace'&&filtered(value))return;const start=area.selectionStart,end=area.selectionEnd;if(value==='Backspace'){if(start!==end)area.setRangeText('',start,end,'end');else if(start>0){const parts=Array.from(area.value.slice(0,start)),n=parts.pop()?.length||1;area.setRangeText('',start-n,end,'end')}}else{const s=value==='Space'?' ':value;if(area.value.length-(end-start)+s.length<=1000)area.setRangeText(s,start,end,'end')}saveDraft();announce()}
+function insert(value){if(value!=='Backspace'&&filtered(value))return;const start=area.selectionStart,end=area.selectionEnd;if(value==='Backspace'){lastKey='';lastTime=-Infinity;if(start!==end)area.setRangeText('',start,end,'end');else if(start>0){const parts=Array.from(area.value.slice(0,start)),n=parts.pop()?.length||1;area.setRangeText('',start-n,end,'end')}}else{const s=value==='Space'?' ':value;if(area.value.length-(end-start)+s.length<=1000)area.setRangeText(s,start,end,'end')}saveDraft();announce()}
 for(const key of [...'abcdefghijklmnopqrstuvwxyz','Space','Backspace']){const b=document.createElement('button');b.type='button';b.textContent=key;b.setAttribute('aria-label',key==='Space'?'Insert space':key==='Backspace'?'Erase previous character':'Type '+key);b.onclick=()=>insert(key);q('#practice-keyboard').append(b)}q('#typing-clear').onclick=()=>{area.value='';lastKey='';lastTime=-Infinity;saveDraft();announce()};
 function summary(){const root=q('#setup-summary');root.replaceChildren();for(const [id,v] of Object.entries(kept)){const p=document.createElement('p');p.className='setup-record';p.textContent=(id==='usual'?'Usual setup':'Adapted setup')+': '+(v.feel||'Feeling not recorded')+'. '+v.note+(id==='adapted'?' [Keys: '+v.keys+'; repeat filter: '+v.repeat+' ms]':'');root.append(p)}}
 q('#keep-setup').onclick=()=>{saveDraft();kept[setup]={...records[setup],phrase:q('#typing-prompt').value,keys:setup==='adapted'?q('#key-size').value:'usual',repeat:setup==='adapted'?Number(q('#repeat-window').value):0};summary();q('#comparison-status').textContent='Observation kept for this visit. You can switch setups or record the comparison in your journal.'};

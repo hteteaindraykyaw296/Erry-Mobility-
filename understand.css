@@ -1,0 +1,50 @@
+.cp-lesson-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-block: 0 1.25rem;
+}
+.cp-lesson-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .35rem .8rem;
+  border: 1px solid #779987;
+  border-radius: .5rem;
+}
+.cp-lesson-nav a[aria-current] { background: #dceae3; }
+.cp-lesson, .cp-science {
+  margin-block: 1rem;
+  border: 1px solid #a7b8aa;
+  border-radius: .85rem;
+  background: #fffdf7;
+  scroll-margin-top: 1rem;
+}
+.cp-lesson > summary, .cp-science > summary {
+  cursor: pointer;
+  padding: .75rem clamp(.75rem, 3vw, 1.5rem);
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+.cp-lesson > summary strong { font-size: clamp(1.15rem, 2.5vw, 1.55rem); }
+.cp-lesson-label { display: block; font-size: .85em; }
+.cp-lesson-number { display: none; }
+.cp-lesson[open] > summary { background: #e4eee7; border-radius: .8rem .8rem 0 0; }
+.cp-lesson-content { padding: clamp(.75rem, 3vw, 1.5rem); min-width: 0; overflow-wrap: anywhere; }
+.cp-outcome { margin-top: 0; }
+.cp-lesson-content figure { margin-inline: 0; }
+.cp-primary-visual { max-width: 48rem; }
+.cp-primary-visual img { display: block; width: 100%; height: auto; }
+.cp-connections { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: .75rem; }
+.cp-connections p { margin: 0; padding: .85rem; background: #edf1e9; border-radius: .5rem; }
+.cp-deeper, .cp-checkpoint { margin-block: .8rem; padding-inline: .85rem; border: 1px solid #a7b8aa; border-radius: .5rem; }
+.cp-lesson-content details > summary { display: list-item; padding-block: .55rem; min-height: 44px; cursor: pointer; }
+.cp-concepts dt { font-weight: 700; }
+.cp-concepts dd { margin: 0 0 .75rem; }
+.cp-process .architecture-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 1rem; padding-inline-start: 1.5rem; }
+.cp-process li { padding: .7rem; background: #e6eee9; border-radius: .5rem; }
+.cp-lesson-nav a:focus-visible, .cp-lesson summary:focus-visible, .cp-science summary:focus-visible {
+  outline: 3px solid #155e80;
+  outline-offset: 3px;
+}
+

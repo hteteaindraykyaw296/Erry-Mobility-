@@ -1,0 +1,20 @@
+.institutional-about section > p { max-width: 68ch; }
+.institutional-about summary {
+  min-height: 44px;
+  padding-block: .5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.about-principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: .75rem 1.5rem;
+}
+.about-principles div { border-top: 1px solid var(--line); padding-top: .55rem; }
+.about-principles dt { font-weight: 700; }
+.about-principles dd { margin: .25rem 0 0; }
+.about-diagram { margin: 1rem 0; max-width: 26rem; }
+.about-diagram img { display: block; width: 100%; height: auto; background: var(--sage); }
+.institutional-about :is(.about-contents, .purpose-links) a { min-width: 24px; min-height: 44px; }
+@media (prefers-reduced-motion: reduce) { html:has(.institutional-about) { scroll-behavior: auto; } }
+

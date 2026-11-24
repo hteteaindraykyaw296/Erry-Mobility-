@@ -4,20 +4,26 @@
 Erry Mobility is an applicant-led, AI-assisted educational website inspired by Erry’s lived experience of cerebral palsy. It explores access to everyday activities such as typing, writing, drawing and handling objects. Erry is pursuing biomedical engineering education and scholarship support to develop the knowledge needed to investigate assistive solutions rigorously.
 
 ## Vision
-A future in which people with cerebral palsy are understood, valued and included, with opportunities to live fulfilling lives with confidence and greater everyday ease. Erry Mobility aspires to be a source of hope and belonging that encourages self-acceptance and a renewed sense of personal possibility.
+A world where movement is not a barrier to opportunity.
+
+We envision an inclusive society in which individuals with diverse motor abilities have equitable opportunities to participate in everyday life with dignity, confidence and independence.
 
 ## Mission
-To provide a free, accessible and supportive learning space that advances understanding of cerebral palsy, affirms the dignity of people living with CP, and supports exploration of everyday adaptations. The project connects lived experience with biomedical engineering to frame responsible questions about movement, access and participation.
+Bridging human needs and engineering innovation.
 
-## Goals
-1. Advance informed CP awareness through clear information and identifiable evidence sources.
-2. Affirm dignity, disability acceptance, emotional wellbeing, personal agency and belonging.
-3. Support exploration of everyday adaptations, guided by comfort and individual priorities.
-4. Enable optional reflection on mood, activities and support, with body measurements treated as optional context.
-5. Apply anatomy, motor control, biomechanics, human factors and assistive design to responsible engineering questions.
-6. Pursue future inclusive collaboration and supervised evaluation of accessibility, affordability, safety and usefulness.
+Our mission is to advance understanding of human movement and assistive technology through accessible biomedical education, interactive engineering demonstrations and the exploration of affordable, person-centred adaptations.
 
-Personal worth is unconditional. Learning, rest and the use of support are equally respected choices. Each person’s pace, communication method and definition of progress are welcome.
+## Goal
+Turning understanding into accessibility.
+
+To explore how biomedical engineering can address everyday barriers to participation by developing, evaluating and communicating practical assistive design concepts that respond to diverse functional needs.
+
+## Strategic objectives
+1. **Advance biomedical understanding**. Make human anatomy, motor control, biomechanics and movement-related conditions more understandable through scientifically grounded visual education.
+2. **Promote accessible innovation**. Explore affordable and practical assistive design concepts that accommodate diverse movement abilities and everyday needs.
+3. **Encourage evidence-informed engineering**. Apply systematic observation, measurement, prototype evaluation and transparent reporting to investigate assistive design concepts.
+4. **Foster dignity and inclusion**. Challenge misconceptions about physical disability and promote a greater understanding of individual abilities, autonomy and participation.
+5. **Build a foundation for future research**. Establish an educational and technical foundation for the future development of accessible, adaptable and user-centred biomedical technologies.
 
 ## Working prototype
 - Evidence-linked CP awareness, prevention and rehabilitation information.

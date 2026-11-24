@@ -42,3 +42,72 @@
 .engineering-heading h1 { max-width: none; }
 .engineering-heading > p { max-width: 65ch; }
 .reading-section > * + * { margin-top: .85rem; }
+
+.engineering-lab .lab-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: .55em;
+}
+.engineering-lab .lab-icon {
+  flex: none;
+  width: .8em;
+  height: .8em;
+  margin-top: .18em;
+  color: #365d51;
+}
+.engineering-lab .lab-example-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: contain;
+  padding: .35rem;
+  margin-bottom: .7rem;
+  background: var(--sage);
+  border-radius: .45rem;
+}
+
+.engineering-lab .lab-detail-icon {
+  display: inline-block;
+  margin-inline-end: .35em;
+  width: .95em;
+  height: .95em;
+  vertical-align: -.12em;
+  color: #365d51;
+}
+
+.engineering-lab [data-icon-tone="blue"] { color: #305375; }
+.engineering-lab [data-icon-tone="earth"] { color: #924b39; }
+.engineering-lab [data-icon-tone="gold"] { color: #78590d; }
+.engineering-lab [data-icon-tone="green"] { color: #365d51; }
+
+.engineering-lab #worked-models article { margin-block: 1.5rem; }
+.reach-calculator {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  background: var(--sage);
+}
+.reach-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+.reach-inputs input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: .35rem .55rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--muted);
+  border-radius: .3rem;
+}
+.reach-calculator output { display: block; margin-top: .65rem; font-weight: 650; }
+.engineering-lab :is(#worked-models, #evaluation-plan) summary {
+  min-height: 44px;
+  padding-block: .45rem;
+  cursor: pointer;
+  font-weight: 650;
+}

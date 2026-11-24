@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Erry Mobility scientific studies</title>
+<style>
+
+h1,h2{line-height:1.2}section{padding:.85rem 0}
+figure{margin:0}img{display:block;width:100%;height:auto}figcaption{margin:.65rem 0}.plate{position:relative;overflow:hidden;border-radius:.65rem}
+.frame{width:min(100%,24rem);aspect-ratio:640/819;overflow:hidden}.frame img{width:300%;max-width:none;transform:translateX(var(--shift,0%))}
+
+.controls{display:flex;flex-wrap:wrap;gap:.5rem}button{font:inherit;min-height:44px;border:1px solid #426d5e;border-radius:.5rem;background:#e5ede4;color:#163a31;padding:.35rem .7rem}
+:focus-visible{outline:3px solid #2a5396;outline-offset:3px}.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:.7rem}.half{overflow:hidden;aspect-ratio:1}.half img{width:200%;max-width:none}.exploded img{transform:translateX(-50%)}
+
+.motor img{filter:brightness(.74) saturate(.83)}
+.motor svg{position:absolute;inset:0;width:100%;height:100%}
+.motor .phase{opacity:0;transition:opacity .24s ease}
+.motor[data-phase="0"] .plan,.motor[data-phase="1"] .signal,.motor[data-phase="2"] .move,.motor[data-phase="3"] .feedback{opacity:1}
+.motor .sensory{opacity:.65;transition:opacity .24s ease}
+.motor[data-phase="3"] .sensory{opacity:1}
+@media(prefers-reduced-motion:reduce){.motor .phase,.motor .sensory{transition:none}}
+.progress{display:flex;gap:.35rem;margin:.65rem 0;max-width:22rem}
+.progress span{height:.35rem;border-radius:1rem;background:#b8c8ba;flex:1}
+.progress [aria-current]{background:#13644f}
+.controls button:first-child{background:#1a5343;color:white;min-width:5.5rem}
+.controls button[aria-disabled=true]{opacity:.52}
+summary{cursor:pointer;min-height:44px;padding-block:.55rem;font-weight:650}
+.diagram{background:#edf1e7;padding:1rem;border-radius:.7rem;margin-block:1rem}
+.diagram svg{display:block;width:100%;height:auto}
+.diagram figcaption{font-size:.95rem}
+.diagram dl{margin:.6rem 0 0}.diagram dt{font-weight:700}.diagram dd{margin:0 0 .65rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.93rem}
+.legend span::before{content:"";display:inline-block;width:1.1rem;height:.25rem;margin-right:.35rem;vertical-align:middle;background:#a66c22}
+.legend span:last-child::before{background:#176573}
+
+:host{display:block;color:inherit;font:inherit}*{box-sizing:border-box}h2{font-size:1.25em;margin:.25rem 0}button{cursor:pointer}figure dl{overflow-wrap:anywhere}
+</style>
+<template id="studies">
+<section data-story="a" aria-labelledby="title-a">
+<h2 id="title-a">A · Reach, contact and press</h2>
+<p>Follow a fingertip through approach, contact, press and release.</p>
+<figure><div class="plate frame"><img src="media/phase-3/a.png" alt="An index finger approaches, contacts and depresses the same gold key. The raised pose is reused to illustrate release."></div><figcaption role="status"></figcaption></figure>
+<div class="controls"></div>
+<details><summary>Read all four stages</summary><ol><li>Reach towards the gold key.</li><li>Make fingertip contact.</li><li>Depress the key as the finger and hand angle adjust.</li><li>Release the key and reposition if needed. The approach frame is reused to show the finger clear of the key.</li></ol></details>
+<p><small>Illustrative poses. Joint angles and key travel are unmeasured.</small></p>
+</section>
+<section data-story="b" aria-labelledby="title-b">
+<h2 id="title-b">B · From intention to feedback</h2>
+<p>Follow one simplified example of how the nervous system contributes to a voluntary reach.</p>
+<figure><div class="plate motor" data-phase="0"><img src="media/phase-3/b.png" alt="A faceless translucent upper body with the brain and spinal pathway connected to an extended arm and highlighted forearm muscles.">
+<svg viewBox="0 0 1672 941" aria-hidden="true">
+<defs>
+  <radialGradient id="gold-focus"><stop stop-color="#fff0a4" stop-opacity=".76"/><stop offset="1" stop-color="#ffbc51" stop-opacity="0"/></radialGradient>
+  <marker id="outbound" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="3.5" markerHeight="3.5" orient="auto"><path d="M1 1l10 5-10 5z" fill="#ffe38d"/></marker>
+  <marker id="return" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="3.5" markerHeight="3.5" orient="auto"><path d="M1 1l10 5-10 5z" fill="#a5f3f2"/></marker>
+</defs>
+<g class="phase plan"><ellipse cx="519" cy="100" rx="113" ry="87" fill="url(#gold-focus)"/><ellipse cx="519" cy="94" rx="100" ry="67" fill="none" stroke="#ffe38d" stroke-width="7"/></g>
+<g class="phase signal" fill="none" stroke="#ffe38d" stroke-width="9" stroke-linecap="round" marker-end="url(#outbound)"><path d="M510 132Q488 185 481 258"/><path d="M498 284Q520 320 589 349T710 440Q775 540 902 583"/></g>
+<g class="phase move"><ellipse cx="973" cy="627" rx="155" ry="95" fill="url(#gold-focus)" transform="rotate(24 973 627)"/><path d="M1220 673Q1310 659 1371 731" fill="none" stroke="#ffe38d" stroke-width="9" marker-end="url(#outbound)"/></g>
+<g class="sensory" fill="none" stroke="#a5f3f2" stroke-width="6" stroke-dasharray="15 12" stroke-linecap="round" marker-end="url(#return)"><path d="M1348 726Q1295 546 1048 524T651 317Q568 276 539 156"/></g>
+<g class="phase feedback"><circle cx="1348" cy="726" r="27" fill="none" stroke="#a5f3f2" stroke-width="8"/><ellipse cx="519" cy="100" rx="110" ry="79" fill="none" stroke="#a5f3f2" stroke-width="7" stroke-dasharray="15 10"/></g>
+</svg></div><figcaption role="status"></figcaption></figure>
+<div class="controls"></div>
+<details><summary>Read all four stages</summary><ol><li>Brain networks help select and plan the action.</li><li>Descending pathways influence spinal circuits. Motor neurons signal muscles through peripheral nerves.</li><li>Muscles activate and help move or stabilise joints as the hand approaches the target.</li><li>Touch, vision and body-position information help guide adjustments.</li></ol></details>
+
+<p class="legend"><span>Motor planning and output</span><span>Sensory feedback during movement</span></p>
+<p>Apply the same sequence to a keyboard reach. Choose a target key, start moving towards it, and use vision, touch and body-position information to adjust the reach and press.</p>
+<details><summary>Open the simplified motor-control schematic</summary>
+<figure class="diagram"><img src="media/phase-3/motor-schematic.svg" alt="Brain motor networks send descending signals to spinal circuits. Spinal motor neurons activate muscles through peripheral nerves. Sensory signals from the moving limb return to spinal circuits and brain networks. Vision supplies additional information to the brain.">
+<figcaption>Descending signals influence spinal circuits. Peripheral motor neurons carry output to muscle. Touch and proprioceptive signals enter the spinal cord through sensory pathways and can influence spinal circuits and ascend to the brain. Vision supplies additional input through a separate route. These processes overlap throughout the reach.</figcaption></figure>
+</details>
+<p><small>AI-assisted concept illustration with animated teaching overlays. The brain silhouette, cervical cord and continuity into the arm are readable. The render does not resolve spinal roots, individual peripheral nerves or specific forearm muscles, and the overlay paths are schematic. See the <a href="https://www.ncbi.nlm.nih.gov/books/NBK11139/">neuroscience reference</a>.</small></p>
+</section>
+<section data-study="c" aria-labelledby="title-c">
+<h2 id="title-c">C · Fitted keyguard and alignment</h2>
+<div class="pair">
+<figure><div class="plate half"><img src="media/phase-3/c.png" alt="Fitted sage guard with an opening around each ivory key."></div><figcaption><strong>Fitted.</strong> The sage grid separates the ivory keys into individual openings.</figcaption></figure>
+<figure><div class="plate half exploded"><img src="media/phase-3/c.png" alt="Same guard lifted above the keyboard, with orange markers near the edges."></div><figcaption><strong>Exploded.</strong> The raised view shows the intended alignment. Terracotta marks show example registration points.</figcaption></figure>
+</div>
+
+<p>The renders show a four-row by five-column guard pattern and a matching key layout where visible. The raised guard obscures part of the key field. Perspective renders cannot establish pitch, concentricity or tolerances. The aligned views below show the intended geometry.</p>
+<div class="pair">
+<figure class="diagram"><img src="media/phase-3/keyguard-top.svg" alt="Top view with twenty openings and centred key outlines. Four labelled callouts show opening width, centre-to-centre key spacing, shared wall thickness and two example locating tabs.">
+<figcaption><strong>Top view · Concept drawing</strong><dl><dt>1 · Opening width</dt><dd>Inside edge to inside edge of an aperture.</dd><dt>2 · Key spacing</dt><dd>Centre-to-centre pitch along a row.</dd><dt>3 · Wall thickness</dt><dd>Material between adjacent apertures.</dd><dt>4 · Registration and retention</dt><dd>Terracotta tabs illustrate possible locating points. Retention would need its own fit and release check.</dd></dl></figcaption></figure>
+<figure class="diagram"><img src="media/phase-3/keyguard-section.svg" alt="Cross-section through one key and the guard. A vertical dimension marks the clearance above the keyboard deck, and a second dimension marks travel from the rest position to the depressed position.">
+<figcaption><strong>Cross-section · Concept drawing</strong><dl><dt>5 · Plate clearance</dt><dd>Gap between the guard underside and the deck in this section. Check the moving keycap and neighbouring keys separately.</dd><dt>6 · Key travel</dt><dd>Distance from the resting keycap to the illustrated depressed position.</dd></dl></figcaption></figure>
+</div>
+<details><summary>Material and manufacturing considerations</summary><p>Compare stiffness, edge comfort, cleanability and the retention method. A printed concept may help assess fit, but print orientation, tolerances and surface finish can affect individual apertures. Machining or moulding would require process-specific design checks. Measure the target keyboard before choosing any dimension or material.</p></details>
+<p><small>AI-assisted product renders and schematic drawings. Dimensions are conceptual. No physical fit, material or manufacturing tests were performed.</small></p>
+</section>
+</template>
+</html>

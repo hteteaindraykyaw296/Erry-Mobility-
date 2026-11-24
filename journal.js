@@ -24,7 +24,19 @@ function bmiEstimate(){const w=numeric($('#weight').value,1,500);const old=entri
 function updateBMI(){const bmi=bmiEstimate();$('#bmi-output').textContent=bmi!==null?bmi.toFixed(1)+' kg/m²':'Not calculated';const old=entries.find(e=>e.id===editing);if(old&&old.weight===numeric($('#weight').value,1,500)&&old.bmi!==null){$('#bmi-help').textContent='Uses this entry’s recorded height ('+old.height+' cm). Changing the weight uses your current saved height.';return}$('#bmi-help').textContent=profile.age==='young'?'No adult BMI estimate for under-20s. Ask a clinician about age-specific assessment.':bmi!==null?'Based on today’s weight and saved height. Estimate only; no weight category is assigned.':'Add a reliably measured height and age 20+ in your preferences, plus today’s weight.'}
 $('#weight').addEventListener('input',updateBMI);
 $('#profile-form').onsubmit=e=>{e.preventDefault();const data={};profileFields.forEach(k=>data[k]=$('#profile-'+k).value);profile=cleanProfile(data);const saved=persistProfile();renderProfile();$('#profile-status').textContent=saved?'Your preferences are saved on this browser.':'Preferences are available for this visit only. Storage is unavailable; export a backup.'};
-$('#delete-profile').onclick=()=>{if(confirm('Delete your saved preferences? Journal entries and their recorded measurements will remain.')){profile={};persistProfile();renderProfile();$('#profile-status').textContent='Preferences deleted. Existing entries are unchanged.'}};
+$('#delete-profile').onclick = () => {
+  if (!confirm('Delete your saved preferences? Journal entries and their recorded measurements will remain.')) return;
+  const status = $('#profile-status');
+  try {
+    localStorage.removeItem(profileKey);
+  } catch {
+    status.textContent = 'Saved preferences could not be deleted. Browser storage is unavailable.';
+    return;
+  }
+  profile = {};
+  renderProfile();
+  status.textContent = 'Preferences deleted. Existing entries are unchanged.';
+};
 const optionalNumbers=['mood','pain','fatigue','duration','sleep','weight'];
 function resetForm(){editing=null;$('#entry-form').reset();$('#date').value=today();$('#entry-heading').textContent='How was today for you?';$('#save-entry').replaceChildren(node('span','Save my day'),node('span','＋'));$('#cancel-edit').hidden=true;updateBMI()}
 $('#cancel-edit').onclick=()=>{resetForm();status.textContent='Editing cancelled.'};

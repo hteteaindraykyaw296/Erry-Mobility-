@@ -1,0 +1,106 @@
+
+.everyday-tasks {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: clamp(1.15rem, 4vw, 3rem);
+}
+.task-opening { margin: 1rem 0 1.6rem; }
+.task-opening h1 { font-size: clamp(2.4rem, 6.1vw, 4.7rem); margin: 0 0 .75rem; }
+.task-opening p { max-width: 60ch; margin: 0; }
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.everyday-tasks .task-card {
+  min-height: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+}
+.task-card a { display: block; height: 100%; text-decoration: none; }
+.task-card a:focus-visible { outline-offset: -4px; }
+.task-card a[aria-current="location"] { box-shadow: inset 0 -4px #38705d; }
+.task-card img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.task-card-content { display: grid; gap: .35rem; padding: .8rem 1rem 1rem; }
+.task-card-content strong { font: 680 clamp(1.12rem, 2vw, 1.4rem)/1.2 "Bricolage Grotesque", var(--sans); }
+.task-card-content > span { font-size: .94rem; }
+.task-action { color: #2a5b4b; text-decoration: underline; font-weight: 700; }
+.task-panel {
+  margin-top: 1.75rem;
+  padding: clamp(.85rem, 3vw, 1.75rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+}
+.task-panel[hidden] { display: none; }
+.task-panel h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); margin: 0; }
+.task-panel p { max-width: 70ch; }
+.task-sequence {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem 1.5rem;
+}
+.task-sequence > section {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding: .85rem 0 .3rem;
+}
+.task-sequence > section:nth-child(n+4) { grid-column: 1 / -1; }
+.task-sequence h3 { margin: 0 0 .5rem; }
+.task-sequence figure { margin: .65rem 0; }
+.task-sequence figure img { display: block; width: 100%; max-width: 36rem; height: auto; border-radius: .5rem; }
+.task-sequence figcaption, .task-reference { color: var(--muted); font-size: .9rem; }
+.task-activity { margin-top: .85rem; min-width: 0; }
+.task-activity .lab-layout { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
+.task-activity .practice-card {
+  min-width: 0;
+  padding: .8rem;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  background: var(--paper);
+}
+.task-activity .practice-card label { display: block; margin-top: .65rem; font-weight: 650; }
+.task-activity select, .task-activity textarea, .task-activity input { display: block; width: 100%; max-width: 100%; font: inherit; }
+.task-activity select, .task-activity textarea { padding: .4rem; }
+.task-activity textarea { resize: vertical; }
+.task-activity :is(button,select), .task-sequence summary { min-height: 44px; }
+.task-activity button {
+  border: 1px solid #6b8074;
+  border-radius: .35rem;
+  background: var(--white);
+  color: var(--ink);
+  padding: .45rem .65rem;
+  font: inherit;
+  cursor: pointer;
+}
+.task-activity button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+.task-activity .lab-modes, .task-activity .draw-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+.task-sequence summary { cursor: pointer; font-weight: 700; padding-block: .45rem; }
+.task-sequence details { border: 1px solid var(--line); border-radius: .5rem; padding: .4rem .75rem; }
+#practice-keyboard { display: flex; flex-wrap: wrap; gap: .35rem; margin-block: .75rem; }
+#practice-keyboard button { min-width: 2.6rem; }
+#practice-keyboard.large-keys button { min-width: 3.1rem; min-height: 3.1rem; }
+#drawing-pad { display: block; width: 100%; max-width: 45rem; height: auto; border: 1px solid #768e80; touch-action: none; }
+.task-boundaries { margin: 1.4rem 0 0; padding: .8rem 1rem; background: var(--sage); border-radius: .5rem; }
+.task-boundaries p { margin: 0 0 .5rem; }
+@media (max-width: 52rem) { .task-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 38rem) {
+  .task-sequence, .task-activity .lab-layout { grid-template-columns: 1fr; }
+  .task-card-content { padding: .65rem; }
+}
+@media (max-width: 22rem) { .task-grid { grid-template-columns: 1fr; } }
+
+
+.task-card a { display: flex; flex-direction: column; }
+.task-card-content { display: flex; flex-direction: column; flex: 1; }
+.task-action { margin-top: auto; }
+.theme-skills.large .everyday-tasks { font-size: 1.4rem; }
+.theme-skills.large .task-card-content > span,
+.theme-skills.large .task-sequence figcaption { font-size: 1.075rem; }
+@media (min-width: 38.01rem) {
+  .task-sequence > section:first-child { grid-row: span 2; }
+}

@@ -4,47 +4,124 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183c32">
-  <meta name="description" content="How Erry Mobility designed and evaluates its accessible typing prototype.">
+  <meta name="description" content="Design requirements, prototype decisions and evaluation methods behind Erry Mobility’s assistive technology examples.">
   <title>Engineering Lab — Erry Mobility</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="engineering.css">
 <link rel="stylesheet" href="visual-first.css">
-</head>
+<link rel="stylesheet" href="phase-3-studies.css"><script src="phase-3-studies.js" defer></script><script src="engineering-reach.js" defer></script></head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a>
     <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="typing.html">Typing Lab</a><a href="understand.html">Understand CP</a><details class="nav-group"><summary>Explore</summary><section aria-label="Explore destinations"><a href="skills.html">Everyday tasks</a><a href="technology.html">Assistive technology</a><a href="hands.html">Hands and spoon use</a><a href="balance.html">Balance and mobility</a><a href="anatomy.html">3D Anatomy Studio</a><a href="journal.html">My Journal</a></section></details><a href="engineering.html" aria-current="page">Engineering Lab</a><a href="about.html">About</a></nav>
   </header>
-  <main id="main" class="content-page">
+  <main id="main" class="content-page engineering-lab">
     <header class="page-hero engineering-heading">
-      <h1>Engineering Lab</h1>
-      <p>How a personally meaningful typing challenge became an educational prototype that visitors can explore and measure.</p>
-      <a class="button" href="typing.html">Open the Typing Setup Lab</a>
+      <h1 class="lab-heading"><svg class="lab-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#lab"></use></svg><span>From human needs to engineering solutions.</span></h1>
+      <p class="page-purpose">Engineering Lab</p>
+      <p>Engineering begins with understanding a problem, identifying its underlying principles and developing a systematic approach to evaluating possible solutions. The Erry Mobility Engineering Lab connects biomedical science, mathematical modelling and assistive design through three examples: reaching a key, fitting a keyguard and explaining balance.</p>
+      <p><a href="#worked-models">Try a reach calculation</a> · <a href="#evaluation-plan">See how a comparison is designed</a> · <a href="#verification">Review software verification</a></p>
     </header>
-    <section><h2>Problem definition</h2><p>Typing a short message can require reaching, targeting individual keys, and correcting unintended input. Those demands can make everyday communication more effortful for some people with one-sided motor difficulties.</p></section>
-    <section><h2>Human movement science</h2><figure class="lesson-figure"><img src="visuals/typing-reach-v3.svg" width="640" height="360" alt="Labels identify the shoulder, elbow, wrist and fingers. A dashed arrow shows reach toward a circled target key."><figcaption>Shoulder, elbow, wrist and finger movement contribute to reaching and targeting. The schematic shows geometry without estimating muscle forces or neural activity.</figcaption></figure></section><section><h2>User needs</h2><p>The design brief considers choice of input, room to rest, minimal equipment cost, clear controls, and private reflection. These priorities come from lived experience and need review with intended users.</p></section>
-    <section><h2>Design requirements</h2><table class="requirements"><thead><tr><th scope="col">Requirement</th><th scope="col">Design response</th></tr></thead><tbody>
-<tr><th scope="row">Accessibility</th><td>Keyboard and on-screen input, visible focus, and no deadline.</td></tr>
-<tr><th scope="row">Ease of use</th><td>Choose, type, and compare. Visitors can discard an invalid trial.</td></tr>
-<tr><th scope="row">Low cost</th><td>Compare a change using equipment already available.</td></tr>
-<tr><th scope="row">Measurement reliability</th><td>Use one timing boundary and a defined character edit distance.</td></tr>
-<tr><th scope="row">Data privacy</th><td>Retain results in the browser session. Save or export by choice.</td></tr>
-<tr><th scope="row">Reproducibility</th><td>Keep the sample and input method consistent. Record order and setup changes.</td></tr>
-</tbody></table></section><section><h2>Prototype architecture</h2><ol class="architecture-list">
-<li><strong>User input</strong><br>Keys or on-screen controls.</li><li><strong>Browser events</strong><br>Read text and observable edits.</li><li><strong>Measurement</strong><br>Compute time and text errors.</li><li><strong>Local results</strong><br>Keep session trials in memory.</li><li><strong>Visualisation</strong><br>Compare bars and exact values.</li></ol>
-<p>The browser cannot observe physical keyboard position. Visitors describe their own change. A journal save or CSV download keeps a local copy.</p></section>
-    <section><h2>Demonstrated prototypes</h2><p>The Typing Setup Lab implements the comparison in a browser. Its illustrated keyguard shows how openings line up with keys. The <a href="anatomy.html">3D Anatomy Studio</a> and the <a href="balance.html">balance model</a> demonstrate related concepts using simplified models with text or static alternatives.</p></section>
-    <section><h2>Testing methodology</h2><ol><li>Select a change and use the same device, input method, and sample for both setups.</li><li>Start a trial, type the sample, and finish. Elapsed time excludes explicit pauses and includes operating the controls.</li><li>Review the character edit distance and observed correction actions. Optionally rate comfort and choose a preference.</li><li>Repeat in the other order if comfortable. Look for trade-offs across trials and record relevant context.</li></ol></section>
-    <section id="verification"><h2>Software verification</h2><table class="requirements"><thead><tr><th scope="col">Check</th><th scope="col">What is tested</th></tr></thead><tbody><tr><th scope="row">Timing</th><td>Start enables entry. Paused time is excluded. Finish records a trial.</td></tr><tr><th scope="row">Error calculation</th><td>Known insertions, deletions, substitutions, spaces, and case have expected scores.</td></tr><tr><th scope="row">Repeated trials</th><td>Both setups retain their finished trials in session order.</td></tr><tr><th scope="row">Reset</th><td>Clear session removes measured trial rows and retains a saved journal snapshot.</td></tr><tr><th scope="row">Export</th><td>A CSV has one row per finished trial and excludes practice text.</td></tr><tr><th scope="row">Invalid input</th><td>An empty task does not create a result. The visitor can discard the trial.</td></tr></tbody></table><p><a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">Read the verification record in the README</a></p></section><section><h2>Results</h2><p>The public lab begins with an empty results view. It reports measurements from trials you finish in your browser. The project has no participant dataset or aggregate performance findings. See the <a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">repository documentation</a> for software verification.</p></section>
-    <section id="limitations"><h2>Limitations</h2><p>Erry Mobility is an educational assistive technology project. It has no established clinical effectiveness and provides no diagnosis, personalised rehabilitation, or substitute for occupational therapy or professional assessment. It is an educational web prototype and has not been developed as a medical device. Personal experience informed the design and represents one perspective.</p><p>Device differences, fatigue, practice, familiarity, and trial order can affect results. Browser editing events cannot identify every corrected error or distinguish an intentional edit from an accidental key press. A single English sample covers a narrow task. Suitability and usability need further evaluation with intended users.</p></section>
-    <section><h2>Planned experiments and future ideas</h2><p>A proposed usability evaluation could ask whether users can select a setup, complete a trial, and interpret the results independently. With appropriate oversight and accessible consent, a later study could compare repeated trials in both orders, allowing rest and documenting the equipment and chosen changes. Future work could explore affordable keyguard designs and additional input methods.</p></section>
-    <section><h2>References and documentation</h2><ul>
-      <li><a href="https://www.who.int/news-room/fact-sheets/detail/assistive-technology">WHO overview of assistive technology</a></li>
-      <li><a href="https://www.nidcd.nih.gov/sites/default/files/Documents/health/balance/BalanceDisorders-508.pdf">NIDCD overview of balance and sensory information</a></li>
-      <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK11050/">Neuroscience overview of motor control</a></li>
-      <li><a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines 2.2</a></li>
-      <li><a href="project.html#precedents">Existing research precedents and project history</a></li>
+    <section aria-labelledby="process-title">
+      <h2 id="process-title" class="lab-heading"><svg class="lab-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#process"></use></svg><span>From human need to responsible improvement</span></h2>
+      <ol class="architecture-list">
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#person"></use></svg>Human need</strong><br>Identify the action or barrier.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#movement"></use></svg>Biomedical understanding</strong><br>Identify the movement and context that shape it.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#clipboard"></use></svg>Design requirements</strong><br>Define what an adaptation should let someone do.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#build"></use></svg>Prototype</strong><br>Model one change using a drawing, interface or physical sample.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#rule"></use></svg>Evaluation</strong><br>Choose a measure and check what it captures.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#repeat"></use></svg>Improvement</strong><br>Use the observations to decide what to change or test next.</li>
+      </ol>
+    </section>
+    <section aria-labelledby="cases-title">
+      <h2 id="cases-title" class="lab-heading"><svg class="lab-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#cases"></use></svg><span>Three engineering examples</span></h2>
+      <div class="learning-paths">
+        <article class="lesson-card"><img class="lab-example-image" src="visuals/keyboard-position-study.svg" alt="Two views show the same keyboard before and after a move towards the desk edge." loading="lazy"><h3>Keyboard reach</h3><p>Moving the same keyboard changes the distance to a target. Holding the sample and input method constant makes it easier to interpret differences between trials.</p><p><strong>Open question:</strong> Does moving the keyboard affect reach, comfort or the way someone accesses other controls?</p><a href="keyboard-position.html">See the keyboard position comparison</a></article>
+        <article class="lesson-card"><img class="lab-example-image" src="visuals/keyguard-detail.svg" alt="An opening in the keyguard plate sits over the key it is intended to expose." loading="lazy"><h3>Keyguard fit</h3><p>Openings must align with the intended keys and allow access without obstructing key movement. The diagram illustrates the relationship between openings and targets.</p><p><strong>Next check:</strong> Assess alignment and clearance on a specific keyboard before evaluating use.</p><a href="technology.html">Explore the keyguard in Assistive Technology</a></article>
+        <article class="lesson-card"><img class="lab-example-image" src="visuals/balance-support.svg" alt="A dashed line projects the centre of mass onto an illustrated base of support." loading="lazy"><h3>Balance geometry</h3><p>The model separates the contact region from the downward projection of the centre of mass. It makes one geometric relationship visible.</p><p><strong>Model limit:</strong> The diagram cannot estimate how a person will respond to a change in balance.</p><a href="balance.html#balance-storyboard">See the support diagram</a></article>
+      </div>
+      <details class="phase-study" id="phase-study-c" data-phase-study="c"><summary>Explore the keyguard engineering drawings</summary><phase-study><p><a href="typing.html#keyguard-demo">Read the keyguard guide</a></p></phase-study></details>
+    </section>
+    <section aria-labelledby="requirements-title">
+      <h2 id="requirements-title" class="lab-heading"><svg class="lab-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#clipboard"></use></svg><span>Design requirements</span></h2>
+      <table class="requirements"><thead><tr><th scope="col">Requirement</th><th scope="col">Design response</th></tr></thead><tbody>
+        <tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#person"></use></svg>Accessibility</th><td>Offer keyboard controls, visible focus, and a written alternative to each storyboard.</td></tr>
+        <tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#cost"></use></svg>Low cost</th><td>Start with changes people can explore using equipment they already have.</td></tr>
+        <tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#rule"></use></svg>Measurement</th><td>Define the timing boundary and error calculation so the result can be reproduced.</td></tr>
+        <tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#lock"></use></svg>Data privacy</th><td>Keep trial results in the browser. Save or export by choice.</td></tr>
+      </tbody></table>
+    </section>
+    <section id="worked-models" aria-labelledby="worked-models-title">
+      <h2 id="worked-models-title">Turn a design idea into a calculation</h2>
+      <p>Each example starts with an engineering question and identifies what the calculation can tell us. All numbers below are illustrative inputs.</p>
+      <article>
+        <h3>How far is the same key from a fixed start point?</h3>
+        <p>Set one sideways offset and two forward offsets. Keep the start point, target key, lateral offset and keyboard orientation fixed. A smaller straight-line distance is a geometric result. The real hand path, joint loading, comfort and typing performance require separate observations.</p>
+        <form id="reach-calculator" class="reach-calculator">
+          <div class="reach-inputs">
+            <label>Sideways offset (mm)<input id="reach-lateral" name="lateral" type="number" min="0" max="1000" step="any" required value="120"></label>
+            <label>Setup A forward offset (mm)<input id="reach-usual" name="usual" type="number" min="0" max="1000" step="any" required value="160"></label>
+            <label>Setup B forward offset (mm)<input id="reach-adapted" name="adapted" type="number" min="0" max="1000" step="any" required value="90"></label>
+          </div>
+          <button type="submit" class="button">Calculate reach</button>
+          <output for="reach-lateral reach-usual reach-adapted" aria-live="polite">Setup A: 200.0 mm. Setup B: 150.0 mm. Change (B − A): −50.0 mm.</output>
+        </form>
+        <details><summary>Show the equation and worked example</summary>
+          <p>On a flat desk, distance <var>d</var> = √(<var>x</var>² + <var>y</var>²), where <var>x</var> is sideways offset and <var>y</var> is forward offset in millimetres. Change = <var>d</var><sub>B</sub> − <var>d</var><sub>A</sub>.</p>
+          <p>Setup A uses 120 and 160 mm, giving √40,000 = 200 mm. Setup B uses 120 and 90 mm, giving √22,500 = 150 mm. The modelled distance decreases by 50 mm, or 25% of Setup A.</p>
+        </details>
+      </article>
+      <article>
+        <h3>Will a keyguard opening clear the keycap?</h3>
+        <p>Start with the smallest aperture and largest keycap cross-section expected at the guard plane. Check the worst edge gap on both axes. An opening can clear the keycap on paper and still interfere with key travel or shift in use.</p>
+        <details><summary>Show the one-axis clearance check</summary>
+          <p>For rectangular edges, the tighter-side gap = (opening width − keycap width) ÷ 2 − |centre offset|. A 17.0 mm opening around a 15.0 mm cap gives 1.0 mm per side when centred. With a 0.4 mm offset the gaps become 0.6 mm and 1.4 mm. A zero or negative result flags contact or overlap in this simplified section.</p>
+          <p>Repeat on the second axis and along full key travel. Account for variation in keycap profile, fabrication, mounting and flex before deciding whether to fabricate. Verify on the intended keyboard with the <a href="#phase-study-c">fitted, exploded and sectional drawings</a> as planning aids.</p>
+        </details>
+      </article>
+      <article>
+        <h3>Where is a point relative to the base of support?</h3>
+        <p>For a rectangular contact region, check the shortest distance from the projected centre of mass to each edge. This compares positions in a static diagram.</p>
+        <details><summary>Show a signed edge-distance example</summary>
+          <p>For a 300 × 200 mm example rectangle with one corner at (0, 0), take the minimum of <var>x</var>, 300 − <var>x</var>, <var>y</var> and 200 − <var>y</var>. At (100, 70) mm the minimum is +70 mm and the projection is inside. At (320, 70) mm it is −20 mm and the projection is outside. Zero places it on the boundary.</p>
+          <p>This quantity is an edge margin for a rectangle. It ignores momentum, changing contacts, external forces and individual responses. It supplies no safety threshold.</p>
+        </details>
+      </article>
+    </section>
+    <section aria-labelledby="architecture-title">
+      <h2 id="architecture-title" class="lab-heading"><svg class="lab-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#build"></use></svg><span>Prototype architecture</span></h2>
+      <p>The typing prototype illustrates how a browser turns interaction into a local measurement.</p>
+      <ol class="architecture-list">
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#keyboard"></use></svg>Input</strong><br>Physical keys or on-screen controls.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#event"></use></svg>Events</strong><br>Observe text and editing actions.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#rule"></use></svg>Measurement</strong><br>Calculate time and character edit distance.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#storage"></use></svg>Storage</strong><br>Keep session trials in memory.</li>
+        <li><strong><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#chart"></use></svg>Visualisation</strong><br>Show exact values and bars on matching scales.</li>
+      </ol>
+      <p>Visitors describe any physical adjustment because the browser cannot observe keyboard position.</p>
+    </section>
+    <section id="evaluation-plan" aria-labelledby="evaluation-plan-title">
+      <h2 id="evaluation-plan-title">Evaluate one change at a time</h2>
+      <p><strong>Question.</strong> For this person and this short message, what changes when the same keyboard moves closer?</p>
+      <p><strong>Requirements and checks.</strong> Document the change in position, keep the keys and keyboard orientation the same, and check access to the target and nearby controls. Reuse the message and input method. Record task completion time, final text errors and optional comfort separately.</p>
+      <details><summary>Experimental design and data flow</summary>
+        <p>Repeat comparable trials where appropriate, allow rest, and alternate which setup goes first to reduce order effects. Compare only trials with matching recorded conditions and the same Setup B change. Note practice and fatigue. Discuss trade-offs separately, such as shorter time with more errors.</p>
+        <p>The user records the setup. The software subtracts explicit paused time from the elapsed start-to-finish time and calculates final text errors as insertions, deletions and substitutions. Example: 12.0 seconds elapsed with 2.5 seconds paused gives 9.5 seconds of task time. Changing <code>tap</code> to <code>top</code> is one substitution. Correction actions are logged separately from final errors. Finished records stay in the session unless the visitor saves a browser-local journal entry or exports CSV.</p>
+        <p><strong>How the scoring algorithm works.</strong> The browser compares successive prefixes of the sample and the entered text. For each pair, it keeps the lowest cost from three possibilities: add one character, remove one, or substitute one. Matching characters add zero cost. Comparing an empty prefix with a prefix of length <var>n</var> costs <var>n</var>. The last cell gives the final edit distance, and the implementation keeps only the current and previous rows.</p>
+        <p><a href="typing.html#measurement-method">Read the implemented measurement method</a> · <a href="typing.html">Open the Typing Setup Lab</a></p>
+      </details>
+    </section>
+    <section id="verification"><h2 class="lab-heading"><svg class="lab-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#verify"></use></svg><span>Software verification</span></h2><table class="requirements"><thead><tr><th scope="col">Check</th><th scope="col">What is tested</th></tr></thead><tbody><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#clock"></use></svg>Timing</th><td>Start enables entry. Paused time is excluded. Finish records a trial.</td></tr><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#calc"></use></svg>Error calculation</th><td>Known insertions, deletions, substitutions, spaces, and case have expected scores.</td></tr><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#repeat"></use></svg>Repeated trials</th><td>Both setups retain their finished trials in session order.</td></tr><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#repeat"></use></svg>Reset</th><td>Clear session removes measured trial rows and retains a saved journal snapshot.</td></tr><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="green" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#export"></use></svg>Export</th><td>A CSV has one row per finished trial and excludes practice text.</td></tr><tr><th scope="row"><svg class="lab-detail-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#alert"></use></svg>Invalid input</th><td>An empty task does not create a result. The visitor can discard the trial.</td></tr></tbody></table><p><a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">Read the verification record in the README</a></p></section>
+    <section><h2 class="lab-heading"><svg class="lab-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#chart"></use></svg><span>Evidence status</span></h2><p>Software tests check that the tools behave as designed. Erry Mobility has no participant dataset or aggregate performance findings. Keyguard fit, ergonomic benefit and individual balance responses remain unverified.</p></section>
+    <section id="limitations"><h2 class="lab-heading"><svg class="lab-icon" data-icon-tone="earth" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#search"></use></svg><span>Limitations</span></h2><p>Erry Mobility is an educational assistive technology project. It has no established clinical effectiveness and provides no diagnosis, personalised rehabilitation, or substitute for occupational therapy or professional assessment. It is an educational web prototype and has not been developed as a medical device. Personal experience informed the design and represents one perspective.</p><p>Device differences, fatigue, practice, familiarity, and trial order can affect results. Browser editing events cannot identify every corrected error or distinguish an intentional edit from an accidental key press. A single English sample covers a narrow task. Suitability and usability need further evaluation with intended users.</p></section>
+    <section><h2 class="lab-heading"><svg class="lab-icon" data-icon-tone="gold" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#plan"></use></svg><span>Planned experiments and future ideas</span></h2><p>A proposed usability evaluation could ask whether users can select a setup, complete a trial, and interpret the results independently. With appropriate oversight and accessible consent, a later study could compare repeated trials in both orders, allowing rest and documenting the equipment and chosen changes. Future work could explore affordable keyguard designs and additional input methods.</p></section>
+    <section><h2 class="lab-heading"><svg class="lab-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg><span>References and documentation</span></h2><ul>
+      <li><a href="https://www.who.int/news-room/fact-sheets/detail/assistive-technology"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg>WHO overview of assistive technology</a></li>
+      <li><a href="https://www.nidcd.nih.gov/sites/default/files/Documents/health/balance/BalanceDisorders-508.pdf"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg>NIDCD overview of balance and sensory information</a></li>
+      <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK11050/"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg>Neuroscience overview of motor control</a></li>
+      <li><a href="https://www.w3.org/TR/WCAG22/"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg>Web Content Accessibility Guidelines 2.2</a></li>
+      <li><a href="project.html#precedents"><svg class="lab-detail-icon" data-icon-tone="blue" aria-hidden="true" focusable="false"><use href="visuals/engineering-icons.svg#book"></use></svg>Existing research precedents and project history</a></li>
     </ul></section>
   </main>
   <footer class="site-footer"><a href="index.html">Erry Mobility</a><a href="about.html">Read the founder’s story</a></footer>

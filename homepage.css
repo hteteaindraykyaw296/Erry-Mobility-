@@ -1,0 +1,61 @@
+.purpose-summaries {
+  display: grid;
+  gap: .65rem;
+  margin-block: 1rem;
+}
+.purpose-summaries dt {
+  font-weight: 700;
+}
+.purpose-summaries dd {
+  margin-inline-start: 0;
+}
+.home-challenge {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  align-items: center;
+  gap: 1.25rem;
+}
+.home-challenge figure {
+  margin: 0;
+}
+.home-challenge img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: .6rem;
+}
+.home-stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: .75rem 1.8rem;
+  padding-inline-start: 1.5rem;
+}
+.home-stages li {
+  padding: .85rem;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  background: var(--sage);
+}
+.home-stages h3, .home-explore h3 {
+  margin-block: 0 .25rem;
+}
+.home-stages p, .home-explore p {
+  margin-block: 0;
+}
+.home-explore .lesson-card {
+  min-width: 0;
+}
+.home-explore img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--sage);
+}
+.purpose-dashboard :is(h3, dt, .engineering-actions, .site-footer) > a,
+.purpose-dashboard a.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 24px;
+}
+
