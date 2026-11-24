@@ -99,6 +99,14 @@ Invite a first-time visitor to use their preferred device and input method. Reco
 
 I created Erry Mobility to explore practical technology for one-sided motor difficulties. Starting from my experience with cerebral palsy, I framed typing a short message as an engineering task and built an AI-assisted browser prototype that compares one setup change at a time. The lab measures elapsed time and final text errors, records optional comfort feedback, and lets visitors interpret their own results. I used software verification to check the measurement and export flow. Ergonomic benefit and clinical effectiveness remain unverified. Future work could include a low-cost physical prototype and an intended-user usability study.
 
+## Institutional purpose and visual production
+
+The About page records the official vision, mission, goal, strategic objectives and principles. The homepage and learning pages connect them to working features. The project remains an independent, student-led educational initiative informed by lived experience.
+
+Editorial references include the [United Nations disability-inclusive communications guidance](https://www.un.org/en/disabilitystrategy/resources), [UNICEF Disability Inclusion Policy and Strategy](https://www.unicef.org/unicef-disability-inclusion-policy-and-strategy-dipas-2022-2030), and [WHO assistive technology guidance](https://www.who.int/health-topics/assistive-technology). The homepage and About page use the existing Disabled And Here photograph under CC BY 4.0, with attribution.
+
+See the [visual asset inventory and production status](VISUAL-ASSET-AUDIT.md).
+
 ## GitHub Pages deployment
 
 1. Review the local changes, then commit and merge them into the publishing branch.

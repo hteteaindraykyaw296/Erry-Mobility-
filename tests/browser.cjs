@@ -86,7 +86,7 @@ async function run() {
     const key = (type, key, virtualKey) => send('Input.dispatchKeyEvent', {type, key, code: key === ' ' ? 'Space' : key, windowsVirtualKeyCode: virtualKey});
     await send('Runtime.enable');
     await send('Emulation.setEmulatedMedia', {features: [{name: 'prefers-reduced-motion', value: 'reduce'}]});
-    const pages = [['', 'Forward'], ['understand.html', 'Understand CP'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab'], ['technology.html', 'Assistive Technology'], ['hands.html#spoon', 'Hands'], ['balance.html', 'Balance'], ['anatomy.html?still', 'Anatomy']];
+    const pages = [['', 'Forward'], ['understand.html', 'Understand CP'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab'], ['technology.html', 'Assistive Technology'], ['hands.html#spoon', 'Hands'], ['balance.html', 'Balance'], ['anatomy.html?still', 'Anatomy'], ['about.html', 'About Erry Mobility']];
     if (process.env.ERRY_SCREENSHOTS) {
       const output = path.resolve(process.env.ERRY_SCREENSHOTS);
       await fs.mkdir(output, {recursive: true});
@@ -123,6 +123,12 @@ async function run() {
     await key('keyUp', 'Tab', 9);
     assert.equal(await evaluate('document.activeElement.textContent'), 'Skip to content');
     assert.equal(await evaluate('getComputedStyle(document.activeElement).outlineStyle'), 'solid');
+    assert.equal(await evaluate('document.querySelector(".purpose-overview a.text-link").getAttribute("href")'), 'about.html');
+    await go('about.html', 'About Erry Mobility');
+    assert.equal(await evaluate('document.querySelectorAll("#principles article").length'), 6);
+    assert.equal(await evaluate('document.querySelectorAll("#objectives li").length'), 5);
+    assert.equal(await evaluate('document.querySelector("#vision").textContent.includes("A world where movement is not a barrier to opportunity.")'), true);
+    await go('', 'Forward');
     await evaluate('document.querySelector(".site-nav summary").focus()');
     await key('rawKeyDown', ' ', 32);
     await key('keyUp', ' ', 32);
@@ -230,7 +236,7 @@ async function run() {
     await evaluate('document.querySelector("[data-structure]:last-child").click()');
     assert.match(await evaluate('document.querySelector("[data-structure-diagram] [role=status]").textContent'), /transmit pull/);
     assert.deepEqual(failures, []);
-    console.log('Chromium checks passed: eight views at 375/768/1440px, shared navigation and keyboard focus, movement playback and reduced motion, device gallery and keyguard, timer/pause, invalid input, scoring and matched scales, repeated trials, comfort, CSV, journal, reset, and anatomy fallback.');
+    console.log('Chromium checks passed: nine views at 375/768/1440px, shared navigation and keyboard focus, movement playback and reduced motion, device gallery and keyguard, timer/pause, invalid input, scoring and matched scales, repeated trials, comfort, CSV, journal, reset, and anatomy fallback.');
   } finally {
     socket?.close();
     browser.kill();
