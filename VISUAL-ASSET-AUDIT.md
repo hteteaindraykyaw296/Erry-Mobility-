@@ -106,3 +106,11 @@ The site uses vendored Three.js, procedural meshes, static SVG and captioned MP4
 | media/motor-body-study.jpg | AI-generated for the project using the supplied visual reference as direction. Rear-view mannequin concept. Lower spinal anatomy and nerve depiction require expert review. |
 | media/reach-key-study.jpg | AI-generated for the project. Illustrates one possible reach, with no recommended posture or force. |
 | visuals/keyboard-position-study.svg | Original project diagram. The before-and-after displacement is illustrative. |
+
+## Release review
+
+The pre-publication copy pass covered all 18 caption tracks. Four were edited for clarity and inclusive language. All 18 passed a static check for WebVTT headers, cue-time syntax and an end time after each start. Synchronisation against the videos remains open.
+
+For anatomy review, verify that the depicted spinal cord ends at an appropriate level, that the spinal cord is visually distinct from the vertebral column, and that the illustrated nerve path and forearm muscles are labelled accurately. Keep the review status visible until the artwork and captions have been checked by a qualified reviewer.
+
+For accessibility review, use a screen reader and a physical touch device to try Play, Pause and Replay, move between steps, hear caption updates, read the static alternative, and finish and export a typing trial.
