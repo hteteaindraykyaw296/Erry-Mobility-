@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img">
+<title>Arm and keyboard reach</title><desc>Shoulder, elbow, wrist and fingers are linked along an arm. An arrow shows a reach toward the keyboard and a ring marks the target key.</desc>
+<rect width="640" height="360" rx="18" fill="#e5ece3"/>
+<rect x="401" y="75" width="203" height="150" rx="14" fill="#244638"/>
+<g fill="#fbf8ef"><path d="M419 94h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h22v27h-22zM419 128h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h22v27h-22zM419 162h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h30v27h-30zm36 0h22v27h-22zM464 196h64v14h-64z"/></g>
+<path d="M0 250q49-42 103-25l89 61 128-52 27-42 50-23 45-9q17-4 19 7 1 8-12 13l-40 11 32-4q12-1 12 8 0 7-11 10l-39 11 33-4q13-1 14 8 0 8-14 11l-51 16-12 7-38 16-132 68q-20 10-35 1l-86-50-82 55z" fill="#cc987c" stroke="#765341" stroke-width="2"/>
+<g stroke="#183c32" stroke-width="2" fill="none"><path d="m94 248-8-66H24m162 127v28h-63m206-85v76h-53m93-105-24-64h-43m167-19 20-83h102"/></g>
+<g fill="#183c32" font-family="system-ui,sans-serif" font-size="20" font-weight="700"><text x="20" y="171">Shoulder</text><text x="69" y="338">Elbow</text><text x="225" y="328">Wrist</text><text x="251" y="150">Fingers</text><text x="491" y="47">Target key</text><text x="198" y="91">Reaching movement</text></g>
+<path d="M183 131q88-34 205-19m-12-12 12 12-15 8" fill="none" stroke="#983f2b" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 5"/>
+<circle cx="470" cy="141" r="20" fill="none" stroke="#983f2b" stroke-width="4"/>
+</svg>

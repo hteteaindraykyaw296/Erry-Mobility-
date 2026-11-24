@@ -83,11 +83,42 @@ function initTypingLab() {
   function renderResults() {
     const results = find('#results');
     results.replaceChildren();
-    for (const setupLabel of ['Setup A', 'Setup B']) {
+    const setupLabels = ['Setup A', 'Setup B'];
+    const latestBySetup = setupLabels.map(label => trials.findLast(trial => trial.setup === label));
+    const metrics = [
+      {key: 'seconds', label: 'Elapsed time', unit: ' s'},
+      {key: 'errors', label: 'Final text errors', unit: ''},
+      {key: 'corrections', label: 'Correction actions', unit: ''}
+    ];
+    const guidance = find('#trial-guidance');
+    guidance.hidden = !trials.length;
+    guidance.textContent = latestBySetup.every(Boolean)
+      ? 'Bars compare the latest trial from each setup on a shared scale for each measure. Shorter time or fewer text errors may come with a different comfort rating. A few trials cannot establish an ergonomic benefit.'
+      : 'Finish a trial in the other setup to compare both. Your current measurements appear below.';
+    for (const [index, setupLabel] of setupLabels.entries()) {
       const card = document.createElement('article');
       const title = document.createElement('h3');
       title.textContent = setupLabel;
       card.append(title);
+      const mostRecent = latestBySetup[index];
+      if (mostRecent) {
+        const summary = document.createElement('dl');
+        summary.className = 'trial-bars';
+        for (const {key, label, unit} of metrics) {
+          const name = document.createElement('dt');
+          name.textContent = label;
+          const value = document.createElement('dd');
+          value.textContent = mostRecent[key] + unit;
+          const bar = document.createElement('meter');
+          bar.min = 0;
+          bar.max = Math.max(1, ...latestBySetup.map(trial => Number(trial?.[key] ?? 0)));
+          bar.value = Number(mostRecent[key]);
+          bar.setAttribute('aria-hidden', 'true');
+          value.append(bar);
+          summary.append(name, value);
+        }
+        card.append(summary);
+      }
       const list = document.createElement('ul');
       for (const trial of trials.filter(entry => entry.setup === setupLabel)) {
         const item = document.createElement('li');
