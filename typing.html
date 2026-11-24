@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183c32"><meta name="description" content="Compare two typing setups using the same short message and review your results."><title>Typing Setup Lab — Erry Mobility</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="typing.css"><link rel="stylesheet" href="visual-first.css">
-</head>
+<script src="visual-first.js" defer></script></head>
 <body class="erry-typing"><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="wordmark" href="index.html" aria-label="Erry Mobility home"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="typing.html" aria-current="page">Typing Lab</a><a href="understand.html">Understand CP</a><details class="nav-group"><summary>Explore</summary><section aria-label="Explore destinations"><a href="skills.html">Everyday tasks</a><a href="technology.html">Assistive technology</a><a href="hands.html">Hands and spoon use</a><a href="balance.html">Balance and mobility</a><a href="anatomy.html">3D Anatomy Studio</a><a href="journal.html">My Journal</a></section></details><a href="engineering.html">Engineering Lab</a><a href="about.html">About</a></nav></header>
-<main id="main" class="typing-main"><div class="page-hero typing-page-heading"><p class="eyebrow">Accessible typing</p><h1>Typing Setup Lab</h1><p>Use your usual arrangement for Setup A. For Setup B, change just one thing that feels comfortable and safe. Use the same input method and message for both trials. Start and finish at your own pace.</p></div>
+<main id="main" class="typing-main"><div class="page-hero typing-page-heading"><p class="eyebrow">Accessible typing</p><h1>Typing Setup Lab</h1><p class="page-purpose">Exploring accessible solutions through practical, person-centred design.</p><p>Use your usual arrangement for Setup A. For Setup B, change just one thing that feels comfortable and safe. Use the same input method and message for both trials. Start and finish at your own pace.</p></div>
 <section class="lesson-band" id="typing-stage-1"><h2>1. Choose a setup</h2><p>Setup A is your usual arrangement. Setup B changes one thing. The drawings show one physical adjustment. Use your own comfortable position.</p><div class="setup-preview"><figure class="lesson-card"><img src="visuals/setup-a.svg" width="500" height="215" alt="In this example, the keyboard sits farther from the front edge."><figcaption><strong>Setup A · Usual</strong><br>In this example, the keyboard sits farther from the front edge.</figcaption></figure><figure class="lesson-card"><img src="visuals/setup-b.svg" width="500" height="215" alt="The same keyboard slides closer without changing its angle."><figcaption><strong>Setup B · Position change</strong><br>The same keyboard slides closer without changing its angle.</figcaption></figure></div><p><a href="#try-panel">Choose your setup and start the task</a></p></section><section class="instructions" aria-labelledby="before-title"><h2 id="before-title">Before you begin</h2><p>Setup B can use a different keyboard position, comfortable forearm support, an existing fitted keyguard, or an accessibility setting on your device. Make any physical or device-setting changes yourself before starting. Do not add or adjust equipment that has not been fitted for you.</p><p>Read the steps, then try the same sample message for both setups: <strong>meet me at noon</strong>. Rest, restart, or leave at any time.</p><ol class="flow" aria-label="Comparison progress"><li id="try-step" aria-current="step">Try both setups</li><li id="compare-step">Compare</li><li id="save-step">Save if you want</li></ol><p><a href="skills.html#typing">Prefer untimed, unscored practice?</a></p><p><a href="#try-panel">Go to the trial</a></p><details id="sticky-keys"><summary>Change Sticky Keys on your device</summary><p>On Windows, open Settings → Accessibility → Keyboard → Sticky keys. On Mac, open System Settings → Accessibility → Keyboard → Sticky Keys. You control this setting on your device. The lowercase sample uses no modifier shortcuts, so it cannot evaluate Sticky Keys for shortcut use.</p><p><a href="https://support.microsoft.com/en-gb/accessibility/windows/make-your-mouse-keyboard-and-other-input-devices-easier-to-use">Windows accessibility instructions</a> · <a href="https://support.apple.com/guide/mac-help/mchlae61a6de/mac">Mac accessibility instructions</a></p></details></section>
 <figure id="keyguard-demo" class="keyguard-demo" aria-labelledby="keyguard-caption">
         <div class="demo-toolbar">
@@ -86,6 +86,33 @@
     <li>These results describe one typing task. Clinical change and medical effectiveness require separate evaluation.</li>
   </ul></details>
   <p><a href="engineering.html">Read the Engineering Lab methods and limitations</a></p>
+</section>
+<section class="lesson-band visual-lesson scientific-storyboard" id="sticky-keys-storyboard" data-steps>
+  <h2>Enter a modifier and a key in sequence</h2>
+  <div class="lesson-layout">
+    <figure class="lesson-figure">
+      <div class="diagram-frame"><img src="visuals/sticky-keys.svg" alt="The Shift and A keys are shown separately with an arrow from Shift to A."><span class="diagram-point" aria-hidden="true" style="--point-x:25%;--point-y:44%"></span></div>
+      <figcaption>The demo does not change your device settings. The typing comparison sample does not measure shortcut performance.</figcaption>
+    </figure>
+    <div><p>See how Sticky Keys can change a simultaneous key combination into sequential presses.</p>
+      <ol class="pathway-dots"><li data-step="With Sticky Keys enabled, press and release Shift." data-x="25%" data-y="44%">Modifier</li><li data-step="Press A to enter a capital A in a text field." data-x="75%" data-y="44%">Next key</li></ol>
+      <p class="step-highlight" role="status" data-caption>With Sticky Keys enabled, press and release Shift.</p><div class="lesson-buttons" hidden><button type="button" data-play>Play</button><button type="button" data-replay>Replay</button><button type="button" data-prev-step>Previous step</button><button type="button" data-next-step>Next step</button></div>
+      <details><summary>Read all steps</summary><ol><li><strong>Modifier.</strong> With Sticky Keys enabled, press and release Shift.</li><li><strong>Next key.</strong> Press A to enter a capital A in a text field.</li></ol></details>
+    </div>
+  </div>
+</section><section class="lesson-band visual-lesson scientific-storyboard" id="keyguard-storyboard" data-steps>
+  <h2>How a keyguard separates targets</h2>
+  <div class="lesson-layout">
+    <figure class="lesson-figure">
+      <div class="diagram-frame"><img src="visuals/keyguard-detail.svg" alt="A diagram labels a keyguard plate, an opening and the key beneath it."><span class="diagram-point" aria-hidden="true" style="--point-x:56%;--point-y:27%"></span></div>
+      <figcaption>The illustration does not specify dimensions, fit or clearance. Individual benefit has not been evaluated.</figcaption>
+    </figure>
+    <div><p>Identify how a fitted plate changes the physical boundaries around a key.</p>
+      <ol class="pathway-dots"><li data-step="A guard sits above the keyboard." data-x="56%" data-y="27%">Plate</li><li data-step="A separate opening provides access to a target key." data-x="54%" data-y="61%">Opening</li><li data-step="The key sits below the opening. The layout must match the actual keyboard." data-x="33%" data-y="50%">Target</li></ol>
+      <p class="step-highlight" role="status" data-caption>A guard sits above the keyboard.</p><div class="lesson-buttons" hidden><button type="button" data-play>Play</button><button type="button" data-replay>Replay</button><button type="button" data-prev-step>Previous step</button><button type="button" data-next-step>Next step</button></div>
+      <details><summary>Read all steps</summary><ol><li><strong>Plate.</strong> A guard sits above the keyboard.</li><li><strong>Opening.</strong> A separate opening provides access to a target key.</li><li><strong>Target.</strong> The key sits below the opening. The layout must match the actual keyboard.</li></ol></details>
+    </div>
+  </div>
 </section>
 <noscript><p>Enable JavaScript to record trials. You can still read the instructions and view the diagrams.</p></noscript>
 </main><footer class="site-footer"><a class="wordmark" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Erry Mobility<small>Forward, your way</small></span></a><p>Educational prototype · Not a clinical assessment</p></footer><script src="typing.js" defer></script><script src="dashboard.js" defer></script></body></html>

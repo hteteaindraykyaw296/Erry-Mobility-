@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#183c32">
-  <meta name="description" content="How Erry Mobility designed and evaluates its accessible typing prototype.">
+  <meta name="description" content="Design requirements, prototype decisions and evaluation methods behind Erry Mobility’s assistive technology examples.">
   <title>Engineering Lab — Erry Mobility</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="engineering.css">
@@ -19,24 +19,51 @@
   <main id="main" class="content-page">
     <header class="page-hero engineering-heading">
       <h1>Engineering Lab</h1>
-      <p>How a personally meaningful typing challenge became an educational prototype that visitors can explore and measure.</p>
-      <a class="button" href="typing.html">Open the Typing Setup Lab</a>
+      <p class="page-purpose">How everyday barriers become design requirements, prototypes and tests.</p>
+      <p>Explore the engineering decisions behind three examples from Erry Mobility: reaching a key, fitting a keyguard and explaining balance.</p>
     </header>
-    <section><h2>Problem definition</h2><p>Typing a short message can require reaching, targeting individual keys, and correcting unintended input. Those demands can make everyday communication more effortful for some people with one-sided motor difficulties.</p></section>
-    <section><h2>Human movement science</h2><figure class="lesson-figure"><img src="visuals/typing-reach-v3.svg" width="640" height="360" alt="Labels identify the shoulder, elbow, wrist and fingers. A dashed arrow shows reach toward a circled target key."><figcaption>Shoulder, elbow, wrist and finger movement contribute to reaching and targeting. The schematic shows geometry without estimating muscle forces or neural activity.</figcaption></figure></section><section><h2>User needs</h2><p>The design brief considers choice of input, room to rest, minimal equipment cost, clear controls, and private reflection. These priorities come from lived experience and need review with intended users.</p></section>
-    <section><h2>Design requirements</h2><table class="requirements"><thead><tr><th scope="col">Requirement</th><th scope="col">Design response</th></tr></thead><tbody>
-<tr><th scope="row">Accessibility</th><td>Keyboard and on-screen input, visible focus, and no deadline.</td></tr>
-<tr><th scope="row">Ease of use</th><td>Choose, type, and compare. Visitors can discard an invalid trial.</td></tr>
-<tr><th scope="row">Low cost</th><td>Compare a change using equipment already available.</td></tr>
-<tr><th scope="row">Measurement reliability</th><td>Use one timing boundary and a defined character edit distance.</td></tr>
-<tr><th scope="row">Data privacy</th><td>Retain results in the browser session. Save or export by choice.</td></tr>
-<tr><th scope="row">Reproducibility</th><td>Keep the sample and input method consistent. Record order and setup changes.</td></tr>
-</tbody></table></section><section><h2>Prototype architecture</h2><ol class="architecture-list">
-<li><strong>User input</strong><br>Keys or on-screen controls.</li><li><strong>Browser events</strong><br>Read text and observable edits.</li><li><strong>Measurement</strong><br>Compute time and text errors.</li><li><strong>Local results</strong><br>Keep session trials in memory.</li><li><strong>Visualisation</strong><br>Compare bars and exact values.</li></ol>
-<p>The browser cannot observe physical keyboard position. Visitors describe their own change. A journal save or CSV download keeps a local copy.</p></section>
-    <section><h2>Demonstrated prototypes</h2><p>The Typing Setup Lab implements the comparison in a browser. Its illustrated keyguard shows how openings line up with keys. The <a href="anatomy.html">3D Anatomy Studio</a> and the <a href="balance.html">balance model</a> demonstrate related concepts using simplified models with text or static alternatives.</p></section>
-    <section><h2>Testing methodology</h2><ol><li>Select a change and use the same device, input method, and sample for both setups.</li><li>Start a trial, type the sample, and finish. Elapsed time excludes explicit pauses and includes operating the controls.</li><li>Review the character edit distance and observed correction actions. Optionally rate comfort and choose a preference.</li><li>Repeat in the other order if comfortable. Look for trade-offs across trials and record relevant context.</li></ol></section>
-    <section id="verification"><h2>Software verification</h2><table class="requirements"><thead><tr><th scope="col">Check</th><th scope="col">What is tested</th></tr></thead><tbody><tr><th scope="row">Timing</th><td>Start enables entry. Paused time is excluded. Finish records a trial.</td></tr><tr><th scope="row">Error calculation</th><td>Known insertions, deletions, substitutions, spaces, and case have expected scores.</td></tr><tr><th scope="row">Repeated trials</th><td>Both setups retain their finished trials in session order.</td></tr><tr><th scope="row">Reset</th><td>Clear session removes measured trial rows and retains a saved journal snapshot.</td></tr><tr><th scope="row">Export</th><td>A CSV has one row per finished trial and excludes practice text.</td></tr><tr><th scope="row">Invalid input</th><td>An empty task does not create a result. The visitor can discard the trial.</td></tr></tbody></table><p><a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">Read the verification record in the README</a></p></section><section><h2>Results</h2><p>The public lab begins with an empty results view. It reports measurements from trials you finish in your browser. The project has no participant dataset or aggregate performance findings. See the <a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">repository documentation</a> for software verification.</p></section>
+    <section aria-labelledby="process-title">
+      <h2 id="process-title">From human need to responsible improvement</h2>
+      <ol class="architecture-list">
+        <li><strong>Human need</strong><br>Identify the action or barrier.</li>
+        <li><strong>Biomedical understanding</strong><br>Identify the movement and context that shape it.</li>
+        <li><strong>Design requirements</strong><br>Define what an adaptation should let someone do.</li>
+        <li><strong>Prototype</strong><br>Model one change using a drawing, interface or physical sample.</li>
+        <li><strong>Evaluation</strong><br>Choose a measure and check what it captures.</li>
+        <li><strong>Improvement</strong><br>Use the observations to decide what to change or test next.</li>
+      </ol>
+    </section>
+    <section aria-labelledby="cases-title">
+      <h2 id="cases-title">Three engineering examples</h2>
+      <div class="learning-paths">
+        <article class="lesson-card"><h3>Keyboard reach</h3><p>Moving the same keyboard changes the distance to a target. Holding the sample and input method constant makes it easier to interpret differences between trials.</p><p><strong>Open question:</strong> Does moving the keyboard affect reach, comfort or the way someone accesses other controls?</p></article>
+        <article class="lesson-card"><h3>Keyguard fit</h3><p>Openings must align with the intended keys and allow access without obstructing key movement. The diagram illustrates the relationship between openings and targets.</p><p><strong>Next check:</strong> Assess alignment and clearance on a specific keyboard before evaluating use.</p><a href="technology.html">Explore the keyguard in Assistive Technology</a></article>
+        <article class="lesson-card"><h3>Balance geometry</h3><p>The model separates the contact region from the downward projection of the centre of mass. It makes one geometric relationship visible.</p><p><strong>Model limit:</strong> The diagram cannot estimate how a person will respond to a change in balance.</p><a href="balance.html#balance-storyboard">See the support diagram</a></article>
+      </div>
+    </section>
+    <section aria-labelledby="requirements-title">
+      <h2 id="requirements-title">Design requirements</h2>
+      <table class="requirements"><thead><tr><th scope="col">Requirement</th><th scope="col">Design response</th></tr></thead><tbody>
+        <tr><th scope="row">Accessibility</th><td>Offer keyboard controls, visible focus, and a written alternative to each storyboard.</td></tr>
+        <tr><th scope="row">Low cost</th><td>Start with changes people can explore using equipment they already have.</td></tr>
+        <tr><th scope="row">Measurement</th><td>Define the timing boundary and error calculation so the result can be reproduced.</td></tr>
+        <tr><th scope="row">Data privacy</th><td>Keep trial results in the browser. Save or export by choice.</td></tr>
+      </tbody></table>
+    </section>
+    <section aria-labelledby="architecture-title">
+      <h2 id="architecture-title">Prototype architecture</h2>
+      <p>The typing prototype illustrates how a browser turns interaction into a local measurement.</p>
+      <ol class="architecture-list">
+        <li><strong>Input</strong><br>Physical keys or on-screen controls.</li>
+        <li><strong>Events</strong><br>Observe text and editing actions.</li>
+        <li><strong>Measurement</strong><br>Calculate time and character edit distance.</li>
+        <li><strong>Storage</strong><br>Keep session trials in memory.</li>
+        <li><strong>Visualisation</strong><br>Show exact values and bars on matching scales.</li>
+      </ol>
+      <p>Visitors describe any physical adjustment because the browser cannot observe keyboard position.</p>
+    </section>
+    <section id="verification"><h2>Software verification</h2><table class="requirements"><thead><tr><th scope="col">Check</th><th scope="col">What is tested</th></tr></thead><tbody><tr><th scope="row">Timing</th><td>Start enables entry. Paused time is excluded. Finish records a trial.</td></tr><tr><th scope="row">Error calculation</th><td>Known insertions, deletions, substitutions, spaces, and case have expected scores.</td></tr><tr><th scope="row">Repeated trials</th><td>Both setups retain their finished trials in session order.</td></tr><tr><th scope="row">Reset</th><td>Clear session removes measured trial rows and retains a saved journal snapshot.</td></tr><tr><th scope="row">Export</th><td>A CSV has one row per finished trial and excludes practice text.</td></tr><tr><th scope="row">Invalid input</th><td>An empty task does not create a result. The visitor can discard the trial.</td></tr></tbody></table><p><a href="https://github.com/hteteaindraykyaw296/Erry-Mobility-#biomedical-engineering-design-and-evaluation">Read the verification record in the README</a></p></section>
+    <section><h2>Evidence status</h2><p>Software tests check that the tools behave as designed. Erry Mobility has no participant dataset or aggregate performance findings. Keyguard fit, ergonomic benefit and individual balance responses remain unverified.</p></section>
     <section id="limitations"><h2>Limitations</h2><p>Erry Mobility is an educational assistive technology project. It has no established clinical effectiveness and provides no diagnosis, personalised rehabilitation, or substitute for occupational therapy or professional assessment. It is an educational web prototype and has not been developed as a medical device. Personal experience informed the design and represents one perspective.</p><p>Device differences, fatigue, practice, familiarity, and trial order can affect results. Browser editing events cannot identify every corrected error or distinguish an intentional edit from an accidental key press. A single English sample covers a narrow task. Suitability and usability need further evaluation with intended users.</p></section>
     <section><h2>Planned experiments and future ideas</h2><p>A proposed usability evaluation could ask whether users can select a setup, complete a trial, and interpret the results independently. With appropriate oversight and accessible consent, a later study could compare repeated trials in both orders, allowing rest and documenting the equipment and chosen changes. Future work could explore affordable keyguard designs and additional input methods.</p></section>
     <section><h2>References and documentation</h2><ul>

@@ -86,7 +86,7 @@ async function run() {
     const key = (type, key, virtualKey) => send('Input.dispatchKeyEvent', {type, key, code: key === ' ' ? 'Space' : key, windowsVirtualKeyCode: virtualKey});
     await send('Runtime.enable');
     await send('Emulation.setEmulatedMedia', {features: [{name: 'prefers-reduced-motion', value: 'reduce'}]});
-    const pages = [['', 'Forward'], ['understand.html', 'Understand CP'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab'], ['technology.html', 'Assistive Technology'], ['hands.html#spoon', 'Hands'], ['balance.html', 'Balance'], ['anatomy.html?still', 'Anatomy']];
+    const pages = [['', 'Forward'], ['understand.html', 'Understand CP'], ['typing.html', 'Typing Setup Lab'], ['engineering.html', 'Engineering Lab'], ['technology.html', 'Assistive Technology'], ['hands.html#spoon', 'Hands'], ['balance.html', 'Balance'], ['anatomy.html?still', 'Anatomy'], ['about.html', 'About Erry Mobility']];
     if (process.env.ERRY_SCREENSHOTS) {
       const output = path.resolve(process.env.ERRY_SCREENSHOTS);
       await fs.mkdir(output, {recursive: true});
@@ -98,6 +98,13 @@ async function run() {
           const name = page.split(/[.#?]/)[0] || 'home';
           const fit = await evaluate('document.documentElement.scrollWidth <= innerWidth');
           if (!fit) console.log('Horizontal overflow:', name, width);
+          const focus = {home: '#keyboard-position-storyboard', understand: '#motor-storyboard', hands: '#spoon-storyboard', balance: '#balance-storyboard', anatomy: '#hand-wrist-storyboard'}[name];
+          if (focus) {
+            await evaluate('document.querySelector(' + JSON.stringify(focus) + ').scrollIntoView()');
+            const detail = await send('Page.captureScreenshot', {format: 'jpeg', quality: 86});
+            await fs.writeFile(path.join(output, name + '-study-' + width + '.jpg'), Buffer.from(detail.data, 'base64'));
+            await evaluate('scrollTo(0,0)');
+          }
           const screenshot = await send('Page.captureScreenshot', {format: 'jpeg', quality: 86});
           await fs.writeFile(path.join(output, name + '-' + width + '.jpg'), Buffer.from(screenshot.data, 'base64'));
         }
@@ -123,6 +130,14 @@ async function run() {
     await key('keyUp', 'Tab', 9);
     assert.equal(await evaluate('document.activeElement.textContent'), 'Skip to content');
     assert.equal(await evaluate('getComputedStyle(document.activeElement).outlineStyle'), 'solid');
+    assert.equal(await evaluate('document.querySelector(".purpose-overview a.text-link").getAttribute("href")'), 'about.html');
+    assert.deepEqual(await evaluate('[...document.querySelectorAll(".purpose-overview .purpose-links a")].map(a => a.getAttribute("href"))'), ['about.html#mission', 'about.html#vision', 'about.html#goals', 'about.html#limits']);
+    await go('about.html', 'About Erry Mobility');
+    assert.equal(await evaluate('[...document.querySelectorAll(".purpose-links a")].every(link => document.querySelector(link.hash)?.tagName === "SECTION")'), true);
+    assert.equal(await evaluate('document.querySelectorAll("#principles article").length'), 6);
+    assert.equal(await evaluate('document.querySelectorAll("#goals li").length'), 5);
+    assert.equal(await evaluate('document.querySelector("#vision").textContent.includes("A world where movement is not a barrier to opportunity.")'), true);
+    await go('', 'Forward');
     await evaluate('document.querySelector(".site-nav summary").focus()');
     await key('rawKeyDown', ' ', 32);
     await key('keyUp', ' ', 32);
@@ -142,6 +157,8 @@ async function run() {
     await evaluate('document.querySelector("[data-replay]").click()');
     assert.match(await evaluate('document.querySelector("[data-caption]").textContent'), /decide/);
     assert.equal(await evaluate('getComputedStyle(document.querySelector(".diagram-point")).transitionDuration'), '0s');
+    const portrait = await evaluate('document.querySelector(".community-portrait").decode().then(() => {const image = document.querySelector(".community-portrait"); const rect = image.getBoundingClientRect(); return rect.width > 0 && rect.width <= 256 && Math.abs(rect.width / rect.height - 0.8) < .01;})');
+    assert.equal(portrait, true);
     await go('technology.html', 'Assistive Technology');
     await evaluate('const task = document.querySelector("#task-filter"); task.value="typing"; task.dispatchEvent(new Event("change"))');
     assert.match(await evaluate('document.querySelector("#at-gallery").textContent'), /Sticky Keys.*Keyboard positioning/);
@@ -211,11 +228,37 @@ async function run() {
     await evaluate('document.querySelector("#access").click()');
     assert.equal(await evaluate('document.body.classList.contains("large")'), true);
 
+    const storyboards = [
+      ['', 'Forward', ['keyboard-position-storyboard']],
+      ['understand.html','Understand CP',['motor-storyboard','reach-storyboard']],
+      ['typing.html','Typing Setup Lab',['sticky-keys-storyboard','keyguard-storyboard']],
+      ['anatomy.html?still','Anatomy',['hand-wrist-storyboard']],
+      ['hands.html#spoon','Hands',['spoon-storyboard']],
+      ['balance.html','Balance',['balance-storyboard']]
+    ];
+    for (const [route, title, ids] of storyboards) {
+      await go(route, title);
+      for (const id of ids) {
+        const story = 'document.getElementById(' + JSON.stringify(id) + ')';
+        assert.equal(await evaluate(story + '.hidden'), false);
+        assert.equal(await evaluate(story + '.querySelector("img").complete && ' + story + '.querySelector("img").naturalWidth > 0'), true);
+        const caption = story + '.querySelector("[data-caption]").textContent';
+        const initial = await evaluate(caption);
+        assert.equal(await evaluate(story + '.querySelector("[data-play]").textContent'), 'Play');
+        await evaluate(story + '.querySelector("[data-next-step]").click()');
+        assert.notEqual(await evaluate(caption), initial);
+        await evaluate(story + '.querySelector("[data-replay]").click()');
+        assert.equal(await evaluate(caption), initial);
+        assert.equal(await evaluate(story + '.querySelector("[data-play]").textContent'), 'Play');
+      }
+    }
+    console.log('Eight scientific storyboards passed image, manual step, replay, reduced-motion and initial paused checks.');
     await go('anatomy.html?model=hand', 'Anatomy');
     await evaluate('document.querySelector("#anatomy-main").scrollIntoView()');
     await ready('Boolean(document.querySelector("#anatomy-main [data-ready=true], #anatomy-main [data-fallback=true]"))');
     const liveModel = await evaluate('Boolean(document.querySelector("#anatomy-main [data-ready=true] canvas"))');
     if (liveModel) {
+      assert.equal(await evaluate('document.querySelector("#anatomy-main .anatomy-primary").getAttribute("aria-pressed")'), 'false');
       const cameraButtons = ['Zoom in', 'Zoom out', 'Turn view 45°', 'Reset view'];
       for (const label of cameraButtons) {
         assert.equal(await evaluate('Array.from(document.querySelectorAll("#anatomy-main button")).find(button => button.textContent === ' + JSON.stringify(label) + ').click() === undefined'), true);
@@ -230,7 +273,7 @@ async function run() {
     await evaluate('document.querySelector("[data-structure]:last-child").click()');
     assert.match(await evaluate('document.querySelector("[data-structure-diagram] [role=status]").textContent'), /transmit pull/);
     assert.deepEqual(failures, []);
-    console.log('Chromium checks passed: eight views at 375/768/1440px, shared navigation and keyboard focus, movement playback and reduced motion, device gallery and keyguard, timer/pause, invalid input, scoring and matched scales, repeated trials, comfort, CSV, journal, reset, and anatomy fallback.');
+    console.log('Chromium checks passed: nine views at 375/768/1440px, shared navigation and keyboard focus, movement playback and reduced motion, device gallery and keyguard, timer/pause, invalid input, scoring and matched scales, repeated trials, comfort, CSV, journal, reset, and anatomy fallback.');
   } finally {
     socket?.close();
     browser.kill();

@@ -99,6 +99,24 @@ Invite a first-time visitor to use their preferred device and input method. Reco
 
 I created Erry Mobility to explore practical technology for one-sided motor difficulties. Starting from my experience with cerebral palsy, I framed typing a short message as an engineering task and built an AI-assisted browser prototype that compares one setup change at a time. The lab measures elapsed time and final text errors, records optional comfort feedback, and lets visitors interpret their own results. I used software verification to check the measurement and export flow. Ergonomic benefit and clinical effectiveness remain unverified. Future work could include a low-cost physical prototype and an intended-user usability study.
 
+## Institutional purpose and visual production
+
+The About page records the official vision, mission, goal, strategic objectives and principles. The homepage and learning pages connect them to working features. The project remains an independent, student-led educational initiative informed by lived experience.
+
+Editorial references include the [United Nations disability-inclusive communications guidance](https://www.un.org/en/disabilitystrategy/resources), [UNICEF Disability Inclusion Policy and Strategy](https://www.unicef.org/unicef-disability-inclusion-policy-and-strategy-dipas-2022-2030), and [WHO assistive technology guidance](https://www.who.int/health-topics/assistive-technology). The homepage and About page use the existing Disabled And Here photograph under CC BY 4.0, with attribution.
+
+See the [visual asset inventory and production status](VISUAL-ASSET-AUDIT.md).
+
+### Illustrated scientific storyboards
+
+The eight storyboards use HTML controls, labelled stills, live text captions, optional timed highlights, manual steps and a static written sequence. Every sequence starts paused. Reduced-motion mode suppresses the marker transition and makes Replay return to the first step. The existing 3D viewer starts paused and keeps its rotation, zoom and fallback.
+
+The approved reach and brain-to-hand concept renders were generated for Erry Mobility. The keyboard comparison is an original SVG. Hand and wrist, Sticky Keys, keyguard, spoon and balance reuse existing educational diagrams. These visuals are explanatory models. The lower spinal anatomy and nerve routes in the generated mannequin need specialist review before use as an anatomical reference. No production rig, validated animation or study of ergonomic benefit was created.
+
+The Engineering Lab links functional need to movement science, design, prototype exploration, evaluation and improvement. The About roadmap distinguishes current capabilities and future ambitions.
+
+The two typing unit tests passed. Chromium verified nine views at 375, 768 and 1440 CSS pixels, including all eight storyboards' image loading, initial paused state, manual steps and reduced-motion replay. The suite exercised motor playback and pause, paused WebGL startup, keyboard focus, and the existing trial timing, scoring, reset, export and journal flows. A static scan checked IDs and relative asset references on all 18 content pages. Full accessibility and anatomical reviews remain open.
+
 ## GitHub Pages deployment
 
 1. Review the local changes, then commit and merge them into the publishing branch.
