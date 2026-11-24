@@ -167,3 +167,9 @@
 .storyboard-key { margin-block: .55rem; padding-inline-start: 1.4rem; }
 .scientific-storyboard .pathway-dots li { overflow-wrap: anywhere; }
 .scientific-storyboard[hidden] { display: none; }
+
+.purpose-links { display: flex; flex-wrap: wrap; gap: .45rem; margin: .85rem 0; }
+.purpose-links a { min-height: 44px; padding: .45rem .8rem; border: 1px solid #738a7d; border-radius: .4rem; background: var(--white); text-decoration: underline; font-weight: 700; }
+.purpose-links a:hover { background: var(--sage); }
+.purpose-list h4 { margin: 0; }
+.visual-photo-pair img.community-portrait, .model-card img.community-portrait { display: block; width: min(100%, 16rem); height: auto; max-height: none; aspect-ratio: 4 / 5; object-fit: contain; margin: .9rem auto; border-radius: .55rem; }

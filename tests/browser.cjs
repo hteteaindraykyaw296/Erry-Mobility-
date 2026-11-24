@@ -131,9 +131,11 @@ async function run() {
     assert.equal(await evaluate('document.activeElement.textContent'), 'Skip to content');
     assert.equal(await evaluate('getComputedStyle(document.activeElement).outlineStyle'), 'solid');
     assert.equal(await evaluate('document.querySelector(".purpose-overview a.text-link").getAttribute("href")'), 'about.html');
+    assert.deepEqual(await evaluate('[...document.querySelectorAll(".purpose-overview .purpose-links a")].map(a => a.getAttribute("href"))'), ['about.html#mission', 'about.html#vision', 'about.html#goals', 'about.html#limits']);
     await go('about.html', 'About Erry Mobility');
+    assert.equal(await evaluate('[...document.querySelectorAll(".purpose-links a")].every(link => document.querySelector(link.hash)?.tagName === "SECTION")'), true);
     assert.equal(await evaluate('document.querySelectorAll("#principles article").length'), 6);
-    assert.equal(await evaluate('document.querySelectorAll("#objectives li").length'), 5);
+    assert.equal(await evaluate('document.querySelectorAll("#goals li").length'), 5);
     assert.equal(await evaluate('document.querySelector("#vision").textContent.includes("A world where movement is not a barrier to opportunity.")'), true);
     await go('', 'Forward');
     await evaluate('document.querySelector(".site-nav summary").focus()');
@@ -155,6 +157,8 @@ async function run() {
     await evaluate('document.querySelector("[data-replay]").click()');
     assert.match(await evaluate('document.querySelector("[data-caption]").textContent'), /decide/);
     assert.equal(await evaluate('getComputedStyle(document.querySelector(".diagram-point")).transitionDuration'), '0s');
+    const portrait = await evaluate('document.querySelector(".community-portrait").decode().then(() => {const image = document.querySelector(".community-portrait"); const rect = image.getBoundingClientRect(); return rect.width > 0 && rect.width <= 256 && Math.abs(rect.width / rect.height - 0.8) < .01;})');
+    assert.equal(portrait, true);
     await go('technology.html', 'Assistive Technology');
     await evaluate('const task = document.querySelector("#task-filter"); task.value="typing"; task.dispatchEvent(new Event("change"))');
     assert.match(await evaluate('document.querySelector("#at-gallery").textContent'), /Sticky Keys.*Keyboard positioning/);
