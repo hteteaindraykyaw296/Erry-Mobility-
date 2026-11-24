@@ -98,6 +98,13 @@ async function run() {
           const name = page.split(/[.#?]/)[0] || 'home';
           const fit = await evaluate('document.documentElement.scrollWidth <= innerWidth');
           if (!fit) console.log('Horizontal overflow:', name, width);
+          const focus = {home: '#keyboard-position-storyboard', understand: '#motor-storyboard', hands: '#spoon-storyboard', balance: '#balance-storyboard', anatomy: '#hand-wrist-storyboard'}[name];
+          if (focus) {
+            await evaluate('document.querySelector(' + JSON.stringify(focus) + ').scrollIntoView()');
+            const detail = await send('Page.captureScreenshot', {format: 'jpeg', quality: 86});
+            await fs.writeFile(path.join(output, name + '-study-' + width + '.jpg'), Buffer.from(detail.data, 'base64'));
+            await evaluate('scrollTo(0,0)');
+          }
           const screenshot = await send('Page.captureScreenshot', {format: 'jpeg', quality: 86});
           await fs.writeFile(path.join(output, name + '-' + width + '.jpg'), Buffer.from(screenshot.data, 'base64'));
         }
@@ -217,11 +224,37 @@ async function run() {
     await evaluate('document.querySelector("#access").click()');
     assert.equal(await evaluate('document.body.classList.contains("large")'), true);
 
+    const storyboards = [
+      ['', 'Forward', ['keyboard-position-storyboard']],
+      ['understand.html','Understand CP',['motor-storyboard','reach-storyboard']],
+      ['typing.html','Typing Setup Lab',['sticky-keys-storyboard','keyguard-storyboard']],
+      ['anatomy.html?still','Anatomy',['hand-wrist-storyboard']],
+      ['hands.html#spoon','Hands',['spoon-storyboard']],
+      ['balance.html','Balance',['balance-storyboard']]
+    ];
+    for (const [route, title, ids] of storyboards) {
+      await go(route, title);
+      for (const id of ids) {
+        const story = 'document.getElementById(' + JSON.stringify(id) + ')';
+        assert.equal(await evaluate(story + '.hidden'), false);
+        assert.equal(await evaluate(story + '.querySelector("img").complete && ' + story + '.querySelector("img").naturalWidth > 0'), true);
+        const caption = story + '.querySelector("[data-caption]").textContent';
+        const initial = await evaluate(caption);
+        assert.equal(await evaluate(story + '.querySelector("[data-play]").textContent'), 'Play');
+        await evaluate(story + '.querySelector("[data-next-step]").click()');
+        assert.notEqual(await evaluate(caption), initial);
+        await evaluate(story + '.querySelector("[data-replay]").click()');
+        assert.equal(await evaluate(caption), initial);
+        assert.equal(await evaluate(story + '.querySelector("[data-play]").textContent'), 'Play');
+      }
+    }
+    console.log('Eight scientific storyboards passed image, manual step, replay, reduced-motion and initial paused checks.');
     await go('anatomy.html?model=hand', 'Anatomy');
     await evaluate('document.querySelector("#anatomy-main").scrollIntoView()');
     await ready('Boolean(document.querySelector("#anatomy-main [data-ready=true], #anatomy-main [data-fallback=true]"))');
     const liveModel = await evaluate('Boolean(document.querySelector("#anatomy-main [data-ready=true] canvas"))');
     if (liveModel) {
+      assert.equal(await evaluate('document.querySelector("#anatomy-main .anatomy-primary").getAttribute("aria-pressed")'), 'false');
       const cameraButtons = ['Zoom in', 'Zoom out', 'Turn view 45°', 'Reset view'];
       for (const label of cameraButtons) {
         assert.equal(await evaluate('Array.from(document.querySelectorAll("#anatomy-main button")).find(button => button.textContent === ' + JSON.stringify(label) + ').click() === undefined'), true);

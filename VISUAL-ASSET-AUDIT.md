@@ -97,4 +97,12 @@ This source inventory records provisional decisions. A frame-by-frame clinical a
 
 ## Production environment
 
-The site uses vendored Three.js, procedural meshes, static SVG and captioned MP4. Blender and ffmpeg were unavailable on PATH. No tracked GLB, glTF, Blender or FBX model was found. The received brief ends at “Properly rig”. Confirm the complete requirements and the rights to source assets, then review a representative rig and shot for anatomy, movement, accessible controls, performance, captions and a static alternative before replacing existing lessons.
+The site uses vendored Three.js, procedural meshes, static SVG and captioned MP4. Blender and ffmpeg were unavailable on PATH. No tracked GLB, glTF, Blender or FBX model was found. The continuation permits reviewed illustrations and animated storyboards when a suitable rig is unavailable. The approved visual direction is integrated as eight illustrated studies. The existing interactive anatomy studio and captioned media remain available. A validated rig, detailed anatomical review and frame-by-frame review of legacy tutorials remain future work. Confirm source rights and verify accessibility and performance before importing a production rig.
+
+## Integrated review assets
+
+| Asset | Provenance and status |
+| --- | --- |
+| media/motor-body-study.jpg | AI-generated for the project using the supplied visual reference as direction. Rear-view mannequin concept. Lower spinal anatomy and nerve depiction require expert review. |
+| media/reach-key-study.jpg | AI-generated for the project. Illustrates one possible reach, with no recommended posture or force. |
+| visuals/keyboard-position-study.svg | Original project diagram. The before-and-after displacement is illustrative. |

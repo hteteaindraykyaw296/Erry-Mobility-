@@ -159,3 +159,11 @@
 .purpose-list { padding-inline-start: 1.4rem; }
 .purpose-list li + li { margin-top: .9rem; }
 .purpose-list h2, .purpose-list h3 { margin: 0; }
+
+.scientific-storyboard .diagram-frame img { border-radius: .55rem; }
+.scientific-storyboard .diagram-point { z-index: 1; }
+.scientific-storyboard .diagram-frame:has(.storyboard-pin) .diagram-point { width: 2.1rem; height: 2.1rem; background: transparent; }
+.storyboard-pin { position: absolute; left: var(--pin-x); top: var(--pin-y); transform: translate(-50%, -50%); z-index: 2; display: grid; place-items: center; width: 1.45rem; height: 1.45rem; background: #193c32; color: white; border: 2px solid white; border-radius: 50%; font-size: .85rem; font-weight: 700; pointer-events: none; }
+.storyboard-key { margin-block: .55rem; padding-inline-start: 1.4rem; }
+.scientific-storyboard .pathway-dots li { overflow-wrap: anywhere; }
+.scientific-storyboard[hidden] { display: none; }
