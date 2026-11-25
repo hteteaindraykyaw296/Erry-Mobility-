@@ -1,61 +1,51 @@
-.purpose-summaries {
+.home-page main { padding-bottom: 2rem; }
+.home-page .purpose-hero h1 { margin-block: .4rem 0; text-wrap: initial; }
+.home-page .purpose-hero .eyebrow { margin-bottom: .65rem; }
+.home-figure { margin: 0; min-width: 0; }
+.home-figure img { display: block; width: 100%; height: auto; border-radius: .65rem; }
+.home-figure figcaption { margin-top: .45rem; color: var(--muted); font-size: .9rem; }
+.home-page .lesson-band > p { max-width: 68ch; }
+.home-photo-strip, .home-card-grid, .purpose-summaries { display: grid; gap: 1rem; }
+.home-photo-strip { grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin-top: 1.25rem; }
+.home-photo-strip img { aspect-ratio: 4 / 3; object-fit: cover; }
+.home-editorial {
   display: grid;
-  gap: .65rem;
-  margin-block: 1rem;
-}
-.purpose-summaries dt {
-  font-weight: 700;
-}
-.purpose-summaries dd {
-  margin-inline-start: 0;
-}
-.home-challenge {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
+  gap: clamp(1.25rem, 3vw, 2.25rem);
   align-items: center;
-  gap: 1.25rem;
 }
-.home-challenge figure {
-  margin: 0;
-}
-.home-challenge img {
+.home-card-grid, .purpose-summaries { grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.home-card-grid .lesson-card { min-width: 0; }
+.home-card-grid .lesson-card img {
   display: block;
-  width: 100%;
-  height: auto;
-  border-radius: .6rem;
-}
-.home-stages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-  gap: .75rem 1.8rem;
-  padding-inline-start: 1.5rem;
-}
-.home-stages li {
-  padding: .85rem;
-  border: 1px solid var(--line);
-  border-radius: .65rem;
-  background: var(--sage);
-}
-.home-stages h3, .home-explore h3 {
-  margin-block: 0 .25rem;
-}
-.home-stages p, .home-explore p {
-  margin-block: 0;
-}
-.home-explore .lesson-card {
-  min-width: 0;
-}
-.home-explore img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: contain;
   background: var(--sage);
+  border-radius: .45rem;
 }
-.purpose-dashboard :is(h3, dt, .engineering-actions, .site-footer) > a,
-.purpose-dashboard a.text-link {
+.home-card-grid h3 { margin-block: .7rem .25rem; }
+.home-card-grid ul { padding-inline-start: 1.25rem; }
+.home-card-grid a, .home-reference-links a, .purpose-summaries dt a, .purpose-dashboard a.text-link {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   min-width: 24px;
 }
-
+.home-stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: .75rem 1.75rem;
+  padding-inline-start: 1.5rem;
+}
+.home-stages li { background: var(--sage); padding: .75rem; border-radius: .5rem; }
+.home-stages h3, .home-stages p { margin: 0; }
+.home-motor-flow { padding-inline-start: 1.5rem; }
+.home-motor-flow li::marker, .home-stages li::marker { color: var(--terracotta); font-weight: 700; }
+.purpose-summaries > div { border-top: 2px solid var(--ink); padding-top: .35rem; }
+.purpose-summaries dt { font-weight: 700; }
+.purpose-summaries dd { margin-inline-start: 0; }
+.home-reference-links ul { display: flex; flex-wrap: wrap; gap: 0 1.25rem; padding: 0; list-style: none; }
+.home-page :is(a, summary):focus-visible { outline-offset: 3px; }
+@media (max-width: 760px) { .home-page .lesson-band { padding: 1rem; } }
+@media (prefers-reduced-motion: reduce) { html:has(.home-page) { scroll-behavior: auto; } }
